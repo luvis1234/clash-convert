@@ -6,9 +6,7 @@ from datetime import datetime
 # --- 配置区 ---
 # 远程源列表
 SOURCE_URLS = [
-    "https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/ultimate-onlydomains.txt", # 规则集格式示例
-    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical_No_Resolve.yaml", 
-	"https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockmihomo.yaml"# 纯域名格式示例
+    "https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/wildcard/ultimate-onlydomains.txt"# 纯域名格式示例
 ]
 
 # 本地源文件 (在你的仓库根目录下创建一个 data.txt)
@@ -94,4 +92,5 @@ def main():
 if __name__ == '__main__':
 
     main()
+
 
