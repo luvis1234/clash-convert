@@ -7,7 +7,7 @@ from datetime import datetime
 # 远程源列表
 SOURCE_URLS = [
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/domains/ultimate.txt", # 规则集格式示例
-    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical_No_Resolve.yaml" 
+    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical_No_Resolve.yaml", 
 	"https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockmihomo.yaml"# 纯域名格式示例
 ]
 
@@ -92,4 +92,5 @@ def main():
     print(f"✅ 处理完成，共生成 {len(sorted_rules)} 条规则。")
 
 if __name__ == '__main__':
+
     main()
