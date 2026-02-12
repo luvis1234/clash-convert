@@ -2,7 +2,7 @@ name: Ruleset Auto Update
 
 on:
   schedule:
-    - cron: '0 22 * * *' # 每天北京时间早上 6 点自动运行
+    - cron: '0 18 * * *' # 每天北京时间早上 6 点自动运行
   workflow_dispatch:    # 支持手动点击运行
 
 jobs:
