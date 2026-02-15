@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 # --- 配置区 ---
 SOURCE_URLS = [
-    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.txt",
+    ##源文件网址之间用,隔开，最后一个不加
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/domains/ultimate.txt"
 ]
 
@@ -84,3 +84,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
