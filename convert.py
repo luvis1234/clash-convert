@@ -6,7 +6,8 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 SOURCE_URLS = [
     ##源文件网址之间用,隔开，最后一个不加
-    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/domains/ultimate.txt"
+    # "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/domains/ultimate.txt"
+    https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate-onlydomains.txt
 ]
 
 LOCAL_FILES = ["data.txt"]
@@ -84,5 +85,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
