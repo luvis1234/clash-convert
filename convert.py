@@ -65,7 +65,7 @@ def main():
         f.write(f"# Total Domains: {len(sorted_domains)}\n\n")
         f.write("payload:\n")
         for domain in sorted_domains:
-            f.write(f"  - '.{domain}'\n")
+            f.write(f"  - '{domain}'\n")
     
     # 4. 自动更新 README.md
     if os.path.exists(README_FILE):
@@ -84,4 +84,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
