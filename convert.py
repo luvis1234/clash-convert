@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 SOURCE_URLS = [
    
-    "https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/domains/ultimate.txt"  ## 源文件网址之间用,隔开，最后一个不加
+    "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.plus-onlydomains.txt"  ## 源文件网址之间用,隔开，最后一个不加
 ]
 
 LOCAL_FILES = ["data.txt"]
