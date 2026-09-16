@@ -4,24 +4,31 @@ import re
 from datetime import datetime, timezone
 
 # --- 配置区 ---
-SOURCE_URLS = [
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate.mini-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.amazon-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.oppo-realme-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.xiaomi-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.huawei-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.tiktok.extended-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt",
-   "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt"
+# 1. 明确声明为 Clash 泛域名格式的源 (合并时会保留最高级，输出时加 '+.')
+CLASH_WILDCARD_SOURCES = [
+    # "https://example.com/clash_ruleset.yaml",
+    # "clash规则格式.yaml",
 ]
 
-LOCAL_FILES = ["data.txt"]
+# 2. 纯域名格式的源文件 (若未被泛域名覆盖，输出时仅作格式转换，不加 '+.')
+PLAIN_DOMAIN_SOURCES = [
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate.mini-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.amazon-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.oppo-realme-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.xiaomi-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.huawei-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.tiktok.extended-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt",
+    "data.txt"
+]
+
 OUTPUT_FILE = "ruleset.yaml"
 README_FILE = "README.md"
 # --- --- --- ---
@@ -44,10 +51,11 @@ def clean_domain(line):
     if not line or any(line.startswith(x) for x in ['#', '//', '!', 'payload:', '...']):
         return None
     
-    # 移除 YAML 列表符号、引号，以及前导点
-    domain = re.sub(r'^-\s+', '', line).replace("'", "").replace('"', '').lstrip('.')
+    # 移除 YAML 列表符号、引号
+    domain = re.sub(r'^-\s+', '', line).replace("'", "").replace('"', '')
+    # 剥离前导的泛域名符号 (+. / *. / .)
+    domain = re.sub(r'^(\+\.|\*\.|\.)', '', domain)
     
-    # 如果源文件是 Classical 格式 (TYPE,VALUE)，提取 VALUE
     if ',' in domain:
         parts = domain.split(',')
         if len(parts) >= 2:
@@ -57,9 +65,8 @@ def clean_domain(line):
 
 def filter_subdomains(domains):
     """
-    根据域名级别去重，将子域名合并到上级域名。
+    针对泛域名集合进行向上溯源去重：保留最高级父域名
     """
-    # 按长度升序排序，确保上级域名（较短）先被处理存入 set 中
     domains_sorted = sorted(list(domains), key=len)
     root_domains = set()
     
@@ -67,7 +74,6 @@ def filter_subdomains(domains):
         parts = domain.split('.')
         is_subdomain = False
         
-        # 逐级切分向上查找。例如对于 "a.b.com"，循环验证 "b.com" 和 "com" 是否已存在
         for i in range(1, len(parts)):
             parent = '.'.join(parts[i:])
             if parent in root_domains:
@@ -79,46 +85,88 @@ def filter_subdomains(domains):
             
     return root_domains
 
-def main():
-    all_domains = set()
+def is_covered_by_wildcards(domain, wildcard_roots):
+    """
+    检查某个纯域名是否已经被最高级泛域名库覆盖：
+    如果泛域名库里有 example.com，纯域名 example.com 和 a.example.com 都算被覆盖
+    """
+    if domain in wildcard_roots:
+        return True
+        
+    parts = domain.split('.')
+    for i in range(1, len(parts)):
+        parent = '.'.join(parts[i:])
+        if parent in wildcard_roots:
+            return True
+    return False
 
-    # 1. 抓取与合并
-    for source in SOURCE_URLS + LOCAL_FILES:
-        lines = fetch_content(source)
-        for line in lines:
+def main():
+    # 1. 抓取 Clash 泛域名源并去重，保留最高级泛域名
+    raw_wildcard_domains = set()
+    for source in CLASH_WILDCARD_SOURCES:
+        for line in fetch_content(source):
             domain = clean_domain(line)
             if domain:
-                all_domains.add(domain)
+                raw_wildcard_domains.add(domain)
 
-    # 2. 执行层级去重，并按照字母表顺序排序以输出
-    optimized_domains = filter_subdomains(all_domains)
-    sorted_domains = sorted(list(optimized_domains))
+    # 提取泛域名列表中的最高级
+    base_wildcards = filter_subdomains(raw_wildcard_domains)
+    print(f"🔹 泛域名源解析完毕，合并保留最高级泛域名: {len(base_wildcards)} 条")
+
+    # 2. 抓取纯域名源
+    raw_plain_domains = set()
+    for source in PLAIN_DOMAIN_SOURCES:
+        for line in fetch_content(source):
+            domain = clean_domain(line)
+            if domain:
+                raw_plain_domains.add(domain)
+    print(f"🔹 纯域名源读取完毕: {len(raw_plain_domains)} 条")
+
+    # 3. 纯域名与泛域名比对（防扩大化过滤）
+    final_plain_domains = set()
+    for domain in raw_plain_domains:
+        # 只要这个纯域名没有被已有的泛域名规则圈定，我们就单独保留它
+        if not is_covered_by_wildcards(domain, base_wildcards):
+            final_plain_domains.add(domain)
+
+    print(f"🔹 纯域名比对完毕：未被覆盖的精确拦截规则新增 {len(final_plain_domains)} 条")
+
+    # 4. 格式化并合并到统一的输出列表
+    output_lines = []
     
-    # 3. 获取当前 UTC 时间
+    # 泛域名加 '+.'
+    for domain in base_wildcards:
+        output_lines.append(f"  - '+.{domain}'")
+        
+    # 纯域名不加 '+.'，只套引号做格式转换
+    for domain in final_plain_domains:
+        output_lines.append(f"  - '{domain}'")
+
+    # 按字母表顺序排序，保证文件整洁
+    output_lines.sort()
     now_utc = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
 
-    # 4. 写入 ruleset.yaml
+    # 5. 写入 ruleset.yaml
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(f"# Update Time: {now_utc}\n")
-        f.write(f"# Total Domains: {len(sorted_domains)}\n\n")
+        f.write(f"# Total Domains: {len(output_lines)}\n\n")
         f.write("payload:\n")
-        for domain in sorted_domains:
-            f.write(f"  - '{domain}'\n")
+        for line in output_lines:
+            f.write(line + "\n")
     
-    # 5. 自动更新 README.md
+    # 6. 自动更新 README.md
     if os.path.exists(README_FILE):
         with open(README_FILE, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 替换统计信息
-        content = re.sub(r"当前规则总数：.*", f"当前规则总数：`{len(sorted_domains)}`", content)
+        content = re.sub(r"当前规则总数：.*", f"当前规则总数：`{len(output_lines)}`", content)
         content = re.sub(r"最后更新时间：.*", f"最后更新时间：`{now_utc}`", content)
         
         with open(README_FILE, 'w', encoding='utf-8') as f:
             f.write(content)
         print("✅ README 统计信息已更新")
     
-    print(f"✅ 处理完成，共生成 {len(sorted_domains)} 条域名规则。")
+    print(f"✅ 处理完成，最终规则数: {len(output_lines)} 条")
 
 if __name__ == '__main__':
     main()
