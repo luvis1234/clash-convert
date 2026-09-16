@@ -6,6 +6,8 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 # 1. 明确声明为 Clash 泛域名格式的源 (合并时会保留最高级，输出时加 '+.')
 CLASH_WILDCARD_SOURCES = [
+    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
+    "https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockmihomo.yaml"
     # "https://example.com/clash_ruleset.yaml",
     # "clash规则格式.yaml",
 ]
@@ -26,8 +28,7 @@ PLAIN_DOMAIN_SOURCES = [
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt",
-    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
-    "https://gcore.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblockmihomo.yaml"
+
 
     
 ]
