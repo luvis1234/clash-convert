@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 # 1. 明确声明为 Clash 混合规则的源 (支持自动识别其中混杂的泛域名和纯域名)
 CLASH_WILDCARD_SOURCES = [
-    "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    "https://github.com/luvis1234/tracker/blob/main/antiad.yaml"
     # "https://example.com/clash_ruleset.yaml",
     # "clash规则格式.yaml",
 ]
