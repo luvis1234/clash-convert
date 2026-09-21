@@ -6,6 +6,8 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 # 1. 明确声明为 Clash 混合规则的源 (支持自动识别其中混杂的泛域名和纯域名)
 CLASH_WILDCARD_SOURCES = [
+    "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
+    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml"
     #"https://github.com/luvis1234/tracker/blob/main/antiad.yaml"
     # "https://example.com/clash_ruleset.yaml",
     # "clash规则格式.yaml",
@@ -34,17 +36,28 @@ README_FILE = "README.md"
 # --- --- --- ---
 
 def fetch_content(source):
+    lines = []
     try:
         if source.startswith("http"):
             req = urllib.request.Request(source, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=15) as response:
-                return response.read().decode('utf-8').splitlines()
+                lines = response.read().decode('utf-8').splitlines()
         elif os.path.exists(source):
             with open(source, 'r', encoding='utf-8') as f:
-                return f.readlines()
+                lines = f.readlines()
     except Exception as e:
         print(f"⚠️ 读取源失败 {source}: {e}")
-    return []
+        return []
+
+    # 修改点 1：跳过文件开头所有以 '#' 开头的注释行及空白说明行
+    start_idx = 0
+    while start_idx < len(lines):
+        stripped = lines[start_idx].strip()
+        if stripped.startswith('#') or not stripped:
+            start_idx += 1
+        else:
+            break
+    return lines[start_idx:]
 
 def clean_domain(line):
     """
@@ -108,8 +121,12 @@ def is_covered_by_wildcards(domain, wildcard_roots):
     return False
 
 def main():
-    raw_wildcards = set()
-    raw_plains = set()
+    # 区分保存 Clash 源与纯域名源的数据
+    clash_raw_wildcards = set()
+    clash_raw_plains = set()
+
+    plain_raw_wildcards = set()
+    plain_raw_plains = set()
 
     # 1. 抓取 Clash 规则源 (自动识别其中的泛域名和纯域名)
     for source in CLASH_WILDCARD_SOURCES:
@@ -117,9 +134,9 @@ def main():
             domain, is_wildcard = clean_domain(line)
             if domain:
                 if is_wildcard:
-                    raw_wildcards.add(domain)
+                    clash_raw_wildcards.add(domain)
                 else:
-                    raw_plains.add(domain)
+                    clash_raw_plains.add(domain)
 
     # 2. 抓取纯域名源 (同样经过识别，以防源内混有异常格式)
     for source in PLAIN_DOMAIN_SOURCES:
@@ -127,17 +144,36 @@ def main():
             domain, is_wildcard = clean_domain(line)
             if domain:
                 if is_wildcard:
-                    raw_wildcards.add(domain)
+                    plain_raw_wildcards.add(domain)
                 else:
-                    raw_plains.add(domain)
+                    plain_raw_plains.add(domain)
 
-    # 3. 提取泛域名列表中的最高级
-    base_wildcards = filter_subdomains(raw_wildcards)
+    # 提取 Clash 源中的最高级泛域名
+    clash_base_wildcards = filter_subdomains(clash_raw_wildcards)
+
+    # 修改点 2：从纯域名源中剔除被 Clash 混合规则源已包含的域名
+    # 包括：直接匹配 Clash 纯域名库，以及被 Clash 泛域名规则覆盖的域名
+    deduped_plain_wildcards = set()
+    for d in plain_raw_wildcards:
+        if d not in clash_raw_plains and not is_covered_by_wildcards(d, clash_base_wildcards):
+            deduped_plain_wildcards.add(d)
+
+    deduped_plain_plains = set()
+    for d in plain_raw_plains:
+        if d not in clash_raw_plains and not is_covered_by_wildcards(d, clash_base_wildcards):
+            deduped_plain_plains.add(d)
+
+    # 合并 Clash 源与清洗剔除后的纯域名源
+    combined_wildcards = clash_raw_wildcards.union(deduped_plain_wildcards)
+    combined_plains = clash_raw_plains.union(deduped_plain_plains)
+
+    # 3. 提取最终泛域名列表中的最高级
+    base_wildcards = filter_subdomains(combined_wildcards)
     print(f"🔹 泛域名规则解析完毕，合并保留最高级泛域名: {len(base_wildcards)} 条")
 
     # 4. 纯域名与泛域名比对（防扩大化过滤）
     final_plain_domains = set()
-    for domain in raw_plains:
+    for domain in combined_plains:
         # 只要这个纯域名没有被已有的泛域名规则圈定，我们就单独保留它的精确匹配
         if not is_covered_by_wildcards(domain, base_wildcards):
             final_plain_domains.add(domain)
