@@ -162,14 +162,14 @@ def main():
         if not is_covered_by_wildcards(domain, final_base_wildcards):
             final_plain_domains.add(domain)
 
-    # 5. 格式化并生成统一的输出列表 (取消 YAML 列表符及引号，直接保留域名)
+    # 5. 格式化并生成统一的输出列表
     output_lines = []
     
-    # 泛域名直接追加域名本体，去掉原本的 '- +.' 构造
+    # 泛域名在最前面加上 "." 前缀[cite: 3]
     for domain in final_base_wildcards:
-        output_lines.append(domain)
+        output_lines.append(f".{domain}")
         
-    # 纯域名直接追加域名本体，去掉原本的引号构造
+    # 纯域名直接追加域名本体[cite: 3]
     for domain in final_plain_domains:
         output_lines.append(domain)
 
@@ -200,4 +200,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
