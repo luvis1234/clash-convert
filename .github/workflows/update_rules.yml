@@ -22,6 +22,9 @@ jobs:
       - name: Run Converter
         run: python convert.py
 
+      - name: Run myconverter
+        run: python myconvert.py
+
       - name: Commit and Push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
