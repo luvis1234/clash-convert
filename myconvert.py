@@ -8,19 +8,18 @@ from datetime import datetime, timezone
 CLASH_WILDCARD_SOURCES = [
     "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
     "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml"
+    
     #"https://github.com/luvis1234/tracker/blob/main/antiad.yaml"
     # "https://example.com/clash_myad.yaml",
     # "clash规则格式.yaml",
 ]
 
 # 2. 纯域名格式的源文件 (如果有误入的泛域名格式也能自动识别)
-# 只有这里的源经过清洗和剔除后，才会输出到最终文件
 PLAIN_DOMAIN_SOURCES = [
-    #"data.txt"
-  
+    "data.txt",
 ]
 
-OUTPUT_FILE = "myad.txt" # 如果需要纯文本可以自己改为 ruleset.txt
+OUTPUT_FILE = "myad.txt"
 README_FILE = "README.md"
 # --- --- --- ---
 
@@ -38,7 +37,7 @@ def fetch_content(source):
         print(f"⚠️ 读取源失败 {source}: {e}")
         return []
 
-    # 修改点 1：跳过文件开头所有以 '#' 开头的注释行及空白说明行
+    # 跳过文件开头所有以 '#' 开头的注释行及空白说明行
     start_idx = 0
     while start_idx < len(lines):
         stripped = lines[start_idx].strip()
@@ -110,67 +109,47 @@ def is_covered_by_wildcards(domain, wildcard_roots):
     return False
 
 def main():
-    # 区分保存 Clash 源（参考用）与纯域名源（输出用）的数据
-    clash_raw_wildcards = set()
-    clash_raw_plains = set()
+    # 汇总保存所有源中的泛域名与纯域名
+    all_raw_wildcards = set()
+    all_raw_plains = set()
 
-    plain_raw_wildcards = set()
-    plain_raw_plains = set()
-
-    # 1. 抓取 Clash 规则源 (仅作为黑名单参考库)
+    # 1. 抓取 Clash 规则源并直接加入合并池
     for source in CLASH_WILDCARD_SOURCES:
         for line in fetch_content(source):
             domain, is_wildcard = clean_domain(line)
             if domain:
                 if is_wildcard:
-                    clash_raw_wildcards.add(domain)
+                    all_raw_wildcards.add(domain)
                 else:
-                    clash_raw_plains.add(domain)
+                    all_raw_plains.add(domain)
 
-    # 提取 Clash 源中的最高级泛域名，用于后续判断覆盖范围
-    clash_base_wildcards = filter_subdomains(clash_raw_wildcards)
-    print(f"🔹 Clash 参考源解析完毕，提取作为过滤依据的泛域名 {len(clash_base_wildcards)} 条，纯域名 {len(clash_raw_plains)} 条")
-
-    # 2. 抓取纯域名源 (需要被输出的目标源)
+    # 2. 抓取纯域名源并直接加入合并池
     for source in PLAIN_DOMAIN_SOURCES:
         for line in fetch_content(source):
             domain, is_wildcard = clean_domain(line)
             if domain:
                 if is_wildcard:
-                    plain_raw_wildcards.add(domain)
+                    all_raw_wildcards.add(domain)
                 else:
-                    plain_raw_plains.add(domain)
+                    all_raw_plains.add(domain)
 
-    # 修改点 2：仅输出纯域名源的内容，但在输出前利用 Clash 源进行交叉剔除
-    deduped_plain_wildcards = set()
-    for d in plain_raw_wildcards:
-        # 如果该泛域名没有在 Clash 源中出现，才保留
-        if d not in clash_raw_plains and not is_covered_by_wildcards(d, clash_base_wildcards):
-            deduped_plain_wildcards.add(d)
-
-    deduped_plain_plains = set()
-    for d in plain_raw_plains:
-        # 如果该纯域名没有在 Clash 源中出现，也没有被 Clash 泛域名覆盖，才保留
-        if d not in clash_raw_plains and not is_covered_by_wildcards(d, clash_base_wildcards):
-            deduped_plain_plains.add(d)
-
-    # 3. 对剔除后的纯域名源自身进行泛域名最高级提取（防止其内部包含子域名）
-    final_base_wildcards = filter_subdomains(deduped_plain_wildcards)
+    # 3. 对合并后的泛域名进行向上溯源归并（消除子域名冗余，保留最高级父域）
+    final_base_wildcards = filter_subdomains(all_raw_wildcards)
     
-    # 4. 对剔除后的纯域名源自身进行纯域名与泛域名比对（防扩大化过滤）
+    # 4. 对合并后的纯域名进行过滤：如果已被泛域名覆盖则剔除，避免重复
     final_plain_domains = set()
-    for domain in deduped_plain_plains:
+    for domain in all_raw_plains:
         if not is_covered_by_wildcards(domain, final_base_wildcards):
             final_plain_domains.add(domain)
 
     # 5. 格式化并生成统一的输出列表
     output_lines = []
     
-    # 泛域名在最前面加上 "." 前缀[cite: 3]
+    # 仅原本就是泛域名的条目加上 "." 前缀
     for domain in final_base_wildcards:
         output_lines.append(f".{domain}")
         
-    # 纯域名直接追加域名本体[cite: 3]
+    # 纯域名直接保留原样，不加前缀
     for domain in final_plain_domains:
         output_lines.append(domain)
 
@@ -178,7 +157,7 @@ def main():
     output_lines.sort()
     now_utc = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
 
-    # 6. 写入文件 (移除了 f.write("payload:\n"))
+    # 6. 写入文件
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(f"# Update Time: {now_utc}\n")
         f.write(f"# Total Domains: {len(output_lines)}\n\n")
@@ -197,7 +176,7 @@ def main():
             f.write(content)
         print("✅ README 统计信息已更新")
     
-    print(f"✅ 处理完成，成功过滤并生成最终规则数: {len(output_lines)} 条")
+    print(f"✅ 处理完成，成功合并去重并生成最终规则数: {len(output_lines)} 条")
 
 if __name__ == '__main__':
     main()
