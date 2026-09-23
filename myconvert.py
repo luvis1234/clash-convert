@@ -16,7 +16,7 @@ CLASH_WILDCARD_SOURCES = [
 # 2. 纯域名格式的源文件 (如果有误入的泛域名格式也能自动识别)
 # 只有这里的源经过清洗和剔除后，才会输出到最终文件
 PLAIN_DOMAIN_SOURCES = [
-    "data.txt"
+    #"data.txt"
   
 ]
 
