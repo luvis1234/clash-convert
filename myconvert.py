@@ -19,7 +19,7 @@ PLAIN_DOMAIN_SOURCES = [
   
 ]
 
-OUTPUT_FILE = "myad.yaml"
+OUTPUT_FILE = "myad.txt" # 如果需要纯文本可以自己改为 ruleset.txt
 README_FILE = "README.md"
 # --- --- --- ---
 
@@ -162,26 +162,25 @@ def main():
         if not is_covered_by_wildcards(domain, final_base_wildcards):
             final_plain_domains.add(domain)
 
-    # 5. 格式化并生成统一的输出列表 (此时列表中绝对不含 Clash 混合源的内容)
+    # 5. 格式化并生成统一的输出列表 (取消 YAML 列表符及引号，直接保留域名)
     output_lines = []
     
-    # 泛域名加 '+.' 
+    # 泛域名直接追加域名本体，去掉原本的 '- +.' 构造
     for domain in final_base_wildcards:
-        output_lines.append(f"  - '+.{domain}'")
+        output_lines.append(domain)
         
-    # 纯域名不加泛化前缀，只套引号
+    # 纯域名直接追加域名本体，去掉原本的引号构造
     for domain in final_plain_domains:
-        output_lines.append(f"  - '{domain}'")
+        output_lines.append(domain)
 
     # 按字母表顺序排序
     output_lines.sort()
     now_utc = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
 
-    # 6. 写入 myad.yaml
+    # 6. 写入文件 (移除了 f.write("payload:\n"))
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         f.write(f"# Update Time: {now_utc}\n")
         f.write(f"# Total Domains: {len(output_lines)}\n\n")
-        f.write("payload:\n")
         for line in output_lines:
             f.write(line + "\n")
     
@@ -201,3 +200,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
