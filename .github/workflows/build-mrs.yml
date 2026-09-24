@@ -28,16 +28,20 @@ jobs:
 
       - name: Install mihomo core
         run: |
-          # 1. 下载 mihomo 稳定版内核 (这里以 v1.18.3 为例，可按需修改)
-          wget -O mihomo.gz https://github.com/MetaCubeX/mihomo/releases/download/v1.18.3/mihomo-linux-amd64-v1.19.31.gz
-          # 2. 解压文件
-          gunzip mihomo.gz
-          # 3. 赋予执行权限
-          chmod +x mihomo
-          # 4. 移动到系统 PATH 目录以便全局调用
-          sudo mv mihomo /usr/local/bin/
-          # 5. 验证安装
-          mihomo -v
+            # 1. 使用 jq 获取官方最新 release 的版本号
+            LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r .tag_name)
+            echo "获取到最新版本: $LATEST_VERSION"
+            
+            # 2. 拼接正确的下载链接并下载
+            wget -O mihomo.gz "https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/mihomo-linux-amd64-${LATEST_VERSION}.gz"
+            
+            # 3. 解压并安装
+            gunzip mihomo.gz
+            chmod +x mihomo
+            sudo mv mihomo /usr/local/bin/
+            
+            # 4. 验证安装
+            mihomo -v
 
       - name: Run conversion script
         run: python build_mrs.py
