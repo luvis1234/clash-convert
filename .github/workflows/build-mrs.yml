@@ -58,7 +58,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # 添加生成的文件夹
-          git add mrs_rules_sp/
+          git add mrs_rules_sp/ README.md
           
           # 如果有文件变更则提交，没有变更则静默退出避免报错
           git commit -m "Auto-generate MRS rules via mihomo" || exit 0
