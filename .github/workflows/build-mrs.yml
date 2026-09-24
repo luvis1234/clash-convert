@@ -1,0 +1,58 @@
+name: Build and Convert MRS Rules
+
+# 触发条件：推送到 main 分支时，或者手动在 Actions 页面触发
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-mrs:
+    runs-on: ubuntu-latest
+    # 必须赋予 GITHUB_TOKEN 写权限，否则无法将生成的文件 push 回仓库
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: pip install pyyaml
+
+      - name: Install mihomo core
+        run: |
+          # 1. 下载 mihomo 稳定版内核 (这里以 v1.18.3 为例，可按需修改)
+          wget -O mihomo.gz https://github.com/MetaCubeX/mihomo/releases/download/v1.18.3/mihomo-linux-amd64-v1.19.31.gz
+          # 2. 解压文件
+          gunzip mihomo.gz
+          # 3. 赋予执行权限
+          chmod +x mihomo
+          # 4. 移动到系统 PATH 目录以便全局调用
+          sudo mv mihomo /usr/local/bin/
+          # 5. 验证安装
+          mihomo -v
+
+      - name: Run conversion script
+        run: python build_mrs.py
+
+      - name: Commit and push generated MRS files
+        run: |
+          # 配置 Git 提交者信息为 GitHub Actions Bot
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加生成的文件夹
+          git add mrs_rules_sp/
+          
+          # 如果有文件变更则提交，没有变更则静默退出避免报错
+          git commit -m "Auto-generate MRS rules via mihomo" || exit 0
+          
+          # 推送回当前分支
+          git push
