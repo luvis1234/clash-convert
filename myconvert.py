@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 # --- 配置区 ---
 # 1. 明确声明为 Clash 混合规则的源 (支持自动识别其中混杂的泛域名和纯域名)
 CLASH_WILDCARD_SOURCES = [
-    "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
-    "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml"
+    #"https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
+    #"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml"
     
     #"https://github.com/luvis1234/tracker/blob/main/antiad.yaml"
     # "https://example.com/clash_myad.yaml",
