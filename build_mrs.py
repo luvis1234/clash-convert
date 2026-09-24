@@ -9,8 +9,8 @@ from pathlib import Path
 # ================= 配置区域 =================
 # 待下载的远程规则集 URL 列表
 RULE_URLS = [
-    "https://raw.githubusercontent.com/example/rules/main/domain/reject.txt",
-    "https://raw.githubusercontent.com/example/rules/main/ip/telegram.yaml"
+    "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
+    "https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml"
 ]
 
 # 输出目录
