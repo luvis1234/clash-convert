@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import urllib.request
 import subprocess
 import yaml
@@ -22,7 +23,6 @@ def setup_dirs():
     Path(TEMP_DIR).mkdir(parents=True, exist_ok=True)
 
 def analyze_content(content: str) -> tuple:
-    # (此函数逻辑保持不变，与此前代码完全一致)
     fmt = "text"
     behavior = "unknown"
     lines = [line.strip() for line in content.split('\n') if line.strip() and not line.startswith('#')]
@@ -60,6 +60,14 @@ def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_n
         return False
         
     out_file = os.path.join(OUTPUT_DIR, f"{output_name}.mrs")
+    
+    # 修复：转换前如果文件存在则先删除，确保 mihomo 能干净地写入新文件
+    if os.path.exists(out_file):
+        try:
+            os.remove(out_file)
+        except OSError as e:
+            print(f"⚠️ 无法删除旧文件 {out_file}: {e}")
+            
     cmd = ["mihomo", "convert-ruleset", behavior_type, format_type, src_path, out_file]
     
     try:
@@ -74,16 +82,13 @@ def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_n
         return False
 
 def update_readme(success_files):
-    """自动生成并更新 README 中的下载链接"""
     if not success_files:
         print("没有成功转换的文件，跳过更新 README。")
         return
         
-    # GitHub Actions 运行时会自动注入 GITHUB_REPOSITORY (例如 "用户名/仓库名")
     repo = os.environ.get("GITHUB_REPOSITORY", "your-username/your-repo")
     branch = "main"
     
-    # 构造 Markdown 文本
     md_content = "\n### 📦 自动生成的 MRS 规则集订阅链接\n\n你可以直接在 Mihomo 配置文件中引用以下链接：\n\n"
     for file, behavior in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{file}"
@@ -98,7 +103,6 @@ def update_readme(success_files):
         with open(README_FILE, "w", encoding="utf-8") as f:
             f.write(f"# 规则集\n\n<!-- RULES_START -->\n<!-- RULES_END -->\n")
 
-    # 读取旧 README，进行正则替换
     with open(README_FILE, "r", encoding="utf-8") as f:
         content = f.read()
 
@@ -121,19 +125,28 @@ def main():
         base_name = os.path.splitext(filename)[0]
         tmp_path = os.path.join(TEMP_DIR, filename)
         
+        # 修复：为 URL 添加时间戳参数，强制跳过 GitHub Raw CDN 缓存拉取最新文件
+        timestamp = int(time.time())
+        fetch_url = f"{url}?t={timestamp}"
+        
         try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            req = urllib.request.Request(fetch_url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req) as response:
                 with open(tmp_path, 'wb') as f:
                     f.write(response.read())
         except Exception as e:
+            # 修复：将静默跳过改为打印具体的异常日志，以便排查下载错误
+            print(f"❌ 下载失败 {url}: {e}")
             continue
             
-        fmt, behavior = analyze_content(open(tmp_path, 'r', encoding='utf-8').read())
+        # 修复：使用 with 语句管理上下文，确保分析完毕后立刻释放文件句柄
+        with open(tmp_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            
+        fmt, behavior = analyze_content(content)
         
         if behavior != "unknown":
             if convert_to_mrs(tmp_path, fmt, behavior, base_name):
-                # 记录成功的文件名和行为，用于输出链接
                 success_list.append((f"{base_name}.mrs", behavior))
                 
     update_readme(success_list)
