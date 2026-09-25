@@ -1,6 +1,7 @@
 import os
 import re
 import time
+import datetime
 import urllib.request
 import subprocess
 import yaml
@@ -61,7 +62,7 @@ def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_n
         
     out_file = os.path.join(OUTPUT_DIR, f"{output_name}.mrs")
     
-    # 修复：转换前如果文件存在则先删除，确保 mihomo 能干净地写入新文件
+    # 转换前清理旧文件，防止覆盖失败
     if os.path.exists(out_file):
         try:
             os.remove(out_file)
@@ -89,7 +90,12 @@ def update_readme(success_files):
     repo = os.environ.get("GITHUB_REPOSITORY", "your-username/your-repo")
     branch = "main"
     
-    md_content = "\n### 📦 自动生成的 MRS 规则集订阅链接\n\n你可以直接在 Mihomo 配置文件中引用以下链接：\n\n"
+    # 获取东八区当前时间
+    tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
+    now_str = datetime.datetime.now(tz_utc_8).strftime("%Y-%m-%d %H:%M:%S")
+    
+    md_content = f"\n### 📦 自动生成的 MRS 规则集订阅链接\n\n> ⏱ **最后同步时间**：`{now_str}` (UTC+8)\n\n你可以直接在 Mihomo 配置文件中引用以下链接：\n\n"
+    
     for file, behavior in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{file}"
         cdn_url = f"https://cdn.jsdelivr.net/gh/{repo}@{branch}/{OUTPUT_DIR}/{file}"
@@ -125,7 +131,7 @@ def main():
         base_name = os.path.splitext(filename)[0]
         tmp_path = os.path.join(TEMP_DIR, filename)
         
-        # 修复：为 URL 添加时间戳参数，强制跳过 GitHub Raw CDN 缓存拉取最新文件
+        # 添加时间戳参数，强制跳过 GitHub Raw CDN 缓存
         timestamp = int(time.time())
         fetch_url = f"{url}?t={timestamp}"
         
@@ -135,11 +141,10 @@ def main():
                 with open(tmp_path, 'wb') as f:
                     f.write(response.read())
         except Exception as e:
-            # 修复：将静默跳过改为打印具体的异常日志，以便排查下载错误
             print(f"❌ 下载失败 {url}: {e}")
             continue
             
-        # 修复：使用 with 语句管理上下文，确保分析完毕后立刻释放文件句柄
+        # 安全读取文件，防止句柄占用导致转换失败
         with open(tmp_path, 'r', encoding='utf-8') as f:
             content = f.read()
             
