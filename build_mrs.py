@@ -56,9 +56,6 @@ def analyze_content(content: str) -> tuple:
     return fmt, behavior
 
 def extract_from_classical(content: str):
-    """
-    解析 classical 格式内容，拆分并转换出纯域名和纯 IP 规则列表
-    """
     domain_lines = []
     ipcidr_lines = []
     try:
@@ -71,7 +68,6 @@ def extract_from_classical(content: str):
         
     for rule in rules:
         rule_str = str(rule).strip()
-        # 按照逗号分割，最大分割 2 次 (例如 DOMAIN-SUFFIX,google.com,no-resolve)
         parts = rule_str.split(',', 2)
         if len(parts) < 2:
             continue
@@ -79,7 +75,6 @@ def extract_from_classical(content: str):
         rule_type = parts[0].upper().strip()
         rule_value = parts[1].strip()
         
-        # 域名类转换映射
         if rule_type == 'DOMAIN':
             domain_lines.append(f"full:{rule_value}")
         elif rule_type == 'DOMAIN-SUFFIX':
@@ -88,7 +83,6 @@ def extract_from_classical(content: str):
             domain_lines.append(f"keyword:{rule_value}")
         elif rule_type == 'DOMAIN-REGEX':
             domain_lines.append(f"regexp:{rule_value}")
-        # IP 类提取
         elif rule_type in ('IP-CIDR', 'IP-CIDR6'):
             ipcidr_lines.append(rule_value)
             
@@ -131,18 +125,20 @@ def update_readme(success_files):
     tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
     now_str = datetime.datetime.now(tz_utc_8).strftime("%Y-%m-%d %H:%M:%S")
     
+    # 构建表头
     md_content = f"\n### 📦 自动生成的 MRS 规则集订阅链接\n\n> ⏱ **最后同步时间**：`{now_str}` (UTC+8)\n\n你可以直接在 Mihomo 配置文件中引用以下链接：\n\n"
+    md_content += "| 文件名 | Behavior | 下载链接 |\n"
+    md_content += "| :--- | :---: | :--- |\n"
     
-    # 按照文件名排序，使得生成的列表更整齐
     success_files.sort(key=lambda x: x[0])
     
+    # 构建表格内容，多个链接使用 <br> 换行
     for file, behavior in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{file}"
         cdn_url = f"https://cdn.jsdelivr.net/gh/{repo}@{branch}/{OUTPUT_DIR}/{file}"
         
-        md_content += f"- **{file}** (Behavior: `{behavior}`)\n"
-        md_content += f"  - GitHub Raw: `{raw_url}`\n"
-        md_content += f"  - jsDelivr CDN (推荐): `{cdn_url}`\n\n"
+        links = f"[GitHub Raw]({raw_url}) <br> [jsDelivr CDN (推荐)]({cdn_url})"
+        md_content += f"| **{file}** | `{behavior}` | {links} |\n"
         
     if not os.path.exists(README_FILE):
         print(f"未找到 {README_FILE}，将自动创建。")
@@ -154,9 +150,9 @@ def update_readme(success_files):
 
     pattern = re.compile(r'<!-- RULES_START -->.*<!-- RULES_END -->', re.DOTALL)
     if pattern.search(readme_content):
-        new_content = pattern.sub(f'<!-- RULES_START -->\n{md_content}<!-- RULES_END -->', readme_content)
+        new_content = pattern.sub(f'<!-- RULES_START -->\n{md_content}\n<!-- RULES_END -->', readme_content)
     else:
-        new_content = readme_content + f"\n\n<!-- RULES_START -->\n{md_content}<!-- RULES_END -->"
+        new_content = readme_content + f"\n\n<!-- RULES_START -->\n{md_content}\n<!-- RULES_END -->"
 
     with open(README_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
@@ -188,12 +184,10 @@ def main():
             
         fmt, behavior = analyze_content(content)
         
-        # 新增逻辑：处理 classical 混合格式
         if behavior == "classical":
             print(f"🔄 识别到 classical 格式: {base_name}，正在提取 domain 和 ipcidr 规则...")
             domain_lines, ipcidr_lines = extract_from_classical(content)
             
-            # 处理提取出的域名规则
             if domain_lines:
                 tmp_domain = os.path.join(TEMP_DIR, f"{base_name}_domain.txt")
                 with open(tmp_domain, 'w', encoding='utf-8') as f:
@@ -203,9 +197,8 @@ def main():
                 if convert_to_mrs(tmp_domain, "text", "domain", out_name):
                     success_list.append((f"{out_name}.mrs", "domain"))
                 
-                os.remove(tmp_domain) # 转换后立即删除中间 text 文件
+                os.remove(tmp_domain)
                 
-            # 处理提取出的 IP 规则
             if ipcidr_lines:
                 print(f"💡 提示: {base_name} 包含 ipcidr 规则，已单独提取转换。")
                 tmp_ipcidr = os.path.join(TEMP_DIR, f"{base_name}_IP.txt")
@@ -216,13 +209,11 @@ def main():
                 if convert_to_mrs(tmp_ipcidr, "text", "ipcidr", out_name):
                     success_list.append((f"{out_name}.mrs", "ipcidr"))
                     
-                os.remove(tmp_ipcidr) # 转换后立即删除中间 text 文件
+                os.remove(tmp_ipcidr)
                 
-            # 如果 classical 提取后没有任何支持的规则，输出警告
             if not domain_lines and not ipcidr_lines:
                 print(f"⚠️ {base_name} 中未提取到任何受支持的域名或 IP 规则。")
 
-        # 处理原本就是 domain 或 ipcidr 的格式
         elif behavior != "unknown":
             if convert_to_mrs(tmp_path, fmt, behavior, base_name):
                 success_list.append((f"{base_name}.mrs", behavior))
