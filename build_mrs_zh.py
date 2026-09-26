@@ -9,7 +9,7 @@ from pathlib import Path
 # ================= 扩展性配置区 =================
 RULE_GROUPS = {
     "Reject_Ads": [
-    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt",
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.amazon-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt",
@@ -21,10 +21,9 @@ RULE_GROUPS = {
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt",
     "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt",
-        "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/ruleset.yaml",
+    "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml"
-        # 可添加更多广告规则链接进行合并
     ],
     "Direct_CN": [
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml"
@@ -69,12 +68,18 @@ def parse_rules_from_content(content: str):
     lines = content.split('\n')
     for line in lines:
         line = line.strip()
+        # 初次拦截：过滤纯文本注释和空行
         if not line or line.startswith('#') or line == 'payload:':
             continue
             
         # 剥离 YAML 列表符号及引号
         if line.startswith('-'):
             line = line[1:].strip()
+            
+        # 二次拦截：防御形如 "- # 这是一个注释" 剥离 '-' 后暴露出的隐藏注释
+        if not line or line.startswith('#'):
+            continue
+            
         if (line.startswith("'") and line.endswith("'")) or \
            (line.startswith('"') and line.endswith('"')):
             line = line[1:-1].strip()
@@ -182,16 +187,18 @@ def update_readme(success_files):
     tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
     now_str = datetime.datetime.now(tz_utc_8).strftime("%Y-%m-%d %H:%M:%S")
     
+    # 在表头新增“规则数量”列
     md_content = f"\n### 📦 自动生成的 MRS 规则集订阅链接 (ZH)\n\n> ⏱ **最后同步时间**：`{now_str}` (UTC+8)\n\n"
-    md_content += "| 文件名 | 规则类型 (Behavior) | 下载链接 |\n"
-    md_content += "| :--- | :---: | :--- |\n"
+    md_content += "| 文件名 | 规则类型 (Behavior) | 规则数量 | 下载链接 |\n"
+    md_content += "| :--- | :---: | :---: | :--- |\n"
     
     success_files.sort(key=lambda x: x[0])
-    for filename, behavior in success_files:
+    for filename, behavior, count in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{filename}"
         cdn_url = f"https://cdn.jsdelivr.net/gh/{repo}@{branch}/{OUTPUT_DIR}/{filename}"
         links = f"[GitHub Raw]({raw_url}) <br> [jsDelivr CDN]({cdn_url})"
-        md_content += f"| **{filename}** | `{behavior}` | {links} |\n"
+        # 将传入的 count 数量渲染到表格中
+        md_content += f"| **{filename}** | `{behavior}` | {count:,} | {links} |\n"
         
     if not os.path.exists(README_FILE):
         with open(README_FILE, "w", encoding="utf-8") as f:
@@ -243,6 +250,9 @@ def main():
             domain_name = f"{group_name}_Domain"
             tmp_domain_path = os.path.join(TEMP_DIR, f"{domain_name}.txt")
             
+            # 计算当前 Domain 文件的规则总数
+            domain_count = len(opt_suffixes) + len(opt_exacts) + len(all_others)
+            
             with open(tmp_domain_path, 'w', encoding='utf-8') as f:
                 for s in sorted(opt_suffixes):
                     f.write(f"{s}\n")
@@ -252,21 +262,26 @@ def main():
                     f.write(f"{o}\n")
                     
             if convert_to_mrs(tmp_domain_path, "text", "domain", domain_name):
-                print(f"  ✅ 成功构建: {domain_name}.mrs")
-                success_list.append((f"{domain_name}.mrs", "domain"))
+                print(f"  ✅ 成功构建: {domain_name}.mrs (共 {domain_count} 条规则)")
+                # 将 count 添加到成功列表的元组中
+                success_list.append((f"{domain_name}.mrs", "domain", domain_count))
                 
         # =============== 2. 生成并转换 IP 规则文件 ===============
         if all_ipcidrs:
             ip_name = f"{group_name}_IP"
             tmp_ip_path = os.path.join(TEMP_DIR, f"{ip_name}.txt")
             
+            # 计算当前 IP 文件的规则总数
+            ip_count = len(all_ipcidrs)
+            
             with open(tmp_ip_path, 'w', encoding='utf-8') as f:
                 for ip in sorted(all_ipcidrs):
                     f.write(f"{ip}\n")
                     
             if convert_to_mrs(tmp_ip_path, "text", "ipcidr", ip_name):
-                print(f"  ✅ 成功构建: {ip_name}.mrs")
-                success_list.append((f"{ip_name}.mrs", "ipcidr"))
+                print(f"  ✅ 成功构建: {ip_name}.mrs (共 {ip_count} 条规则)")
+                # 将 count 添加到成功列表的元组中
+                success_list.append((f"{ip_name}.mrs", "ipcidr", ip_count))
                 
     update_readme(success_list)
 
