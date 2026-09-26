@@ -150,37 +150,37 @@ def update_readme(success_files):
     tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
     now_str = datetime.datetime.now(tz_utc_8).strftime("%Y-%m-%d %H:%M:%S")
     
-    # 严格按照“文件名”、“格式”、“下载链接”构建表头
     md_content = f"\n### 📦 自动生成的 MRS 规则集订阅链接 (ZH)\n\n> ⏱ **最后同步时间**：`{now_str}` (UTC+8)\n\n"
     md_content += "| 文件名 | 格式 | 下载链接 |\n"
     md_content += "| :--- | :---: | :--- |\n"
     
     success_files.sort(key=lambda x: x[0])
     
-    # 填充表格行
     for filename, fmt in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{filename}"
         cdn_url = f"https://cdn.jsdelivr.net/gh/{repo}@{branch}/{OUTPUT_DIR}/{filename}"
         links = f"[GitHub Raw]({raw_url}) <br> [jsDelivr CDN]({cdn_url})"
-        
         md_content += f"| **{filename}** | `{fmt}` | {links} |\n"
         
+    # 【修改点 1】：如果文件不存在，初始化时同时写入两组标签，方便后续两个脚本都能找到各自的替换区
     if not os.path.exists(README_FILE):
         with open(README_FILE, "w", encoding="utf-8") as f:
-            f.write(f"# 规则集\n\n<!-- RULES_START -->\n<!-- RULES_END -->\n")
+            f.write("# 规则集订阅列表\n\n## 基础规则\n<!-- RULES_START -->\n<!-- RULES_END -->\n\n## 合并与去重规则 (ZH)\n<!-- RULES_ZH_START -->\n<!-- RULES_ZH_END -->\n")
 
     with open(README_FILE, "r", encoding="utf-8") as f:
         readme_content = f.read()
 
-    pattern = re.compile(r'<!-- RULES_START -->.*<!-- RULES_END -->', re.DOTALL)
+    # 【修改点 2】：正则匹配替换为 RULES_ZH_START 和 RULES_ZH_END
+    pattern = re.compile(r'<!-- RULES_ZH_START -->.*<!-- RULES_ZH_END -->', re.DOTALL)
     if pattern.search(readme_content):
-        new_content = pattern.sub(f'<!-- RULES_START -->\n{md_content}\n<!-- RULES_END -->', readme_content)
+        new_content = pattern.sub(f'<!-- RULES_ZH_START -->\n{md_content}\n<!-- RULES_ZH_END -->', readme_content)
     else:
-        new_content = readme_content + f"\n\n<!-- RULES_START -->\n{md_content}\n<!-- RULES_END -->"
+        # 如果文件中没有 ZH 标签，则在文件末尾追加
+        new_content = readme_content + f"\n\n<!-- RULES_ZH_START -->\n{md_content}\n<!-- RULES_ZH_END -->"
 
     with open(README_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
-    print("✅ README.md 订阅链接表格已成功更新。")
+    print("✅ README.md 订阅链接表格已成功更新 (ZH区)。")
 
 def main():
     setup_dirs()
