@@ -1,17 +1,21 @@
 name: Build and Convert MRS Rules
 
-# 触发条件：推送到 main 分支，手动触发，或者每天 3 次定时触发 (近似 10 小时一次)
+# 触发条件：推送到 main 分支，手动触发，或者每 10 小时触发一次
 on:
   push:
     branches:
       - main
   workflow_dispatch:
   schedule:
+    # 这里的 cron 表达式表示在每天的 00:00 和 10:00，以及 20:00 (UTC 时间) 触发。
+    # 实际上由于 24 不能被 10 整除，无法实现完美的“每隔10小时”。
+    # 我们通常用特定时间点来近似。以下表达式会在每天的 0时, 10时, 20时 运行 (UTC)
     - cron: '0 0,10,20 * * *'
 
 jobs:
   build-mrs:
     runs-on: ubuntu-latest
+    # 必须赋予 GITHUB_TOKEN 写权限，否则无法将生成的文件 push 回仓库
     permissions:
       contents: write
 
@@ -29,37 +33,41 @@ jobs:
 
       - name: Install mihomo core
         run: |
-            # 使用 jq 自动获取官方最新 release 的版本号
+            # 1. 使用 jq 获取官方最新 release 的版本号
             LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r .tag_name)
             echo "获取到最新版本: $LATEST_VERSION"
             
-            # 下载最新版内核
+            # 2. 拼接正确的下载链接并下载
             wget -O mihomo.gz "https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/mihomo-linux-amd64-${LATEST_VERSION}.gz"
             
-            # 解压、赋权并移动到系统路径
+            # 3. 解压并安装
             gunzip mihomo.gz
             chmod +x mihomo
             sudo mv mihomo /usr/local/bin/
             
-            # 验证安装是否成功
+            # 4. 验证安装
             mihomo -v
 
-      - name: Run conversion script
+      # 原有的规则转换任务（输出至 mrs_rules_sp）
+      - name: Run original conversion script
         run: python build_mrs.py
 
+      # 新增的合并与去重转换任务（输出至 mrs_rules_ZH）
+      - name: Run ZH domain merging and deduplication script
+        run: python build_mrs_zh.py
+
+      # 统一提交并推送原规则集与新规则集
       - name: Commit and push generated MRS files
         run: |
+          # 配置 Git 提交者信息为 GitHub Actions Bot
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 暂存生成的规则文件夹和 README 文件
-          git add mrs_rules_sp/ README.md
+          # 同时追踪两个输出目录以及更新后的 README
+          git add mrs_rules_sp/ mrs_rules_ZH/ README.md
           
-          # 打印当前 git 状态，方便在日志中调试排查变动
-          git status
+          # 如果有文件变更则提交，没有变更则静默退出避免报错
+          git commit -m "Auto-generate and merge MRS rules via mihomo" || exit 0
           
-          # 执行提交，若无变化则静默退出避免任务报错
-          git commit -m "Auto-generate MRS rules via mihomo" || exit 0
-          
-          # 推送至仓库
+          # 推送回当前分支
           git push
