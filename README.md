@@ -1,20 +1,16 @@
 # clash-convert
 clash拦截规则转换
 
+# Mihomo 规则集订阅列表
+
+这里是自动生成的规则集，包含基础转换规则和去重优化规则。
+
+## 📦 基础转换规则
 <!-- RULES_START -->
-
-### 📦 自动生成的 MRS 规则集订阅链接
-
-> ⏱ **最后同步时间**：`2026-09-26 13:04:00` (UTC+8)
-
-你可以直接在 Mihomo 配置文件中引用以下链接：
-
-| 文件名 | Behavior | 下载链接 |
-| :--- | :---: | :--- |
-| **AdvertisingTest_Domain.mrs** | `domain` | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_sp/AdvertisingTest_Domain.mrs) <br> [jsDelivr CDN (推荐)](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_sp/AdvertisingTest_Domain.mrs) |
-| **ChinaMaxNoIP_Domain.mrs** | `domain` | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_sp/ChinaMaxNoIP_Domain.mrs) <br> [jsDelivr CDN (推荐)](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_sp/ChinaMaxNoIP_Domain.mrs) |
-| **Google_Domain.mrs** | `domain` | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_sp/Google_Domain.mrs) <br> [jsDelivr CDN (推荐)](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_sp/Google_Domain.mrs) |
-| **Google_IP.mrs** | `ipcidr` | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_sp/Google_IP.mrs) <br> [jsDelivr CDN (推荐)](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_sp/Google_IP.mrs) |
-| **ruleset.mrs** | `domain` | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_sp/ruleset.mrs) <br> [jsDelivr CDN (推荐)](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_sp/ruleset.mrs) |
-
+（原脚本 build_mrs.py 会自动将表格写入到这里）
 <!-- RULES_END -->
+
+## 📦 合并与去重规则 (ZH)
+<!-- RULES_ZH_START -->
+（新脚本 build_mrs_zh.py 会自动将表格写入到这里）
+<!-- RULES_ZH_END -->
