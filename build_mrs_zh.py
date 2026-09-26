@@ -23,7 +23,8 @@ RULE_GROUPS = {
 }
 
 OUTPUT_DIR = "mrs_rules_ZH"
-TEMP_DIR = ".tmp_rules"
+# 将 TEMP 文件夹建在 OUTPUT_DIR 内部
+TEMP_DIR = os.path.join(OUTPUT_DIR, "TEMP")
 README_FILE = "README.md"
 
 def setup_dirs():
@@ -99,16 +100,15 @@ def parse_rules_from_content(content: str):
             elif is_ip_or_cidr(rule_str):
                 ipcidrs.add(rule_str)
             else:
-                # 用户要求：无前缀的 'C.D' 等同于 domain:C.D，即 full: 提取
+                # 无前缀字符串等同于 domain:C.D，走 exacts 提取
                 exacts.add(rule_str.lstrip('.'))
                 
     return suffixes, exacts, ipcidrs, others
 
 def deduplicate_domains(suffixes: set, exacts: set):
-    """根据包含关系去重，返回优化后的集合与精简日志"""
+    """根据包含关系去重，返回优化后的集合"""
     sorted_suffixes = sorted(list(suffixes), key=lambda x: x.count('.'))
     optimized_suffixes = set()
-    removed_logs = []
     
     # 1. 泛域名内部层级合并
     for domain in sorted_suffixes:
@@ -120,7 +120,6 @@ def deduplicate_domains(suffixes: set, exacts: set):
                 continue
             if parent in optimized_suffixes:
                 is_redundant = True
-                removed_logs.append(f"[后缀归并] {domain} -> {parent}")
                 break
         if not is_redundant:
             optimized_suffixes.add(domain)
@@ -136,12 +135,11 @@ def deduplicate_domains(suffixes: set, exacts: set):
                 continue
             if parent in optimized_suffixes:
                 is_redundant = True
-                removed_logs.append(f"[精确降维] full:{domain} -> {parent}")
                 break
         if not is_redundant:
             optimized_exacts.add(domain)
             
-    return optimized_suffixes, optimized_exacts, removed_logs
+    return optimized_suffixes, optimized_exacts
 
 def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_name: str) -> bool:
     """执行 mihomo 命令行转换"""
@@ -224,14 +222,8 @@ def main():
             continue
             
         print(f"  🧹 开始域名去重。合并前域名数: {len(all_suffixes) + len(all_exacts)}")
-        opt_suffixes, opt_exacts, removed_logs = deduplicate_domains(all_suffixes, all_exacts)
+        opt_suffixes, opt_exacts = deduplicate_domains(all_suffixes, all_exacts)
         print(f"  ✨ 去重完成，优化后域名数: {len(opt_suffixes) + len(opt_exacts)}")
-        
-        # 调试功能：输出去重日志
-        if removed_logs:
-            debug_log = os.path.join(TEMP_DIR, f"{group_name}_removed_debug.log")
-            with open(debug_log, 'w', encoding='utf-8') as f:
-                f.write("\n".join(removed_logs))
         
         # =============== 1. 生成并转换 Domain 规则文件 ===============
         has_domain_rules = bool(opt_suffixes or opt_exacts or all_others)
