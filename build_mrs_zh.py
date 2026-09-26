@@ -7,22 +7,15 @@ import subprocess
 import yaml
 from pathlib import Path
 
-# ================= 扩展性配置区 =================
-# 以字典形式配置不同的规则组，字典的 Key 将作为生成的 mrs 文件名
 RULE_GROUPS = {
     "Reject_Ads": [
-        # 在这里填入广告拦截相关的 yaml (domain 或 classical 格式均可)
-        "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/ruleset.yaml",
-        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
-        # 可添加更多广告规则链接进行合并
+        # 此处替换为 adblockmihomo.yaml 等其他广告规则链接
     ],
     "Direct_CN": [
-        # 在这里填入国内直连相关的 yaml
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml"
     ],
     "Proxy_Global": [
-        # 在这里填入需要走代理的全局域名 yaml
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml"
     ]
 }
@@ -32,48 +25,44 @@ TEMP_DIR = ".tmp_rules"
 README_FILE = "README.md"
 
 def setup_dirs():
-    """初始化目录"""
     Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
     Path(TEMP_DIR).mkdir(parents=True, exist_ok=True)
 
 def parse_domains_from_content(content: str):
-    """
-    解析文件内容，兼容 classical 和 domain 的 yaml 格式，提取域名
-    返回: (suffixes 集合, exacts 集合, others 集合)
-    """
     suffixes = set()
     exacts = set()
     others = set()
+    rules = []
     
     try:
         data = yaml.safe_load(content)
-        if not isinstance(data, dict) or 'payload' not in data:
-            return suffixes, exacts, others
-        rules = data['payload']
+        if isinstance(data, dict) and 'payload' in data:
+            rules = data['payload']
+        elif isinstance(data, list):
+            rules = data
+        else:
+            rules = content.split('\n')
     except yaml.YAMLError:
-        return suffixes, exacts, others
+        rules = content.split('\n')
 
     for rule in rules:
-        rule_str = str(rule).strip()
+        rule_str = str(rule).strip().lower()
         if not rule_str or rule_str.startswith('#'):
             continue
             
-        # 识别 classical 格式
-        if ',' in rule_str and rule_str.upper().startswith(('DOMAIN', 'IP-', 'SRC-', 'DST-', 'PROCESS-', 'GEO', 'MATCH')):
+        if ',' in rule_str and rule_str.startswith(('domain', 'ip-', 'src-', 'dst-', 'process-', 'geo', 'match')):
             parts = [p.strip() for p in rule_str.split(',', 2)]
-            rule_type = parts[0].upper()
+            rule_type = parts[0]
             if len(parts) >= 2:
                 val = parts[1]
-                if rule_type == 'DOMAIN-SUFFIX':
-                    suffixes.add(val)
-                elif rule_type == 'DOMAIN':
+                if rule_type == 'domain-suffix':
+                    suffixes.add(val.lstrip('.'))
+                elif rule_type == 'domain':
                     exacts.add(val)
-                elif rule_type == 'DOMAIN-KEYWORD':
+                elif rule_type == 'domain-keyword':
                     others.add(f"keyword:{val}")
-                elif rule_type == 'DOMAIN-REGEX':
+                elif rule_type == 'domain-regex':
                     others.add(f"regexp:{val}")
-                
-        # 识别 domain yaml 格式
         else:
             if rule_str.startswith('full:'):
                 exacts.add(rule_str[5:])
@@ -81,45 +70,59 @@ def parse_domains_from_content(content: str):
                 others.add(rule_str)
             elif rule_str.startswith('+.'):
                 suffixes.add(rule_str[2:])
+            elif re.match(r'^[\d\.]+$', rule_str) or (':' in rule_str and rule_str.replace(':', '').isalnum()):
+                # 修复2：如果直接是纯IP地址，强制作为 exacts (转换为 full:10.10.x.x)，避免被错误处理为 suffix
+                exacts.add(rule_str)
             else:
-                suffixes.add(rule_str)
+                suffixes.add(rule_str.lstrip('.'))
                 
     return suffixes, exacts, others
 
 def deduplicate_domains(suffixes: set, exacts: set):
-    """根据域名级别进行去重合并"""
     sorted_suffixes = sorted(list(suffixes), key=lambda x: x.count('.'))
     optimized_suffixes = set()
+    removed_logs = []
     
+    # 优化 suffixes
     for domain in sorted_suffixes:
         parts = domain.split('.')
         is_redundant = False
         for i in range(1, len(parts)):
             parent = '.'.join(parts[i:])
+            
+            # 修复1：禁止使用顶级域名（如 .ru, .com, 0个点）作为基准进行去重，防止上游误杀
+            if parent.count('.') < 1:
+                continue
+                
             if parent in optimized_suffixes:
                 is_redundant = True
+                removed_logs.append(f"[Suffix 去重] {domain} -> 已被宽泛规则涵盖: {parent}")
                 break
+                
         if not is_redundant:
             optimized_suffixes.add(domain)
             
+    # 优化 exacts
     optimized_exacts = set()
     for domain in exacts:
         parts = domain.split('.')
         is_redundant = False
         for i in range(len(parts)):
             parent = '.'.join(parts[i:])
+            if parent.count('.') < 1:
+                continue
             if parent in optimized_suffixes:
                 is_redundant = True
+                removed_logs.append(f"[Exact 去重] {domain} -> 已被泛域名涵盖: {parent}")
                 break
+                
         if not is_redundant:
             optimized_exacts.add(domain)
             
-    return optimized_suffixes, optimized_exacts
+    return optimized_suffixes, optimized_exacts, removed_logs
 
 def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_name: str) -> bool:
-    """调用 mihomo 转换为 mrs 格式"""
     out_file = os.path.join(OUTPUT_DIR, f"{output_name}.mrs")
-    
     if os.path.exists(out_file):
         try:
             os.remove(out_file)
@@ -127,7 +130,6 @@ def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_n
             pass
             
     cmd = ["mihomo", "convert-ruleset", behavior_type, format_type, src_path, out_file]
-    
     try:
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(f"✅ 转换成功: {out_file} (Behavior: {behavior_type})")
@@ -140,10 +142,6 @@ def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_n
         return False
 
 def update_readme(success_files):
-    """
-    更新 README 订阅链接
-    表格三列展示：文件名 | 格式 | 下载链接
-    """
     if not success_files:
         return
         
@@ -157,14 +155,12 @@ def update_readme(success_files):
     md_content += "| :--- | :---: | :--- |\n"
     
     success_files.sort(key=lambda x: x[0])
-    
     for filename, fmt in success_files:
         raw_url = f"https://raw.githubusercontent.com/{repo}/{branch}/{OUTPUT_DIR}/{filename}"
         cdn_url = f"https://cdn.jsdelivr.net/gh/{repo}@{branch}/{OUTPUT_DIR}/{filename}"
         links = f"[GitHub Raw]({raw_url}) <br> [jsDelivr CDN]({cdn_url})"
         md_content += f"| **{filename}** | `{fmt}` | {links} |\n"
         
-    # 【修改点 1】：如果文件不存在，初始化时同时写入两组标签，方便后续两个脚本都能找到各自的替换区
     if not os.path.exists(README_FILE):
         with open(README_FILE, "w", encoding="utf-8") as f:
             f.write("# 规则集订阅列表\n\n## 基础规则\n<!-- RULES_START -->\n<!-- RULES_END -->\n\n## 合并与去重规则 (ZH)\n<!-- RULES_ZH_START -->\n<!-- RULES_ZH_END -->\n")
@@ -172,24 +168,21 @@ def update_readme(success_files):
     with open(README_FILE, "r", encoding="utf-8") as f:
         readme_content = f.read()
 
-    # 【修改点 2】：正则匹配替换为 RULES_ZH_START 和 RULES_ZH_END
     pattern = re.compile(r'<!-- RULES_ZH_START -->.*<!-- RULES_ZH_END -->', re.DOTALL)
     if pattern.search(readme_content):
         new_content = pattern.sub(f'<!-- RULES_ZH_START -->\n{md_content}\n<!-- RULES_ZH_END -->', readme_content)
     else:
-        # 如果文件中没有 ZH 标签，则在文件末尾追加
         new_content = readme_content + f"\n\n<!-- RULES_ZH_START -->\n{md_content}\n<!-- RULES_ZH_END -->"
 
     with open(README_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
-    print("✅ README.md 订阅链接表格已成功更新 (ZH区)。")
 
 def main():
     setup_dirs()
     success_list = []
     
     for group_name, urls in RULE_GROUPS.items():
-        print(f"🔄 正在处理规则组: {group_name} ...")
+        print(f"\n🔄 正在处理规则组: {group_name} ...")
         
         all_suffixes = set()
         all_exacts = set()
@@ -213,11 +206,26 @@ def main():
             print(f"  ⚠️ {group_name} 未提取到任何域名，跳过。")
             continue
             
+        # 调试功能 1：输出合并后、去重前的全量规则
+        debug_before = os.path.join(TEMP_DIR, f"{group_name}_before_dedup.txt")
+        with open(debug_before, 'w', encoding='utf-8') as f:
+            for item in sorted(all_suffixes | all_exacts | all_others):
+                f.write(f"{item}\n")
+                
         print(f"  🧹 提取完成，开始去重。合并前规则数: {len(all_suffixes) + len(all_exacts)}")
-        opt_suffixes, opt_exacts = deduplicate_domains(all_suffixes, all_exacts)
-        print(f"  ✨ 去重完成，优化后规则数: {len(opt_suffixes) + len(opt_exacts)}")
+        opt_suffixes, opt_exacts, removed_logs = deduplicate_domains(all_suffixes, all_exacts)
         
-        tmp_path = os.path.join(TEMP_DIR, f"{group_name}.txt")
+        # 调试功能 2：输出去重日志，找出是谁误杀了正常域名
+        debug_log = os.path.join(TEMP_DIR, f"{group_name}_removed_debug.log")
+        with open(debug_log, 'w', encoding='utf-8') as f:
+            f.write(f"Total Removed: {len(removed_logs)}\n\n")
+            f.write("\n".join(removed_logs))
+            
+        print(f"  ✨ 去重完成，优化后规则数: {len(opt_suffixes) + len(opt_exacts)}")
+        print(f"  🔍 去重明细请查看: {debug_log}")
+        
+        # 调试功能 3 / 转换输入源：输出最终精简版
+        tmp_path = os.path.join(TEMP_DIR, f"{group_name}_after_dedup.txt")
         with open(tmp_path, 'w', encoding='utf-8') as f:
             for s in sorted(opt_suffixes):
                 f.write(f"{s}\n")
@@ -226,9 +234,7 @@ def main():
             for o in sorted(all_others):
                 f.write(f"{o}\n")
                 
-        # 转换为 mrs
         if convert_to_mrs(tmp_path, "text", "domain", group_name):
-            # 将 (文件名, 格式) 记录到成功列表中
             success_list.append((f"{group_name}.mrs", "mrs"))
             
     update_readme(success_list)
