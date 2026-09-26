@@ -12,6 +12,8 @@ from pathlib import Path
 RULE_GROUPS = {
     "Reject_Ads": [
         # 在这里填入广告拦截相关的 yaml (domain 或 classical 格式均可)
+        "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/ruleset.yaml",
+        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
         # 可添加更多广告规则链接进行合并
     ],
