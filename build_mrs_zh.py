@@ -22,6 +22,7 @@ RULE_GROUPS = {
         "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt",
         "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt",
         "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt",
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
     ],
@@ -33,598 +34,335 @@ RULE_GROUPS = {
     ],
 }
 
-
 OUTPUT_DIR = "mrs_rules_ZH"
 TEMP_DIR = os.path.join(OUTPUT_DIR, "TEMP")
 README_FILE = "README.md"
+DOWNLOAD_TIMEOUT = 120
 
-
-# ============================================================
-# 纯文本 domain list 的默认语义
-# ============================================================
-#
-# 纯文本：
-#     example.com
-#
-# 本身没有 DOMAIN / DOMAIN-SUFFIX 类型信息。
-#
-# 当前项目中的 onlydomains/domain-list 源主要用于域名拦截，
-# 因此默认将纯文本域名按 suffix 处理。
-#
-# 如果某个纯文本源需要精确匹配：
-#     1. 源文件使用 DOMAIN,example.com
-#     2. 或使用 full:example.com
-#
-# 可选：
-#     "suffix" -> example.com 输出为 +.example.com
-#     "exact"  -> example.com 输出为 example.com
-#
+# 纯文本域名没有 DOMAIN / DOMAIN-SUFFIX 类型信息。
+# "suffix": example.com -> +.example.com
+# "exact":  example.com -> example.com
 PLAIN_DOMAIN_MODE = "exact"
 
 
-# 下载超时
-DOWNLOAD_TIMEOUT = 120
-
-
 def setup_dirs():
-    """初始化输出和临时目录。"""
     Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
     Path(TEMP_DIR).mkdir(parents=True, exist_ok=True)
 
 
 def is_ip_or_cidr(val: str) -> bool:
-    """
-    判断字符串是否为 IPv4 / IPv6 地址或 CIDR。
-    """
-
-    # --------------------------------------------------------
-    # IPv4 / IPv4 CIDR
-    # --------------------------------------------------------
-    if re.fullmatch(
-        r"\d{1,3}(?:\.\d{1,3}){3}(?:/\d{1,2})?",
-        val,
-    ):
+    if re.fullmatch(r"\d{1,3}(?:\.\d{1,3}){3}(?:/\d{1,2})?", val):
         try:
             ip_part = val.split("/", 1)[0]
-            octets = ip_part.split(".")
-
-            return all(
-                0 <= int(octet) <= 255
-                for octet in octets
-            )
-
+            return all(0 <= int(x) <= 255 for x in ip_part.split("."))
         except ValueError:
             return False
 
-    # --------------------------------------------------------
-    # IPv6 / IPv6 CIDR
-    #
-    # 保持宽松判断，最终交给 Mihomo ipcidr 转换器校验。
-    # --------------------------------------------------------
-    if ":" in val and re.fullmatch(
-        r"[0-9a-fA-F:]+(?:/\d{1,3})?",
-        val,
-    ):
+    if ":" in val and re.fullmatch(r"[0-9a-fA-F:]+(?:/\d{1,3})?", val):
         return True
 
     return False
 
 
 def normalize_domain(val: str) -> str:
-    """
-    标准化域名。
+    return val.strip().lower().rstrip(".").lstrip(".")
 
-    处理：
-      - 首尾空白
-      - 小写
-      - 最后的 .
-      - 开头的 .
 
-    例如：
+def is_valid_domain(domain: str) -> bool:
+    if not domain or "/" in domain or "\\" in domain:
+        return False
+    if len(domain) > 253:
+        return False
+    if domain.startswith(".") or domain.endswith("."):
+        return False
+    if ".." in domain:
+        return False
 
-        Example.COM.      -> example.com
-        .Example.COM      -> example.com
-        example.com       -> example.com
-    """
+    labels = domain.split(".")
+    if len(labels) < 2:
+        return False
 
-    val = val.strip().lower().rstrip(".")
+    for label in labels:
+        if not label or len(label) > 63:
+            return False
+        if label.startswith("-") or label.endswith("-"):
+            return False
+        if not re.fullmatch(r"[a-z0-9_-]+", label):
+            return False
 
-    return val.lstrip(".")
+    return True
 
 
 def parse_rules_from_content(content: str):
-    """
-    解析 Clash / Mihomo 规则文本。
-
-    返回：
-
-        suffixes
-            DOMAIN-SUFFIX
-            +.domain
-            .domain
-            纯文本 domain（默认 suffix）
-
-        exacts
-            DOMAIN
-            full:domain
-
-        ipcidrs
-            IP-CIDR
-            IP-CIDR6
-            SRC-IP-CIDR
-            纯文本 IP / CIDR
-
-        others
-            DOMAIN-KEYWORD
-            DOMAIN-REGEX
-
-    ============================================================
-    关键语义
-    ============================================================
-
-    DOMAIN-SUFFIX,example.com
-        ->
-    +.example.com
-
-    DOMAIN,example.com
-        ->
-    example.com
-
-    +.example.com
-        ->
-    +.example.com
-
-    .example.com
-        ->
-    +.example.com
-
-    full:example.com
-        ->
-    example.com
-
-    纯文本 example.com
-        ->
-    +.example.com
-    （PLAIN_DOMAIN_MODE = "suffix"）
-
-    ============================================================
-    为什么必须输出 +.domain？
-    ============================================================
-
-    Mihomo 的 DomainSetBuilder 区分：
-
-        example.com
-            精确匹配 example.com
-
-        .example.com
-            suffix-only
-
-        +.example.com
-            根域 + 所有子域
-
-    因此 DOMAIN-SUFFIX 不能直接写成：
-
-        example.com
-
-    否则会丢失 suffix 语义。
-    """
-
     suffixes = set()
     exacts = set()
     ipcidrs = set()
     others = set()
 
     for raw_line in content.splitlines():
-
         line = raw_line.strip()
 
-        # --------------------------------------------------------
-        # 空行 / 注释 / YAML payload 标记
-        # --------------------------------------------------------
-        if not line:
+        if not line or line.startswith("#") or line == "payload:":
             continue
 
-        if line.startswith("#"):
-            continue
-
-        if line == "payload:":
-            continue
-
-        # --------------------------------------------------------
-        # YAML 列表项
-        #
-        # - DOMAIN-SUFFIX,example.com
-        # ->
-        # DOMAIN-SUFFIX,example.com
-        # --------------------------------------------------------
         if line.startswith("-"):
             line = line[1:].strip()
 
-        if not line:
+        if not line or line.startswith("#"):
             continue
 
-        if line.startswith("#"):
-            continue
-
-        # --------------------------------------------------------
-        # 去除 YAML 外层引号
-        # --------------------------------------------------------
         if (
             (line.startswith("'") and line.endswith("'"))
-            or
-            (line.startswith('"') and line.endswith('"'))
+            or (line.startswith('"') and line.endswith('"'))
         ):
             line = line[1:-1].strip()
 
-        if not line:
-            continue
-
         rule_str = line.lower().strip()
-
         if not rule_str:
             continue
 
-        # ========================================================
-        # Classical Rule
-        #
-        # DOMAIN-SUFFIX,xxx
-        # DOMAIN,xxx
-        # IP-CIDR,xxx
-        # DOMAIN-KEYWORD,xxx
-        # DOMAIN-REGEX,xxx
-        # ========================================================
         if "," in rule_str:
-
-            parts = [
-                p.strip()
-                for p in rule_str.split(",", 2)
-            ]
-
+            parts = [p.strip() for p in rule_str.split(",", 2)]
             if len(parts) < 2:
                 continue
 
-            rule_type = parts[0]
-            val = parts[1]
+            rule_type, val = parts[0], parts[1]
 
-            # ----------------------------------------------------
-            # DOMAIN-SUFFIX
-            #
-            # 必须保留 suffix 语义。
-            # 后续生成 MRS domain text 时：
-            #
-            #     +.example.com
-            #
-            # ----------------------------------------------------
             if rule_type == "domain-suffix":
-
                 domain = normalize_domain(val)
-
-                if domain:
+                if is_valid_domain(domain):
                     suffixes.add(domain)
 
-            # ----------------------------------------------------
-            # DOMAIN
-            #
-            # 精确匹配。
-            #
-            # MRS domain text：
-            #
-            #     example.com
-            #
-            # ----------------------------------------------------
             elif rule_type == "domain":
-
                 domain = normalize_domain(val)
-
-                if domain:
+                if is_valid_domain(domain):
                     exacts.add(domain)
 
-            # ----------------------------------------------------
-            # IP-CIDR
-            # ----------------------------------------------------
-            elif rule_type in (
-                "ip-cidr",
-                "ip-cidr6",
-                "src-ip-cidr",
-            ):
-
+            elif rule_type in ("ip-cidr", "ip-cidr6", "src-ip-cidr"):
                 if val:
                     ipcidrs.add(val)
 
-            # ----------------------------------------------------
-            # DOMAIN-KEYWORD
-            #
-            # domain behavior 的 MRS 不直接承载 keyword。
-            # 因此保留到 others，仅用于日志提示。
-            # ----------------------------------------------------
             elif rule_type == "domain-keyword":
-
                 if val:
                     others.add(f"keyword:{val}")
 
-            # ----------------------------------------------------
-            # DOMAIN-REGEX
-            #
-            # 同样不写入 domain MRS。
-            # ----------------------------------------------------
             elif rule_type == "domain-regex":
-
                 if val:
                     others.add(f"regexp:{val}")
 
             continue
 
-        # ========================================================
-        # Domain Text / MRS Domain Syntax
-        # ========================================================
-
-        # --------------------------------------------------------
-        # full:example.com
-        #
-        # 明确表示精确匹配。
-        # --------------------------------------------------------
         if rule_str.startswith("full:"):
-
-            domain = normalize_domain(
-                rule_str[5:]
-            )
-
-            if domain:
+            domain = normalize_domain(rule_str[5:])
+            if is_valid_domain(domain):
                 exacts.add(domain)
 
-        # --------------------------------------------------------
-        # +.example.com
-        #
-        # Mihomo：
-        #
-        #     根域 + 所有子域
-        # --------------------------------------------------------
         elif rule_str.startswith("+."):
-
-            domain = normalize_domain(
-                rule_str[2:]
-            )
-
-            if domain:
+            domain = normalize_domain(rule_str[2:])
+            if is_valid_domain(domain):
                 suffixes.add(domain)
 
-        # --------------------------------------------------------
-        # keyword: / regexp:
-        #
-        # domain MRS 不支持。
-        # --------------------------------------------------------
-        elif (
-            rule_str.startswith("keyword:")
-            or
-            rule_str.startswith("regexp:")
-        ):
-
+        elif rule_str.startswith("keyword:") or rule_str.startswith("regexp:"):
             others.add(rule_str)
 
-        # --------------------------------------------------------
-        # IP / CIDR
-        # --------------------------------------------------------
         elif is_ip_or_cidr(rule_str):
-
             ipcidrs.add(rule_str)
 
-        # --------------------------------------------------------
-        # .example.com
-        #
-        # Mihomo DomainSet 中表示 suffix-only。
-        #
-        # 本脚本希望保留 DOMAIN-SUFFIX 的根域 + 子域语义，
-        # 所以统一转换为 suffix 集合，最终输出 +.example.com。
-        # --------------------------------------------------------
         elif rule_str.startswith("."):
-
             domain = normalize_domain(rule_str)
-
-            if domain:
+            if is_valid_domain(domain):
                 suffixes.add(domain)
 
-        # --------------------------------------------------------
-        # 纯文本 domain
-        #
-        # 例如：
-        #
-        #     example.com
-        #
-        # 没有 DOMAIN / DOMAIN-SUFFIX 类型信息。
-        # --------------------------------------------------------
         else:
-
             domain = normalize_domain(rule_str)
-
-            if not domain:
+            if not is_valid_domain(domain):
                 continue
 
             if PLAIN_DOMAIN_MODE == "suffix":
-
                 suffixes.add(domain)
-
             else:
-
                 exacts.add(domain)
 
-    return (
-        suffixes,
-        exacts,
-        ipcidrs,
-        others,
-    )
+    return suffixes, exacts, ipcidrs, others
 
 
-def deduplicate_domains(
-    suffixes: set,
-    exacts: set,
-):
+# ----------------------------------------------------------------------
+# 高性能域名后缀 Trie
+#
+# 节点按 DNS label 的反向顺序存储：
+#
+#   www.a.example.com
+#       -> com -> example -> a -> www
+#
+# suffix 标记放在对应节点。
+#
+# 这样判断一个域名是否已经被父 suffix 覆盖，只需要沿着它的
+# label 链向父级走一次，不再对每个域名做字符串拼接 + set 查询。
+#
+# 同时用 iterative DFS 做压缩输出，避免递归深度问题。
+# ----------------------------------------------------------------------
+
+class _TrieNode:
+    __slots__ = ("children", "suffix", "exact")
+
+    def __init__(self):
+        self.children = {}
+        self.suffix = False
+        self.exact = False
+
+
+def _insert_trie(root: _TrieNode, domain: str, *, suffix=False, exact=False):
+    node = root
+    for label in reversed(domain.split(".")):
+        child = node.children.get(label)
+        if child is None:
+            child = _TrieNode()
+            node.children[label] = child
+        node = child
+
+    if suffix:
+        node.suffix = True
+    if exact:
+        node.exact = True
+
+
+def _mark_suffix_coverage(node: _TrieNode, parent_covered=False):
     """
-    去重，同时保持 DOMAIN-SUFFIX / DOMAIN 的语义。
+    返回该节点及其所有后代中实际还需要保留的信息。
 
-    ============================================================
-    规则
-    ============================================================
+    如果父节点已经是 suffix：
+        当前节点以及全部子树的 suffix/exact 都被覆盖。
 
-    1. 父 suffix 已存在时：
+    对于 suffix 节点本身：
+        其 exact 也被覆盖，因为 +.domain 同时覆盖根域和子域。
 
-        example.com
-        a.example.com
-        b.a.example.com
-
-    只需要：
-
-        +.example.com
-
-    2. exact 被 suffix 覆盖：
-
-        suffix:
-            example.com
-
-        exact:
-            www.example.com
-
-    则：
-
-        www.example.com
-
-    无需额外保留。
-
-    3. exact 与 suffix 不能反向合并。
-
-        DOMAIN,example.com
-
-    不能因为存在：
-
-        DOMAIN-SUFFIX,www.example.com
-
-    而删除。
-
-    ============================================================
+    返回值：
+        (keep_suffix, keep_exact)
     """
+    covered = parent_covered or node.suffix
 
-    # --------------------------------------------------------
-    # 先处理 suffix
-    #
-    # 从短域名 / 父域开始处理。
-    # --------------------------------------------------------
-    sorted_suffixes = sorted(
-        suffixes,
-        key=lambda x: (
-            x.count("."),
-            x,
-        ),
-    )
+    if covered:
+        node.suffix = False
+        node.exact = False
+    else:
+        if node.suffix:
+            # 这个节点会覆盖整个子树，所以子节点无需保留。
+            for child in node.children.values():
+                _clear_subtree(child)
+            node.children.clear()
+            node.suffix = True
+            node.exact = False
+            return True, False
 
-    optimized_suffixes = set()
+    # 父级没有覆盖时，递归处理子树。
+    for label, child in list(node.children.items()):
+        _mark_suffix_coverage(child, covered)
+        if (
+            not child.suffix
+            and not child.exact
+            and not child.children
+        ):
+            del node.children[label]
 
-    for domain in sorted_suffixes:
+    return node.suffix, node.exact
 
-        parts = domain.split(".")
 
-        redundant = False
+def _clear_subtree(node: _TrieNode):
+    node.children.clear()
+    node.suffix = False
+    node.exact = False
 
-        # ----------------------------------------------------
-        # 检查是否已经存在父 suffix。
-        #
-        # 例如：
-        #
-        # example.com
-        # a.example.com
-        #
-        # 处理 a.example.com 时发现：
-        #
-        # example.com
-        #
-        # 已经存在。
-        # ----------------------------------------------------
-        for i in range(1, len(parts)):
 
-            parent = ".".join(
-                parts[i:]
-            )
+def _emit_trie(node: _TrieNode, labels_rev, suffix_out, exact_out):
+    """
+    将 Trie 中保留下来的规则转换回正常域名。
+    """
+    if node.suffix or node.exact:
+        domain = ".".join(reversed(labels_rev))
 
-            # 至少需要 example.com 这种合法二级结构。
-            if parent.count(".") < 1:
-                continue
+        if node.suffix:
+            suffix_out.add(domain)
 
-            if parent in optimized_suffixes:
+        if node.exact:
+            exact_out.add(domain)
 
-                redundant = True
-                break
+    for label, child in node.children.items():
+        labels_rev.append(label)
+        _emit_trie(child, labels_rev, suffix_out, exact_out)
+        labels_rev.pop()
 
-        if not redundant:
-            optimized_suffixes.add(domain)
 
-    # --------------------------------------------------------
-    # 再处理 exact。
-    #
-    # 如果 exact 已被 suffix 覆盖，则删除。
-    # --------------------------------------------------------
-    optimized_exacts = set()
+def deduplicate_domains(suffixes: set, exacts: set):
+    """
+    使用反向 DNS Trie 对百万级域名进行去重。
+
+    规则：
+
+    1. 完全重复：
+       set 本身负责去重。
+
+    2. 父 suffix 覆盖子 suffix：
+       +.example.com
+       +.a.example.com
+       ->
+       +.example.com
+
+    3. 父 suffix 覆盖 exact：
+       +.example.com
+       example.com
+       www.example.com
+       ->
+       +.example.com
+
+    4. exact 不会反向删除父/兄弟 suffix。
+
+    时间复杂度：
+        O(所有域名的 label 总数)
+
+    空间复杂度：
+        O(所有唯一域名的 label 总数)
+
+    相比原先：
+        对每一个域名逐级构造 parent 字符串并查询 set，
+        这里只在 Trie 中沿 label 边走一次。
+    """
+    root = _TrieNode()
+
+    for domain in suffixes:
+        _insert_trie(root, domain, suffix=True)
 
     for domain in exacts:
+        _insert_trie(root, domain, exact=True)
 
-        parts = domain.split(".")
+    # 根节点不对应实际域名。
+    for label, child in list(root.children.items()):
+        _mark_suffix_coverage(child, False)
+        if (
+            not child.suffix
+            and not child.exact
+            and not child.children
+        ):
+            del root.children[label]
 
-        covered = False
+    optimized_suffixes = set()
+    optimized_exacts = set()
 
-        for i in range(len(parts)):
-
-            parent = ".".join(
-                parts[i:]
-            )
-
-            if parent.count(".") < 1:
-                continue
-
-            if parent in optimized_suffixes:
-
-                covered = True
-                break
-
-        if not covered:
-            optimized_exacts.add(domain)
-
-    return (
+    _emit_trie(
+        root,
+        [],
         optimized_suffixes,
         optimized_exacts,
     )
 
+    return optimized_suffixes, optimized_exacts
 
-def convert_to_mrs(
-    src_path: str,
-    format_type: str,
-    behavior_type: str,
-    output_name: str,
-) -> bool:
-    """
-    调用：
 
-        mihomo convert-ruleset
+def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_name: str) -> bool:
+    out_file = os.path.join(OUTPUT_DIR, f"{output_name}.mrs")
 
-    例如：
-
-        mihomo convert-ruleset \
-            domain \
-            text \
-            input.txt \
-            output.mrs
-    """
-
-    out_file = os.path.join(
-        OUTPUT_DIR,
-        f"{output_name}.mrs",
-    )
-
-    # --------------------------------------------------------
-    # 删除旧文件
-    # --------------------------------------------------------
     if os.path.exists(out_file):
-
         try:
             os.remove(out_file)
-
         except OSError:
             pass
 
@@ -638,7 +376,6 @@ def convert_to_mrs(
     ]
 
     try:
-
         result = subprocess.run(
             cmd,
             check=True,
@@ -655,34 +392,19 @@ def convert_to_mrs(
         return True
 
     except subprocess.CalledProcessError as e:
-
-        print(
-            f"❌ 转换失败: {output_name}"
-        )
-
+        print(f"❌ 转换失败: {output_name}")
         if e.stdout:
             print(e.stdout.strip())
-
         if e.stderr:
             print(e.stderr.strip())
-
         return False
 
     except FileNotFoundError:
-
-        print(
-            "❌ 未找到 mihomo 命令，"
-            "请确认 mihomo 已安装并在 PATH 中。"
-        )
-
+        print("❌ 未找到 mihomo 命令，请确认 mihomo 已安装并在 PATH 中。")
         return False
 
 
 def update_readme(success_files):
-    """
-    更新 README 中的自动生成规则订阅表。
-    """
-
     if not success_files:
         return
 
@@ -690,16 +412,10 @@ def update_readme(success_files):
         "GITHUB_REPOSITORY",
         "your-username/your-repo",
     )
-
     branch = "main"
 
-    tz_utc_8 = datetime.timezone(
-        datetime.timedelta(hours=8)
-    )
-
-    now_str = datetime.datetime.now(
-        tz_utc_8
-    ).strftime(
+    tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
+    now_str = datetime.datetime.now(tz_utc_8).strftime(
         "%Y-%m-%d %H:%M:%S"
     )
 
@@ -710,20 +426,11 @@ def update_readme(success_files):
         "| :--- | :---: | :---: | :--- |\n"
     )
 
-    for (
-        filename,
-        behavior,
-        count,
-    ) in sorted(
-        success_files,
-        key=lambda x: x[0],
-    ):
-
+    for filename, behavior, count in sorted(success_files, key=lambda x: x[0]):
         raw_url = (
             f"https://raw.githubusercontent.com/"
             f"{repo}/{branch}/{OUTPUT_DIR}/{filename}"
         )
-
         cdn_url = (
             f"https://cdn.jsdelivr.net/gh/"
             f"{repo}@{branch}/{OUTPUT_DIR}/{filename}"
@@ -736,23 +443,12 @@ def update_readme(success_files):
         )
 
         md_content += (
-            f"| **{filename}** | "
-            f"`{behavior}` | "
-            f"{count:,} | "
-            f"{links} |\n"
+            f"| **{filename}** | `{behavior}` | "
+            f"{count:,} | {links} |\n"
         )
 
-    # --------------------------------------------------------
-    # README 不存在时创建基础结构
-    # --------------------------------------------------------
     if not os.path.exists(README_FILE):
-
-        with open(
-            README_FILE,
-            "w",
-            encoding="utf-8",
-        ) as f:
-
+        with open(README_FILE, "w", encoding="utf-8") as f:
             f.write(
                 "# 规则集订阅列表\n\n"
                 "## 基础规则\n"
@@ -763,20 +459,9 @@ def update_readme(success_files):
                 "<!-- RULES_ZH_END -->\n"
             )
 
-    # --------------------------------------------------------
-    # 读取 README
-    # --------------------------------------------------------
-    with open(
-        README_FILE,
-        "r",
-        encoding="utf-8",
-    ) as f:
-
+    with open(README_FILE, "r", encoding="utf-8") as f:
         readme_content = f.read()
 
-    # --------------------------------------------------------
-    # 替换自动生成区域
-    # --------------------------------------------------------
     pattern = re.compile(
         r"<!-- RULES_ZH_START -->.*<!-- RULES_ZH_END -->",
         re.DOTALL,
@@ -789,102 +474,46 @@ def update_readme(success_files):
     )
 
     if pattern.search(readme_content):
-
-        new_content = pattern.sub(
-            replacement,
-            readme_content,
-        )
-
+        new_content = pattern.sub(replacement, readme_content)
     else:
+        new_content = readme_content + "\n\n" + replacement
 
-        new_content = (
-            readme_content
-            + "\n\n"
-            + replacement
-        )
-
-    # --------------------------------------------------------
-    # 写回 README
-    # --------------------------------------------------------
-    with open(
-        README_FILE,
-        "w",
-        encoding="utf-8",
-    ) as f:
-
+    with open(README_FILE, "w", encoding="utf-8") as f:
         f.write(new_content)
 
 
 def download_text(url: str) -> str:
-    """
-    下载规则源并解码。
-    """
-
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": (
-                "Mozilla/5.0 "
-                "(Mihomo-MRS-Builder)"
-            ),
-            "Accept": (
-                "text/plain, "
-                "text/yaml, "
-                "application/yaml, "
-                "*/*"
-            ),
+            "User-Agent": "Mozilla/5.0 (Mihomo-MRS-Builder)",
+            "Accept": "text/plain, text/yaml, application/yaml, */*",
         },
     )
 
-    with urllib.request.urlopen(
-        req,
-        timeout=DOWNLOAD_TIMEOUT,
-    ) as response:
-
+    with urllib.request.urlopen(req, timeout=DOWNLOAD_TIMEOUT) as response:
         data = response.read()
 
-    # UTF-8 优先，同时自动去除 BOM。
     return data.decode("utf-8-sig")
 
 
 def main():
-
     setup_dirs()
-
     success_list = []
 
-    # ========================================================
-    # 逐组处理规则
-    # ========================================================
     for group_name, urls in RULE_GROUPS.items():
-
-        print(
-            f"\n🔄 正在处理规则组: "
-            f"{group_name} ..."
-        )
+        print(f"\n🔄 正在处理规则组: {group_name} ...")
 
         all_suffixes = set()
         all_exacts = set()
         all_ipcidrs = set()
         all_others = set()
 
-        # ====================================================
-        # 下载并解析每个规则源
-        # ====================================================
         for url in urls:
-
             try:
-
                 content = download_text(url)
 
-                (
-                    suffs,
-                    exts,
-                    ips,
-                    oths,
-                ) = parse_rules_from_content(
-                    content
-                )
+                suffs, exts, ips, oths = parse_rules_from_content(content)
 
                 all_suffixes.update(suffs)
                 all_exacts.update(exts)
@@ -900,86 +529,51 @@ def main():
                 )
 
             except Exception as e:
+                print(f"  ❌ 下载或解析失败 {url}: {e}")
 
-                print(
-                    f"  ❌ 下载或解析失败 "
-                    f"{url}: {e}"
-                )
-
-        # ====================================================
-        # 检查是否有任何规则
-        # ====================================================
-        if not any(
-            (
-                all_suffixes,
-                all_exacts,
-                all_ipcidrs,
-                all_others,
-            )
-        ):
-
-            print(
-                "  ⚠️ 本规则组没有解析出任何规则，"
-                "跳过。"
-            )
-
+        if not any((all_suffixes, all_exacts, all_ipcidrs, all_others)):
+            print("  ⚠️ 本规则组没有解析出任何规则，跳过。")
             continue
 
-        # ====================================================
-        # 域名去重
-        # ====================================================
+        before_domain_count = len(all_suffixes) + len(all_exacts)
+
         print(
-            f"  🧹 开始域名去重。"
-            f"合并前域名数: "
-            f"{len(all_suffixes) + len(all_exacts):,}"
+            f"  🧹 使用反向 DNS Trie 开始域名去重。"
+            f" 合并前域名数: {before_domain_count:,}"
         )
 
-        (
-            opt_suffixes,
-            opt_exacts,
-        ) = deduplicate_domains(
+        opt_suffixes, opt_exacts = deduplicate_domains(
             all_suffixes,
             all_exacts,
         )
 
+        after_domain_count = len(opt_suffixes) + len(opt_exacts)
+
         print(
-            f"  ✨ 去重完成，"
-            f"优化后域名数: "
-            f"{len(opt_suffixes) + len(opt_exacts):,}"
+            f"  ✨ Trie 去重完成，"
+            f"优化后域名数: {after_domain_count:,}，"
+            f"删除: {before_domain_count - after_domain_count:,}"
         )
 
-        # ====================================================
-        # keyword / regexp
-        # ====================================================
         if all_others:
-
             print(
-                f"  ⚠️ 检测到 "
-                f"{len(all_others):,} 条 "
-                f"keyword/regexp。"
-                "MRS 的 domain behavior "
-                "不承载这些规则，本次不会错误地写入 "
-                "domain MRS。"
+                f"  ⚠️ 检测到 {len(all_others):,} 条 "
+                "keyword/regexp。"
+                "MRS domain behavior 不承载这些规则，"
+                "本次不会写入 domain MRS。"
             )
 
-        # ====================================================
-        # 1. Domain MRS
-        # ====================================================
+        # ==========================================================
+        # Domain MRS
+        # ==========================================================
         if opt_suffixes or opt_exacts:
-
-            domain_name = (
-                f"{group_name}_Domain"
-            )
-
+            domain_name = f"{group_name}_Domain"
             tmp_domain_path = os.path.join(
                 TEMP_DIR,
                 f"{domain_name}.txt",
             )
 
-            domain_count = (
-                len(opt_suffixes)
-                + len(opt_exacts)
-            )
+            domain_count = len(opt_suffixes) + len(opt_exacts)
 
             with open(
                 tmp_domain_path,
@@ -987,67 +581,27 @@ def main():
                 encoding="utf-8",
                 newline="\n",
             ) as f:
+                # DOMAIN-SUFFIX -> +.domain
+                for domain in sorted(opt_suffixes):
+                    f.write(f"+.{domain}\n")
 
-                # ------------------------------------------------
-                # suffix
-                #
-                # DOMAIN-SUFFIX,example.com
-                #
-                # 必须生成：
-                #
-                #     +.example.com
-                #
-                # 而不是：
-                #
-                #     example.com
-                #
-                # 因为普通 example.com 在 Mihomo domain
-                # ruleset 中是 exact。
-                # ------------------------------------------------
-                for domain in sorted(
-                    opt_suffixes
-                ):
-
-                    f.write(
-                        f"+.{domain}\n"
-                    )
-
-                # ------------------------------------------------
-                # exact
-                #
-                # DOMAIN,example.com
-                # full:example.com
-                #
-                # 生成：
-                #
-                #     example.com
-                # ------------------------------------------------
-                for domain in sorted(
-                    opt_exacts
-                ):
-
-                    f.write(
-                        f"{domain}\n"
-                    )
+                # DOMAIN / full: -> exact domain
+                for domain in sorted(opt_exacts):
+                    f.write(f"{domain}\n")
 
             print(
                 f"  📝 Domain text 已生成: "
                 f"{tmp_domain_path}"
             )
 
-            # ------------------------------------------------
-            # 转换为 MRS
-            # ------------------------------------------------
             if convert_to_mrs(
                 tmp_domain_path,
                 "text",
                 "domain",
                 domain_name,
             ):
-
                 print(
-                    f"  ✅ 成功构建: "
-                    f"{domain_name}.mrs "
+                    f"  ✅ 成功构建: {domain_name}.mrs "
                     f"(共 {domain_count:,} 条规则)"
                 )
 
@@ -1059,27 +613,17 @@ def main():
                     )
                 )
 
-        # ====================================================
-        # 2. IP MRS
-        # ====================================================
-        #
-        # IP / CIDR 不混入 behavior: domain。
-        # 单独使用 behavior: ipcidr。
-        # ====================================================
+        # ==========================================================
+        # IP-CIDR MRS
+        # ==========================================================
         if all_ipcidrs:
-
-            ip_name = (
-                f"{group_name}_IP"
-            )
-
+            ip_name = f"{group_name}_IP"
             tmp_ip_path = os.path.join(
                 TEMP_DIR,
                 f"{ip_name}.txt",
             )
 
-            ip_count = len(
-                all_ipcidrs
-            )
+            ip_count = len(all_ipcidrs)
 
             with open(
                 tmp_ip_path,
@@ -1087,33 +631,22 @@ def main():
                 encoding="utf-8",
                 newline="\n",
             ) as f:
-
-                for ip in sorted(
-                    all_ipcidrs
-                ):
-
-                    f.write(
-                        f"{ip}\n"
-                    )
+                for ip in sorted(all_ipcidrs):
+                    f.write(f"{ip}\n")
 
             print(
                 f"  📝 IP-CIDR text 已生成: "
                 f"{tmp_ip_path}"
             )
 
-            # ------------------------------------------------
-            # 转换为 IP MRS
-            # ------------------------------------------------
             if convert_to_mrs(
                 tmp_ip_path,
                 "text",
                 "ipcidr",
                 ip_name,
             ):
-
                 print(
-                    f"  ✅ 成功构建: "
-                    f"{ip_name}.mrs "
+                    f"  ✅ 成功构建: {ip_name}.mrs "
                     f"(共 {ip_count:,} 条规则)"
                 )
 
@@ -1125,12 +658,7 @@ def main():
                     )
                 )
 
-    # ========================================================
-    # 更新 README
-    # ========================================================
-    update_readme(
-        success_list
-    )
+    update_readme(success_list)
 
 
 if __name__ == "__main__":
