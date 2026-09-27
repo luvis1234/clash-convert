@@ -27,11 +27,17 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml",
     ],
     "Direct_CN": [
+
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
+"https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml",
     ],
     "Proxy_Global": [
-        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml",
-    ],
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
+"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
+"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
+"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
+         ],
 }
 
 
