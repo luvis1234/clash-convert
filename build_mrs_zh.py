@@ -38,6 +38,10 @@ RULE_GROUPS = {
 "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
 "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
          ],
+
+    "mydirect": [
+        "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/mydirect.txt",
+         ],
 }
 
 
@@ -70,7 +74,7 @@ PLAIN_DOMAIN_MODE = "exact"
 
 
 # 下载超时
-DOWNLOAD_TIMEOUT = 120
+DOWNLOAD_TIMEOUT = 300
 
 
 def setup_dirs():
