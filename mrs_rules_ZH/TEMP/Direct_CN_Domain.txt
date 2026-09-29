@@ -31515,6 +31515,7 @@
 +.e0575.com
 +.e0734.com
 +.e0838.com
++.e0x233.com
 +.e12345.com
 +.e1299.com
 +.e12e.com
@@ -34549,6 +34550,7 @@
 +.feiniaomy.com
 +.feiniaowangluo.com
 +.feiniu.com
++.feiniugo.com
 +.feinno.com
 +.feiphp.com
 +.feipin.com
@@ -39935,6 +39937,7 @@
 +.gryltop.com
 +.gryphline.com
 +.gryw666.com
++.grz-hx.com
 +.grzmz.com
 +.grzq.com
 +.gs-cdn.com
@@ -113027,9 +113030,6 @@
 +.zzzyyy.com
 +.zzzzaaaa.com
 +.zzzzzz.me
-*m-team*
-*quickconnect*
-*synology*
 1-fss24-s0.streamhoster.com
 14033.live.streamtheworld.com
 156zy.suyunbo.tv
