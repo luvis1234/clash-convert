@@ -89,10 +89,10 @@ def setup_dirs():
 
 
 _IPV4_LIKE_RE = re.compile(
-    r"^\\d{1,3}(?:\\.\\d{1,3}){3}(?:/\\d{1,2})?$"
+    r"^\d{1,3}(?:\.\d{1,3}){3}(?:/\d{1,2})?$"
 )
 _IPV6_LIKE_RE = re.compile(
-    r"^[0-9A-Fa-f:]+(?:/\\d{1,3})?$"
+    r"^[0-9A-Fa-f:]+(?:/\d{1,3})?$"
 )
 
 
@@ -221,14 +221,28 @@ def parse_rules_from_content(content: str):
             extra = parts[2] if len(parts) == 3 else ""
 
             if rule_type == "domain-suffix":
-                domain = normalize_domain(val)
-                if domain:
-                    suffixes.add(domain)
+                # 某些源文件虽然声明为 domain/DOMAIN-SUFFIX，
+                # 实际 payload 中仍可能混入裸 IP / IP-CIDR。
+                # IP 必须进入 ipcidr 集合，不能写入 Domain MRS。
+                net = normalize_ip_cidr(val)
+                if net is not None:
+                    ipnets.add(net)
+                else:
+                    domain = normalize_domain(val)
+                    if domain:
+                        suffixes.add(domain)
 
             elif rule_type == "domain":
-                domain = normalize_domain(val)
-                if domain:
-                    exacts.add(domain)
+                # 源文件的 domain 列表可能混入裸 IP / IP-CIDR。
+                # DOMAIN,1.2.3.4 -> 1.2.3.4/32
+                # DOMAIN,2001:db8::1 -> 2001:db8::1/128
+                net = normalize_ip_cidr(val)
+                if net is not None:
+                    ipnets.add(net)
+                else:
+                    domain = normalize_domain(val)
+                    if domain:
+                        exacts.add(domain)
 
             elif rule_type in {
                 "ip-cidr",
@@ -284,6 +298,13 @@ def parse_rules_from_content(content: str):
                 suffixes.add(domain)
 
         else:
+            # 带 / 的未知纯文本不能作为 domain。
+            # 这样可防止 malformed IP/CIDR 被写入 Domain MRS，
+            # 从而避免 mihomo 的 “slash is not allowed” 警告。
+            if "/" in line:
+                classical.add(line)
+                continue
+
             # 纯文本 domain：保持原脚本 PLAIN_DOMAIN_MODE 语义
             domain = normalize_domain(line)
             if not domain:
@@ -346,26 +367,42 @@ def deduplicate_domains(suffixes: set, exacts: set):
 
 def deduplicate_ip_networks(networks):
     """
-    真正进行 CIDR 去重/包含消除/相邻网段聚合。
+    对 IPv4 / IPv6 分别进行 CIDR 去重、包含消除和无损聚合。
 
-    例如：
-      1.2.3.4
-      1.2.3.4/32
-      1.2.3.0/24
-
-    最终只保留：
-      1.2.3.0/24
-
-    使用 ipaddress.collapse_addresses，避免 O(n²) 的逐网段比较。
+    collapse_addresses() 不允许 IPv4 与 IPv6 混合输入，
+    因此必须先按 address version 分组。
     """
     if not networks:
         return []
 
-    # collapse_addresses 同时处理：
-    # - 重复网络
-    # - 被更大网络包含的网络
-    # - 可以无损合并的相邻 CIDR
-    return list(ipaddress.collapse_addresses(sorted(networks, key=lambda n: (n.version, int(n.network_address), n.prefixlen))))
+    ipv4 = [n for n in networks if n.version == 4]
+    ipv6 = [n for n in networks if n.version == 6]
+    result = []
+
+    if ipv4:
+        result.extend(
+            ipaddress.collapse_addresses(
+                sorted(
+                    ipv4,
+                    key=lambda n: (int(n.network_address), n.prefixlen),
+                )
+            )
+        )
+
+    if ipv6:
+        result.extend(
+            ipaddress.collapse_addresses(
+                sorted(
+                    ipv6,
+                    key=lambda n: (int(n.network_address), n.prefixlen),
+                )
+            )
+        )
+
+    return sorted(
+        result,
+        key=lambda n: (n.version, int(n.network_address), n.prefixlen),
+    )
 
 
 def convert_to_mrs(src_path: str, format_type: str, behavior_type: str, output_name: str) -> bool:
