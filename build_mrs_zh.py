@@ -52,6 +52,7 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list",
         "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml",
         "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/refs/heads/main/rules/clash/global.yaml",
+        "https://github.com/DustinWin/domain-list-custom/blob/domains/ai.list",
          ],
     
 }
