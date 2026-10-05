@@ -1,0 +1,13 @@
+domain-keyword,bedrock
+domain-keyword,bedrock-runtime
+domain-keyword,chatgpt-async-webps
+domain-keyword,colab
+domain-keyword,developerprofiles
+domain-keyword,generativeai
+domain-keyword,generativelanguage
+domain-keyword,openai
+domain-keyword,openaicom-api
+domain-keyword,paypal
+domain-keyword,stripe
+ip-asn,14061,no-resolve
+ip-asn,20473,no-resolve

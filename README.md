@@ -10,7 +10,7 @@ clash拦截规则转换
 
 ### 📦 自动生成的 MRS 规则集订阅链接
 
-> ⏱ **最后同步时间**：`2026-10-05 13:08:01` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-05 17:18:20` (UTC+8)
 
 你可以直接在 Mihomo 配置文件中引用以下链接：
 
@@ -29,10 +29,13 @@ clash拦截规则转换
 
 ### 📦 自动生成的 MRS 规则集订阅链接 (ZH)
 
-> ⏱ **最后同步时间**：`2026-10-05 13:08:23` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-05 17:18:41` (UTC+8)
 
 | 文件名 | 规则类型 (Behavior) | 规则数量 | 下载链接 |
 | :--- | :---: | :---: | :--- |
+| **AI_Classical.txt** | `classical` | 13 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Classical.txt) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_Classical.txt) |
+| **AI_Domain.mrs** | `domain` | 592 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_Domain.mrs) |
+| **AI_IP.mrs** | `ipcidr` | 2 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_IP.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_IP.mrs) |
 | **Direct_CN_Domain.mrs** | `domain` | 113,548 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Direct_CN_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Direct_CN_Domain.mrs) |
 | **Direct_CN_IP.mrs** | `ipcidr` | 11,443 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Direct_CN_IP.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Direct_CN_IP.mrs) |
 | **Proxy_Global_Classical.txt** | `classical` | 26 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Proxy_Global_Classical.txt) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Proxy_Global_Classical.txt) |
