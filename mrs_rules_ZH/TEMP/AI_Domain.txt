@@ -98,6 +98,8 @@
 +.colossyan.com
 +.context7.com
 +.continue.dev
++.copilot.cloud.microsoft
++.copilot.microsoft.com
 +.copy.ai
 +.coreweave.com
 +.cosine.sh
@@ -153,6 +155,8 @@
 +.grammarly.com
 +.granola.ai
 +.granola.so
++.grazie.ai
++.grazie.aws.intellij.net
 +.grep.app
 +.greptile.com
 +.grok-sandbox.com
@@ -184,6 +188,7 @@
 +.intercomcdn.com
 +.invideo.io
 +.jasper.ai
++.jetbrains.ai
 +.jules.google
 +.kaiber.ai
 +.kilo.ai
@@ -549,11 +554,9 @@
 ai-gateway.vercel.sh
 ai.google.dev
 api.cloudflare.com
-api.jetbrains.ai
 api.msn.com
 api.ngc.nvidia.com
 assets.msn.com
-auth.grazie.ai
 aws-language-servers.us-east-1.amazonaws.com
 aws-toolkit-language-servers.amazonaws.com
 browser-intake-datadoghq.com
@@ -564,7 +567,7 @@ clau.de
 client-telemetry.us-east-1.amazonaws.com
 cloudcode-pa.googleapis.com
 codewhisperer.us-east-1.amazonaws.com
-copilot.microsoft.com
+copilot-proxy.githubusercontent.com
 daily-cloudcode-pa.googleapis.com
 desktop-release.codewhisperer.us-east-1.amazonaws.com
 gateway.ai.cloudflare.com
