@@ -644,6 +644,374 @@
 +.youmind.site
 +.zed.dev
 +.zenrows.com
+-tab-size-preference: 4;
+:root {
+<!doctype html>
+</a>
+</a>    </span>
+</a>    <tool-tip id="tooltip-4a6af606-3233-4ec6-84b8-a3d5cdfcfa9c" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">you must be signed in to change notification settings</tool-tip>
+</a></div>
+</a></li>
+</action-menu></div>
+</body>
+</button>
+</button><tool-tip id="tooltip-64df5574-d1dd-4f0e-924f-d78de1bde3f4" for="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">additional navigation options</tool-tip>
+</button><tool-tip id="tooltip-6b928578-3d7e-40ed-96e8-5f3c2187a9a8" for="icon-button-9be7caeb-9583-415c-8b20-4abe180d304a" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">dismiss alert</tool-tip>
+</clipboard-copy>
+</cookie-consent-link>
+</details-dialog>
+</details>
+</div>
+</div></action-list>
+</div></anchored-position>  </focus-group>
+</footer>
+</head>
+</html>
+</li>
+</main>
+</nav>
+</react-app>
+</react-partial>
+</span>
+</span>          <span id="repo-stars-counter-star" aria-label="29 users starred this repository" data-singular-suffix="user starred this repository" data-plural-suffix="users starred this repository" data-turbo-replace="true" title="29" data-view-component="true" class="counter js-social-count">29</span>
+</strong>
+</style>
+</svg>
+</svg><span data-view-component="true" class="d-inline">
+</svg>fork
+</svg>notifications
+</template>
+</turbo-frame>
+</ul>
+<a aria-label="github homepage" class="footer-octicon mr-2" href="https://github.com">
+<a class="url fn" rel="author" data-hovercard-type="user" data-hovercard-url="/users/dustinwin/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/dustinwin">
+<a data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" href="/dustinwin/domain-list-custom">domain-list-custom</a>
+<a href="#start-of-content" data-skip-target-assigned="false" class="px-2 tmp-py-4 color-bg-accent-emphasis color-fg-on-emphasis show-on-focus js-skip-to-content">skip to content</a>
+<a tabindex="-1" id="item-2ac67b29-e3de-4e9c-8672-076e398a6d42" href="/dustinwin/domain-list-custom/pulls" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<a tabindex="-1" id="item-7168a4fc-c011-409c-b65c-8818be9ff2c6" href="/dustinwin/domain-list-custom/issues" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<a tabindex="-1" id="item-9ca910d8-cfb6-4dba-a23f-9c87ff3e4b9b" href="/dustinwin/domain-list-custom/tree/domains" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<a tabindex="-1" id="item-bd6a1c59-21b5-4b7d-99cb-bed110cd4509" href="/dustinwin/domain-list-custom/actions" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<a tabindex="-1" id="item-c562ee2b-13eb-4d00-9ed8-2ab11dd867a2" href="/dustinwin/domain-list-custom/security" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<a tabindex="-1" id="item-e0ca8935-52cd-440e-992e-7fb325d77592" href="/dustinwin/domain-list-custom/pulse" role="menuitem" data-view-component="true" class="actionlistcontent actionlistcontent--visual16">
+<anchored-position data-target="action-menu.overlay" id="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-overlay" anchor="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
+<body class="logged-out env-production page-responsive" style="word-wrap: break-word;" >
+<button
+<button autofocus class="flash-close js-flash-close" type="button" aria-label="dismiss this message">
+<button class="box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="close dialog" data-close-dialog>
+<button id="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-button" popovertarget="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-overlay" aria-controls="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-list" aria-haspopup="true" aria-labelledby="tooltip-64df5574-d1dd-4f0e-924f-d78de1bde3f4" type="button" data-view-component="true" class="button button--icononly button--secondary button--medium underlinenav-item">  <svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal button-visual">
+<button id="icon-button-9be7caeb-9583-415c-8b20-4abe180d304a" aria-labelledby="tooltip-6b928578-3d7e-40ed-96e8-5f3c2187a9a8" type="button" data-view-component="true" class="button button--icononly button--invisible button--medium flash-close js-flash-close">  <svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x button-visual">
+<button type="button" class="flash-close js-ajax-error-dismiss" aria-label="dismiss error">
+<clipboard-copy aria-label="copy code to clipboard" class="clipboardbutton btn btn-invisible js-clipboard-copy m-2 p-0 d-flex flex-justify-center flex-items-center" data-copy-feedback="copied!" data-tooltip-direction="w">
+<clipboard-copy aria-label="copy code to clipboard" class="clipboardbutton btn js-clipboard-copy m-2 p-0" data-copy-feedback="copied!" data-tooltip-direction="w">
+<cookie-consent-link>
+<details class="details-reset details-overlay details-overlay-dark lh-default color-fg-default hx_rsm" open>
+<details-dialog class="box box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
+<div
+<div >
+<div aria-atomic="true" role="alert" class="js-flash-alert">
+<div class=" d-flex flex-wrap flex-items-center wb-break-word f3 text-normal">
+<div class="d-flex flex-items-center flex-shrink-0 mx-2">
+<div class="d-flex flex-justify-center flex-items-center flex-column-reverse flex-lg-row flex-wrap flex-lg-nowrap">
+<div class="d-flex flex-nowrap flex-justify-end tmp-mb-3  tmp-px-3 tmp-px-lg-5" style="gap: 1rem;">
+<div class="flash flash-full   {{ classname }}">
+<div class="flex-auto min-width-0 width-fit">
+<div class="octocat-spinner tmp-my-6 js-details-dialog-spinner"></div>
+<div class="popover js-hovercard-content position-absolute" style="display: none; outline: none;">
+<div class="popover-message popover-message--bottom-left popover-message--large box color-shadow-large" style="width:360px;">
+<div class="position-relative header-wrapper js-header-wrapper ">
+<div class="zeroclipboard-container position-absolute right-0 top-0">
+<div class="zeroclipboard-container">
+<div data-target="react-partial.reactroot"></div>
+<div data-turbo-body class="logged-out env-production page-responsive" style="word-wrap: break-word;" >
+<div data-view-component="true" class="btngroup d-flex">
+<div data-view-component="true" class="overlay overlay--size-auto">
+<div data-view-component="true" class="overlay-body overlay-body--paddingnone">          <action-list>
+<div data-view-component="true">
+<div hidden="hidden" data-view-component="true" class="js-stale-session-flash stale-session-flash flash flash-warn flash-full">
+<div id="__primerportalroot__" style="z-index: 1000; position: absolute; width: 100%;" data-turbo-permanent></div>
+<div id="ajax-error-message" class="ajax-error-message flash flash-error" hidden>
+<div id="js-flash-container" class="flash-container" data-turbo-replace>
+<div id="js-global-screen-reader-notice" class="sr-only mt-n1" aria-live="polite" aria-atomic="true" ></div>
+<div id="js-global-screen-reader-notice-assertive" class="sr-only mt-n1" aria-live="assertive" aria-atomic="true"></div>
+<div id="repo-content-pjax-container" class="repository-content " >
+<div id="repository-details-container" class="flex-shrink-0" data-turbo-replace style="max-width: 70%;">
+<div id="responsive-meta-container" data-turbo-replace>
+<div id="start-of-content" class="show-on-focus"></div>
+<div itemscope itemtype="http://schema.org/softwaresourcecode" class="">
+<div style="visibility:hidden;" data-view-component="true" class="underlinenav-actions js-responsive-underlinenav-overflow position-absolute pr-3 tmp-pr-3 pr-md-4 tmp-pr-md-4 pr-lg-5 tmp-pr-lg-5 right-0">      <action-menu data-select-variant="none" data-view-component="true">
+<div>{{ message }}</div>
+<focus-group direction="vertical" mnemonics retain>
+<footer class="footer f6 color-fg-muted color-border-subtle tmp-pt-7 tmp-pb-6 p-responsive" role="contentinfo"  >
+<ghcc-consent id="ghcc" class="position-fixed bottom-0 left-0" style="z-index: 999999"
+<h2 class='sr-only'>footer</h2>
+<h3 class="sr-only" id="sr-footer-heading">footer navigation</h3>
+<head>
+<html
+<li class="mx-2" >
+<li class="mx-2">
+<li data-view-component="true" class="d-inline-flex">
+<li hidden="hidden" data-menu-item="i0code-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li hidden="hidden" data-menu-item="i1issues-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li hidden="hidden" data-menu-item="i2pull-requests-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li hidden="hidden" data-menu-item="i3actions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li hidden="hidden" data-menu-item="i4security-and-quality-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li hidden="hidden" data-menu-item="i5insights-tab" data-targets="action-list.items" role="none" data-view-component="true" class="actionlistitem">
+<li>
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/6.5319f84ca69de49a.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/app-install-banner-partial.a0d80df2c59af719.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/app-runtime.3aeb6be53cb63c62.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/code-2d56bdb0166c0238.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/code-view.cf1e66ebc2149fe7.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-7338c07b3a07b8be.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-54ba76e934a49d7c.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/keyboard-shortcuts-dialog.f88252e9cc874ff1.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light-99f877e9ddfc0e51.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light_high_contrast-48fdd0811afbab3c.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark-79ad2ace604703b3.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark_high_contrast-24484a076f02295f.css" /><link data-color-theme="light" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light-99f877e9ddfc0e51.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-48fdd0811afbab3c.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-f4bf1142976e4bbf.css" /><link data-color-theme="light_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-f661b49995ba0bd8.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-0b38d22346321c92.css" /><link data-color-theme="light_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-f1c62c9e70259b9f.css" /><link data-color-theme="dark" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark-79ad2ace604703b3.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-24484a076f02295f.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-f50cacf0a86b9929.css" /><link data-color-theme="dark_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-e61d4f4ca17852c2.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-39c10993d5603fac.css" /><link data-color-theme="dark_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-73236c840c0c7d90.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-0de76f07cc035b10.css" /><link data-color-theme="dark_dimmed_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-fd1500c8744e40d6.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/n.88782d7f5c288388.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/notifications-subscriptions-menu.a1af87167f4540ac.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-4136ede8b2650a2d.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-ed9ca172356fd545.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-react-brand-css.05b219cdb8e80c43.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-react-css.e4334163c54cccf5.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/ql0.bdd6be015c087bbc.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/react-core.6ea0d857945085b4.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/repository-11ee8a031c040c1a.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/t.0f3c8a0be207bf6c.module.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/xc.877a51df9233c9c4.module.css" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/0k-b7df0a74912a42bf.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/0l5-d2057e622f6442d6.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/0p-81491ed0d9d666e2.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/20x-78450ae653fb7fc4.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/3d8-bbc4e3ce35fac150.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/4t6-e156dfe598157a27.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/4u-3fb51fd5b58f1705.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/5tt-fd8e75a3d744d5d3.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/6-954b0e9235bef62d.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/6n-71c0ae3e489775ef.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/7a-3e6271c2f53fd449.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/7c-51b9e794c65c18dc.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/80-9bdecb534530e940.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/9y-cd2a0ff87351e9aa.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/a9-6602e6cd810d97c7.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ak-e62e69106ade8d4b.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-foundation-69691b300d797200.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-install-banner-partial-2c63bf6f0afc86b8.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-runtime-7cd940ac0a938481.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/aria-live-76b18916d0c8ec4d.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/b1l-7f0d0cf6de4804fd.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/b9-4fd36ab02c30bf52.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/bi0-3a7ce5e10042031c.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/bur-0c370260ea746537.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/by-6b3c07383371bf58.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/c2z-c10e51960850b47e.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/catalyst-044fa3a2acdaf0a9.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/dsj-cb1e4ddbce4f007b.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/du-9695d8032ef894d8.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ez7-04f2b88d38716866.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/f9-038758dcbfe08dab.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/fa-905ff4c23dce14fb.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/fetch-utilities-4b62182bc6e3c348.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/fz-30a6af7c53dfa4f1.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/gzu-30b6e9209fc1a27b.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/hj-5126390ff433704d.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/hotkey-45921f564e4706a3.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/i3-37a6c0193f828eda.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/j0-41a4cf04cbd99503.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/j05-5779fe7abd4d8255.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/j6-363f0ebf4f62f310.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/j8-fb603d239f87c714.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ja9-36f036c13c2e3a4c.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/jag-4f408bf2b7f99c87.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/je-de183d20c9ef3bd2.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/jz5-7c5d1669717041f8.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/keyboard-shortcuts-dialog-7a4085e21aeaf16d.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/kw-866fd9513ae95106.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/la-d2cd96f070e6b52a.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/marketing-header-fe7f145b9d74b8bb.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/n-b8288f3544884716.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/n4u-36177e16e2310a6b.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ncx-9a860680a5f230b9.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ogc-5d095be142cc43ed.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/p0-917d47d17033694c.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/pe-0996411d3a882f4b.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/primer-react-ff194f72d04b3416.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/pv-eb137aeacc87f2af.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ql0-d154b9935a526802.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/r1-b075aab3204f32f9.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-compiler-runtime-4610bd6d3de9c049.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-core-33c43e143fa1fba2.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-dom-client-1b4a3ee065998cea.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-dom-e5fd46a22d5c4058.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-e27d1b3e03961e68.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-is-e0b593954b4706d8.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-jsx-runtime-4915cb0f5b3aff04.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-reconciler-8e99e505c4429605.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/relative-time-element-fa0968675d128a19.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/runtime-helpers-5ca1e1883536e092.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/rwd-3f84ac06d286ef82.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/s0-c32db9ffa873726f.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/scheduler-58b860b049ca307c.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/selector-observer-e88088f989b27670.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ser-304cac05a866d0c2.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/sp-5a0311ac8d3daf45.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/t-587a26f444353019.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/t7l-bf6f21d7e7a43c35.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/th-5bd53302e6db9640.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/tp-34eaad11125a9e67.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/tua-88f94f65812643db.js" fetchpriority="low" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/ur-024971cb63acad59.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/uw-d8fb033b031ccc75.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/wo-8044e1bac6e0c328.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/wp-9f5235d335ab624b.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/wp-runtime-a54a23791cd037ec.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/xc-065e7847e4da513d.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/xy-fc5ef8d4f9279f3d.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/y6k-1b4caa3d041c2bb7.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/y8-d03bed835696f21f.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/yhq-3a209035a30b1a09.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/z1v-da5b33b877bfa358.js" />
+<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/z54-8ecb6d8609e3cc5a.js" />
+<link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://github.githubassets.com/favicons/favicon.png">
+<link rel="assets" href="https://github.githubassets.com/">
+<link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
+<link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
+<link rel="dns-prefetch" href="https://github.githubassets.com">
+<link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+<link rel="fluid-icon" href="https://github.com/fluidicon.png" title="github">
+<link rel="icon" class="js-site-favicon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon.svg" data-base-href="https://github.githubassets.com/favicons/favicon">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<link rel="mask-icon" href="https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg" color="#000000">
+<link rel="preconnect" href="https://avatars.githubusercontent.com">
+<link rel="preconnect" href="https://github.githubassets.com" crossorigin>
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="github">
+<main id="js-repo-pjax-container" >
+<meta charset="utf-8">
+<meta data-hydrostats="publish">
+<meta http-equiv="x-pjax-csp-version" content="c4a65e47b0c850e1157ae8e66298070851d7e3b558038de5a3b4ff7a93e630ed" data-turbo-track="reload">
+<meta http-equiv="x-pjax-css-version" content="4e64a97e5e886e99bcf47a5adeecf4c238f1ab18ffbc37e890c65003e5c96056" data-turbo-track="reload">
+<meta http-equiv="x-pjax-js-version" content="8303c89d16f07c6d970ab386dcb7e362b0f612a3cd894d888e96001a932e28db" data-turbo-track="reload">
+<meta http-equiv="x-pjax-version" content="de0aa75f836d62995c45dcd17ecf2fab7a7290d9712223aac0c706553eae0e64" data-turbo-track="reload">
+<meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-turbo-transient="true" />
+<meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+<meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+<meta name="color-scheme" content="light dark" />
+<meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
+<meta name="description" content="供下游项目 dustinwin/ruleset_geodata 使用的 domain 数据源文件. contribute to dustinwin/domain-list-custom development by creating an account on github.">
+<meta name="disable-turbo" content="false">
+<meta name="expected-hostname" content="github.com">
+<meta name="fetch-nonce" content="v2:475c2c4f-0d30-3feb-6f03-8a855230ade9">
+<meta name="go-import" content="github.com/dustinwin/domain-list-custom git https://github.com/dustinwin/domain-list-custom.git">
+<meta name="google-site-verification" content="apib7-x98h0j5cpqhwwsmm6dnu4gmodroqxlidzdx9i">
+<meta name="hostname" content="github.com">
+<meta name="hovercard-subject-tag" content="repository:782858745" data-turbo-transient>
+<meta name="octolytics-dimension-user_id" content="45238096" /><meta name="octolytics-dimension-user_login" content="dustinwin" /><meta name="octolytics-dimension-repository_id" content="782858745" /><meta name="octolytics-dimension-repository_nwo" content="dustinwin/domain-list-custom" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="true" /><meta name="octolytics-dimension-repository_parent_id" content="307288585" /><meta name="octolytics-dimension-repository_parent_nwo" content="loyalsoldier/domain-list-custom" /><meta name="octolytics-dimension-repository_network_root_id" content="307288585" /><meta name="octolytics-dimension-repository_network_root_nwo" content="loyalsoldier/domain-list-custom" />
+<meta name="octolytics-url" content="https://collector.github.com/github/collect" />
+<meta name="react-profiling" content="0" data-turbo-transient="true" />
+<meta name="release" content="2b22abc12f2a688121b6836e434b64aa4cc01e9a" data-turbo-track="reload">
+<meta name="request-id" content="6400:199cb4:44b9e:5f0e5:6ac37079" data-pjax-transient="true"/><meta name="html-safe-nonce" content="c5eaf154261b6300207238352d23a35cdb2d0468aa6d65ab559f9e4802f83ebf" data-pjax-transient="true"/><meta name="visitor-payload" content="eyjyzwzlcnjlcii6iiisinjlcxvlc3rfawqioii2ndawoje5ouncndo0nei5rto1rjbfnto2qumznza3osisinzpc2l0b3jfawqioii0mzcwmjk4njq0nzuxmtuxmji1iiwicmvnaw9ux2vkz2uioijpywqilcjyzwdpb25fcmvuzgvyijoiawfkin0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="ae76b038e57f9245cd7ce8ab91eabffb0177211110f63fe6f1b9ed80b92fb757" data-pjax-transient="true"/>
+<meta name="route-action" content="show" data-turbo-transient>
+<meta name="route-controller" content="blob" data-turbo-transient>
+<meta name="route-pattern" content="/:user_id/:repository/blob/*name(/*path)" data-turbo-transient>
+<meta name="selected-link" value="repo_source" data-turbo-transient>
+<meta name="theme-color" content="#1e2327">
+<meta name="turbo-body-classes" content="logged-out env-production page-responsive">
+<meta name="turbo-cache-control" content="no-cache" data-turbo-transient>
+<meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
+<meta name="twitter:image" content="https://opengraph.githubassets.com/29fbd869c343c968a232e846cfbf3c6bc310b49d226e0ac5d4ec42d6eb867517/dustinwin/domain-list-custom" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="domain-list-custom/ai.list at domains · dustinwin/domain-list-custom" /><meta name="twitter:description" content="供下游项目 dustinwin/ruleset_geodata 使用的 domain 数据源文件. contribute to dustinwin/domain-list-custom development by creating an account on github." />
+<meta name="ui-target" content="full">
+<meta name="user-login" content="">
+<meta name="viewport" content="width=device-width">
+<meta property="fb:app_id" content="1401488693436528">
+<meta property="og:image" content="https://opengraph.githubassets.com/29fbd869c343c968a232e846cfbf3c6bc310b49d226e0ac5d4ec42d6eb867517/dustinwin/domain-list-custom" /><meta property="og:image:alt" content="供下游项目 dustinwin/ruleset_geodata 使用的 domain 数据源文件. contribute to dustinwin/domain-list-custom development by creating an account on github." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="github" /><meta property="og:type" content="object" /><meta property="og:title" content="domain-list-custom/ai.list at domains · dustinwin/domain-list-custom" /><meta property="og:url" content="https://github.com/dustinwin/domain-list-custom/blob/domains/ai.list" /><meta property="og:description" content="供下游项目 dustinwin/ruleset_geodata 使用的 domain 数据源文件. contribute to dustinwin/domain-list-custom development by creating an account on github." />
+<nav aria-label="footer">
+<nav data-pjax="#js-repo-pjax-container" aria-label="repository" data-view-component="true" class="js-repo-nav js-sidenav-container-pjax js-responsive-underlinenav overflow-hidden underlinenav px-3 tmp-px-3 px-md-4 tmp-px-md-4 px-lg-5 tmp-px-lg-5">
+<path d="m0 6.75c0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5a1.75 1.75 0 0 1 9.25 16h-7.5a1.75 1.75 0 0 1 0 14.25z"></path><path d="m5 1.75c5 .784 5.784 0 6.75 0h7.5c15.216 0 16 .784 16 1.75v7.5a1.75 1.75 0 0 1 14.25 11h-7.5a1.75 1.75 0 0 1 5 9.25zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25z"></path>
+<path d="m1.5 1.75v13.5h13.75a.75.75 0 0 1 0 1.5h.75a.75.75 0 0 1-.75-.75v1.75a.75.75 0 0 1 1.5 0zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0l7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0l10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042z"></path>
+<path d="m1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0v5.372a2.25 2.25 0 0 1 1.5 3.25zm5.677-.177l9.573.677a.25.25 0 0 1 10 .854v2.5h1a2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0v5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177l7.177 3.427a.25.25 0 0 1 0-.354zm3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0z"></path>
+<path d="m10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646c23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786v20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"></path>
+<path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l.47 8.53a.75.75 0 0 1 0-1.06z"></path>
+<path d="m13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0l2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"></path>
+<path d="m3.72 3.72a.75.75 0 0 1 1.06 0l8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734l9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06z"></path>
+<path d="m5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0v8.5h-1.5a2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0zm5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0z"></path>
+<path d="m6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378a1.75 1.75 0 0 1 14.082 15h1.918a1.75 1.75 0 0 1-1.543-2.575zm1.763.707a.25.25 0 0 0-.44 0l1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0zm9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+<path d="m7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68a1.75 1.75 0 0 1 15 3.48v7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855c1.32 10.182 1 8.566 1 7v3.48a1.75 1.75 0 0 1 1.217-1.667zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238v7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298c13.225 9.666 13.5 8.36 13.5 7v3.48a.251.251 0 0 0-.174-.237l-5.25-1.68zm8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0zm9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+<path d="m8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791l8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194l.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611l7.327.668a.75.75 0 0 1 8 .25zm0 2.445l6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41l8 2.694z"></path>
+<path d="m8 0a8 8 0 1 1 0 16a8 8 0 0 1 8 0zm1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559a.25.25 0 0 1 6 10.559v5.442a.25.25 0 0 1 .379-.215z"></path>
+<path d="m8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25a2 2 0 0 0 8 16zm3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555a1.519 1.519 0 0 1 13.482 13h2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554a.255.255 0 0 0 3 7.947zm5-3.5a3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01l.001.006c0 .002.002.004.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007a.017.017 0 0 0-.003-.01l-1.703-2.554a1.745 1.745 0 0 1-.294-.97v5a3.5 3.5 0 0 0 8 1.5z"></path>
+<path d="m8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path><path d="m8 0a8 8 0 1 1 0 16a8 8 0 0 1 8 0zm1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"></path>
+<path d="m8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
+<react-app
+<react-partial
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/behaviors-d06528d2be557ee4.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/code-menu-1cb25e0591a48dc2.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/code-view-a5e1689039f83e4f.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/element-registry-9268749021b71707.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/environment-9242c02529e64600.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/github-elements-30084674d6b8a0d0.js" defer="defer"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/high-contrast-cookie-375b8480a0db9429.js"></script>
+<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/notifications-subscriptions-menu-9bd970acac8ec97f.js" defer="defer"></script>
+<script type="application/json" data-target="react-partial.embeddeddata">{"props":{"docsurl":"https://docs.github.com/get-started/accessibility/keyboard-shortcuts"}}</script>
+<script type="application/json" data-target="react-partial.embeddeddata">{"props":{}}</script>
+<span class="actionlistitem-visual actionlistitem-visual--leading">
+<span class="author flex-self-stretch" itemprop="author">
+<span class="js-stale-session-flash-signed-in" hidden>you signed in with another tab or window. <a class="link--intextblock" href="">reload</a> to refresh your session.</span>
+<span class="js-stale-session-flash-signed-out" hidden>you signed out in another tab or window. <a class="link--intextblock" href="">reload</a> to refresh your session.</span>
+<span class="js-stale-session-flash-switched" hidden>you switched accounts on another tab or window. <a class="link--intextblock" href="">reload</a> to refresh your session.</span>
+<span class="mx-1 flex-self-stretch color-fg-muted">/</span>
+<span class="text-small lh-condensed-ultra no-wrap mt-1" data-repository-hovercards-enabled>
+<span data-content="actions">actions</span>
+<span data-content="code">code</span>
+<span data-content="insights">insights</span>
+<span data-content="issues">issues</span>
+<span data-content="pull requests">pull requests</span>
+<span data-content="security and quality">security and quality</span>
+<span data-view-component="true" class="actionlistitem-label">
+<span data-view-component="true" class="progress-pjax-loader progress position-fixed width-full">
+<span id="actions-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="not available" data-view-component="true" class="counter"></span>
+<span id="code-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="not available" data-view-component="true" class="counter"></span>
+<span id="insights-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="not available" data-view-component="true" class="counter"></span>
+<span id="issues-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="0" hidden="hidden" data-view-component="true" class="counter">0</span>
+<span id="pull-requests-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="0" hidden="hidden" data-view-component="true" class="counter">0</span>
+<span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="14" data-view-component="true" class="counter">14</span>
+<span id="security-and-quality-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="0" hidden="hidden" data-view-component="true" class="counter">0</span>
+<span style="width: 0%;" data-view-component="true" class="progress-item progress-pjax-loader-bar left-0 top-0 color-bg-accent-emphasis"></span>
+<span>
+<span></span><span class="label label--secondary v-align-middle mr-1">public</span>
+<strong itemprop="name" class="mr-2 flex-self-stretch">
+<style type="text/css">
+<summary role="button" aria-label="close dialog"></summary>
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2 tmp-m-2">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon m-2 tmp-m-2">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked color-fg-muted mr-2 tmp-mr-2">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield underlinenav-octicon d-none d-sm-inline">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield">
+<svg aria-hidden="true" data-component="octicon" height="16" viewbox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
+<svg aria-hidden="true" data-component="octicon" height="24" viewbox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="octicon octicon-mark-github">
+<template class="js-flash-template">
+<template id="site-details-dialog">
+<template id="snippet-clipboard-copy-button">
+<template id="snippet-clipboard-copy-button-unpositioned">
+<title>domain-list-custom/ai.list at domains · dustinwin/domain-list-custom · github</title>
+<turbo-frame id="repo-content-turbo-frame" target="_top" data-turbo-action="advance" class="">
+<ul aria-labelledby="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-button" id="action-menu-44624a10-4aed-454b-967c-bb1cc80e3a2d-list" role="menu" data-view-component="true" class="actionlistwrap--inset actionlistwrap">
+<ul class="list-style-none d-flex flex-justify-center flex-wrap mb-2 mb-lg-0" aria-labelledby="sr-footer-heading">
+<ul class="pagehead-actions flex-shrink-0 d-none d-md-inline" style="padding: 2px 0;">
+<ul data-view-component="true" class="underlinenav-body list-style-none">
+>
+></ghcc-consent>
+actions
 ai-gateway.vercel.sh
 ai.developer.meta.com
 ai.meta.com
@@ -655,6 +1023,7 @@ antigravity.googleapis.com
 api.cloudflare.com
 api.msn.com
 api.ngc.nvidia.com
+app-name="code-view"
 assets.msn.com
 aws-language-servers.us-east-1.amazonaws.com
 aws-toolkit-language-servers.amazonaws.com
@@ -663,24 +1032,54 @@ browser-intake-us5-datadoghq.com
 build.nvidia.com
 cdn.growthbook.io
 cdn.usefathom.com
+class="application-main "
+class="link--secondary underline-on-hover border-0 p-0 color-bg-transparent text-left"
+class="link--secondary underline-on-hover border-0 p-0 color-bg-transparent"
 client-telemetry.us-east-1.amazonaws.com
 cloudaicompanion.googleapis.com
 cloudcode-pa.googleapis.com
+code
 codewhisperer.us-east-1.amazonaws.com
 cognito-identity.us-east-1.amazonaws.com
 copilot-proxy.githubusercontent.com
 copilot-workspace.githubnext.com
 copilotprodattachments.blob.core.windows.net
 daily-cloudcode-pa.googleapis.com
+data-a11y-animated-images="system" data-a11y-link-underlines="true"
+data-action="click:cookie-consent-link#showconsentmanagement"
+data-alternate="false"
+data-attempted-ssr="false"
+data-attempted-ssr="true"
+data-color-mode="auto" data-light-theme="light" data-dark-theme="dark"
+data-commit-hovercards-enabled
+data-cookie-consent-required="false"
+data-data-router-enabled="true"
+data-discussion-hovercards-enabled
+data-initial-cookie-consent-allowed=""
+data-issue-and-pr-hovercards-enabled
+data-lazy="false"
+data-locale="en"
+data-project-hovercards-enabled
+data-react-profiling="false"
+data-ssr="false"
+data-ssr="true"
 desktop-release.codewhisperer.us-east-1.amazonaws.com
 developer.meta.com
+do not share my personal information
+dustinwin
+forked from <a data-hovercard-type="repository" data-hovercard-url="/loyalsoldier/domain-list-custom/hovercard" class="link--intextblock" href="/loyalsoldier/domain-list-custom">loyalsoldier/domain-list-custom</a>
 gateway.bingviz.microsoft.net
 gateway.bingviz.microsoftapp.net
 idetoolkits-hostedfiles.amazonaws.com
 idetoolkits.amazonwebservices.com
 in.appcenter.ms
+initial-path="/dustinwin/domain-list-custom/blob/domains/ai.list"
+insights
+issues
+lang="en"
 llama.developer.meta.com
 location.microsoft.com
+manage cookies
 notebooklm-pa.googleapis.com
 notebooklm.googleapis.com
 odc.officeapps.live.com
@@ -688,16 +1087,27 @@ openai-api.arkoselabs.com
 openaiassets.blob.core.windows.net
 openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
 openaicomproductionae4b.blob.core.windows.net
+partial-name="app-install-banner-partial"
+partial-name="keyboard-shortcuts-dialog"
+partial-name="marketing-header"
 ppl-ai-file-upload.s3.amazonaws.com
 pplx-res.cloudinary.com
 production-openaicom-storage.azureedge.net
+pull requests
 q-developer-integration.us-east-1.api.aws
 r.bing.com
+security and quality
 self.events.data.microsoft.com
 servd-anthropic-website.b-cdn.net
 services.bingapis.com
+star
 static.cloudflareinsights.com
 storage.googleapis.com
+style="display: block; min-height: calc(100vh - 64px);"
 sydney.bing.com
+tab-size: var(--tab-size-preference);
 telemetry.aws-language-servers.us-east-1.amazonaws.com
+type="button"
 www.bing.com
+you can’t perform that action at this time
+}
