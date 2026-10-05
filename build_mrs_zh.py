@@ -47,6 +47,10 @@ RULE_GROUPS = {
     "mydirect": [
         "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/mydirect.txt",
          ],
+    "AI": [
+        "https://raw.githubusercontent.com/viewer12/OverseasAI.list/main/rule/Clash/OverseasAI/OverseasAI.list",
+         ],
+    
 }
 
 
