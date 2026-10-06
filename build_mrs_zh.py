@@ -46,6 +46,9 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/clash/geolocation-!cn.yaml",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/gfw.yaml",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-!cn.yaml",
          ],
 
     "mydirect": [
