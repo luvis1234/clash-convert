@@ -60,7 +60,7 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/DustinWin/domain-list-custom/domains/ai.list",
          ],
 
-        "AI": [
+        "google": [
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/google.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml",
