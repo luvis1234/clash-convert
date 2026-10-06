@@ -1,5 +1,4 @@
 # clash-convert
-clash拦截规则转换
 
 # Mihomo 规则集订阅列表
 
