@@ -10,7 +10,7 @@ clash拦截规则转换
 
 ### 📦 自动生成的 MRS 规则集订阅链接
 
-> ⏱ **最后同步时间**：`2026-10-06 10:44:24` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-06 10:53:05` (UTC+8)
 
 你可以直接在 Mihomo 配置文件中引用以下链接：
 
@@ -29,7 +29,7 @@ clash拦截规则转换
 
 ### 📦 自动生成的 MRS 规则集订阅链接 (ZH)
 
-> ⏱ **最后同步时间**：`2026-10-06 10:44:46` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-06 10:53:27` (UTC+8)
 
 | 文件名 | 规则类型 (Behavior) | 规则数量 | 下载链接 |
 | :--- | :---: | :---: | :--- |
@@ -45,6 +45,68 @@ clash拦截规则转换
 | **Reject_Ads_Domain.mrs** | `domain` | 676,313 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Reject_Ads_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Reject_Ads_Domain.mrs) |
 | **Reject_Ads_IP.mrs** | `ipcidr` | 599 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Reject_Ads_IP.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Reject_Ads_IP.mrs) |
 | **mydirect_Domain.mrs** | `domain` | 1 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/mydirect_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/mydirect_Domain.mrs) |
+
+### 🧩 Mihomo 规则集引用方法
+
+Mihomo 通过 `rule-providers` 加载远程规则集，再在 `rules` 中使用 `RULE-SET` 引用。以下示例使用 **GitHub Raw** 作为下载地址；如需使用 jsDelivr，可替换为上表对应的 CDN 链接。
+
+> `Classical.txt` 使用 `behavior: classical` + `format: text`；`Domain.mrs` 使用 `behavior: domain` + `format: mrs`；`IP.mrs` 使用 `behavior: ipcidr` + `format: mrs`。
+
+#### Classical.txt
+
+适用于包含 `DOMAIN-KEYWORD`、`DOMAIN-REGEX`、`PROCESS-NAME`、`IP-ASN` 等 Classical 规则的文本规则集。
+
+```yaml
+rule-providers:
+  ai_classical:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Classical.txt"
+    path: ./ruleset/AI_Classical.txt
+    interval: 86400
+
+rules:
+  - RULE-SET,ai_classical,你的策略组
+```
+
+#### Domain.mrs
+
+适用于域名类 MRS 规则集。
+
+```yaml
+rule-providers:
+  ai_domain:
+    type: http
+    behavior: domain
+    format: mrs
+    url: "https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Domain.mrs"
+    path: ./ruleset/AI_Domain.mrs
+    interval: 86400
+
+rules:
+  - RULE-SET,ai_domain,你的策略组
+```
+
+#### IP.mrs
+
+适用于 IPv4/IPv6 CIDR 类型的 MRS 规则集。
+
+```yaml
+rule-providers:
+  ai_ip:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    url: "https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_IP.mrs"
+    path: ./ruleset/AI_IP.mrs
+    interval: 86400
+
+rules:
+  - RULE-SET,ai_ip,你的策略组,no-resolve
+```
+
+> `你的策略组` 请替换为实际代理策略组名称，例如 `DIRECT`、`REJECT`、`Proxy` 等。`IP.mrs` 示例附带 `no-resolve`，用于避免仅为 IP 规则匹配而触发 DNS 解析；可根据自己的匹配需求调整。
 
 ### ❤️ 数据来源与致谢
 
