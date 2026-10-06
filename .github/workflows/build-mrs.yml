@@ -2,9 +2,9 @@ name: Build and Convert MRS Rules
 
 # 触发条件：推送到 main 分支，手动触发，或者每 10 小时触发一次
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
   workflow_dispatch:
   schedule:
     # 这里的 cron 表达式表示在每天的 00:00 和 10:00，以及 20:00 (UTC 时间) 触发。
