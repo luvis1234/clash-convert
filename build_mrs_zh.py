@@ -607,6 +607,99 @@ def update_readme(success_files):
         )
 
     # --------------------------------------------------------
+    # Mihomo 三类规则集引用方法
+    # --------------------------------------------------------
+    # 根据本次实际生成结果各挑一个可用示例，确保 README 中的
+    # 文件名和 URL 与仓库当前产物保持一致。
+    examples = {}
+    for filename, behavior, _count in sorted(success_files, key=lambda x: x[0]):
+        if behavior in ("classical", "domain", "ipcidr") and behavior not in examples:
+            examples[behavior] = filename
+
+    md_content += (
+        "\n### 🧩 Mihomo 规则集引用方法\n\n"
+        "Mihomo 通过 `rule-providers` 加载远程规则集，再在 `rules` 中使用 "
+        "`RULE-SET` 引用。以下示例使用 **GitHub Raw** 作为下载地址；"
+        "如需使用 jsDelivr，可替换为上表对应的 CDN 链接。\n\n"
+        "> `Classical.txt` 使用 `behavior: classical` + `format: text`；"
+        "`Domain.mrs` 使用 `behavior: domain` + `format: mrs`；"
+        "`IP.mrs` 使用 `behavior: ipcidr` + `format: mrs`。\n\n"
+    )
+
+    def _provider_url(filename):
+        return (
+            f"https://raw.githubusercontent.com/"
+            f"{repo}/{branch}/{OUTPUT_DIR}/{filename}"
+        )
+
+    if "classical" in examples:
+        filename = examples["classical"]
+        provider_name = re.sub(r"[^a-zA-Z0-9_]+", "_", Path(filename).stem).strip("_").lower()
+        md_content += (
+            "#### Classical.txt\n\n"
+            "适用于包含 `DOMAIN-KEYWORD`、`DOMAIN-REGEX`、`PROCESS-NAME`、"
+            "`IP-ASN` 等 Classical 规则的文本规则集。\n\n"
+            "```yaml\n"
+            "rule-providers:\n"
+            f"  {provider_name}:\n"
+            "    type: http\n"
+            "    behavior: classical\n"
+            "    format: text\n"
+            f"    url: \"{_provider_url(filename)}\"\n"
+            f"    path: ./ruleset/{filename}\n"
+            "    interval: 86400\n\n"
+            "rules:\n"
+            f"  - RULE-SET,{provider_name},你的策略组\n"
+            "```\n\n"
+        )
+
+    if "domain" in examples:
+        filename = examples["domain"]
+        provider_name = re.sub(r"[^a-zA-Z0-9_]+", "_", Path(filename).stem).strip("_").lower()
+        md_content += (
+            "#### Domain.mrs\n\n"
+            "适用于域名类 MRS 规则集。\n\n"
+            "```yaml\n"
+            "rule-providers:\n"
+            f"  {provider_name}:\n"
+            "    type: http\n"
+            "    behavior: domain\n"
+            "    format: mrs\n"
+            f"    url: \"{_provider_url(filename)}\"\n"
+            f"    path: ./ruleset/{filename}\n"
+            "    interval: 86400\n\n"
+            "rules:\n"
+            f"  - RULE-SET,{provider_name},你的策略组\n"
+            "```\n\n"
+        )
+
+    if "ipcidr" in examples:
+        filename = examples["ipcidr"]
+        provider_name = re.sub(r"[^a-zA-Z0-9_]+", "_", Path(filename).stem).strip("_").lower()
+        md_content += (
+            "#### IP.mrs\n\n"
+            "适用于 IPv4/IPv6 CIDR 类型的 MRS 规则集。\n\n"
+            "```yaml\n"
+            "rule-providers:\n"
+            f"  {provider_name}:\n"
+            "    type: http\n"
+            "    behavior: ipcidr\n"
+            "    format: mrs\n"
+            f"    url: \"{_provider_url(filename)}\"\n"
+            f"    path: ./ruleset/{filename}\n"
+            "    interval: 86400\n\n"
+            "rules:\n"
+            f"  - RULE-SET,{provider_name},你的策略组,no-resolve\n"
+            "```\n\n"
+        )
+
+    md_content += (
+        "> `你的策略组` 请替换为实际代理策略组名称，例如 `DIRECT`、`REJECT`、"
+        "`Proxy` 等。`IP.mrs` 示例附带 `no-resolve`，用于避免仅为 IP 规则匹配而触发 DNS 解析；"
+        "可根据自己的匹配需求调整。\n"
+    )
+
+    # --------------------------------------------------------
     # 自动从 RULE_GROUPS 的源链接生成上游项目致谢
     # --------------------------------------------------------
     source_credits = collect_source_credits()
