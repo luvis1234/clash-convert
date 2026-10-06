@@ -53,6 +53,10 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/clash/geolocation-!cn.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/gfw.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-!cn.yaml",
+
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/google.yaml",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml",
          ],
 
     "mydirect": [
