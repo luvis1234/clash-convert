@@ -38,6 +38,8 @@ RULE_GROUPS = {
     "Direct_CN": [
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs_IP.txt",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-cn.yaml",
         "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml",
     ],
@@ -61,12 +63,17 @@ RULE_GROUPS = {
         "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml",
         "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/refs/heads/main/rules/clash/global.yaml",
         "https://raw.githubusercontent.com/DustinWin/domain-list-custom/domains/ai.list",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ai-!cn.yaml",
          ],
 
-        "google": [
+    "google": [
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/google.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml",
+         ],
+
+    "NTP": [
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ntp.yaml",
          ],
     
 }
