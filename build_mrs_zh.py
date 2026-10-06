@@ -37,21 +37,21 @@ RULE_GROUPS = {
     ],
     "Direct_CN": [
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs_IP.txt",
-
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
-"https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
+        "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml",
     ],
     "Proxy_Global": [
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
-"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
-"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
-"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
          ],
 
     "mydirect": [
         "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/mydirect.txt",
          ],
+    
     "AI": [
         "https://raw.githubusercontent.com/viewer12/OverseasAI.list/main/rule/Clash/OverseasAI/OverseasAI.list",
         "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list",
@@ -473,6 +473,75 @@ def convert_to_mrs(
         return False
 
 
+def extract_github_repo_from_url(url: str):
+    """
+    从规则源 URL 自动提取 GitHub owner/repo。
+
+    支持：
+      - https://raw.githubusercontent.com/owner/repo/...
+      - https://github.com/owner/repo/...
+      - https://cdn.jsdelivr.net/gh/owner/repo@ref/...
+      - https://fastly.jsdelivr.net/gh/owner/repo@ref/...
+
+    返回 (owner, repo)；无法识别时返回 None。
+    """
+    url = (url or "").strip()
+    patterns = (
+        r"^https?://raw\.githubusercontent\.com/([^/]+)/([^/]+)(?:/|$)",
+        r"^https?://github\.com/([^/]+)/([^/]+)(?:/|$)",
+        r"^https?://(?:cdn|fastly)\.jsdelivr\.net/gh/([^/]+)/([^/@]+)(?:@[^/]+)?(?:/|$)",
+    )
+    for pattern in patterns:
+        match = re.match(pattern, url, flags=re.IGNORECASE)
+        if match:
+            owner = match.group(1).strip()
+            repo = match.group(2).strip()
+            if repo.endswith(".git"):
+                repo = repo[:-4]
+            if owner and repo:
+                return owner, repo
+    return None
+
+
+def collect_source_credits():
+    """
+    从 RULE_GROUPS 中自动汇总上游 GitHub 项目，按 owner/repo 去重。
+
+    返回：
+        [(display_name, repo_url, groups), ...]
+    """
+    credits = {}
+
+    for group_name, urls in RULE_GROUPS.items():
+        for url in urls:
+            parsed = extract_github_repo_from_url(url)
+            if not parsed:
+                continue
+
+            owner, repo = parsed
+            key = (owner.lower(), repo.lower())
+            item = credits.setdefault(
+                key,
+                {
+                    "owner": owner,
+                    "repo": repo,
+                    "groups": set(),
+                },
+            )
+            item["groups"].add(group_name)
+
+    result = []
+    for item in credits.values():
+        owner = item["owner"]
+        repo = item["repo"]
+        display_name = f"{owner}/{repo}"
+        repo_url = f"https://github.com/{owner}/{repo}"
+        groups = sorted(item["groups"], key=str.lower)
+        result.append((display_name, repo_url, groups))
+
+    return sorted(result, key=lambda x: x[0].lower())
+
+
 def update_readme(success_files):
     """
     更新 README 中的自动生成规则订阅表。
@@ -535,6 +604,33 @@ def update_readme(success_files):
             f"`{behavior}` | "
             f"{count:,} | "
             f"{links} |\n"
+        )
+
+    # --------------------------------------------------------
+    # 自动从 RULE_GROUPS 的源链接生成上游项目致谢
+    # --------------------------------------------------------
+    source_credits = collect_source_credits()
+
+    if source_credits:
+        md_content += (
+            "\n### ❤️ 数据来源与致谢\n\n"
+            "本项目生成的规则集基于以下优秀开源项目及规则源进行自动化整理、"
+            "合并、去重与格式转换。感谢各位创作者和维护者长期提供高质量规则数据。\n\n"
+            "| 上游项目 | 用于规则组 |\n"
+            "| :--- | :--- |\n"
+        )
+
+        for display_name, repo_url, groups in source_credits:
+            group_text = ", ".join(f"`{group}`" for group in groups)
+            md_content += (
+                f"| [{display_name}]({repo_url}) | {group_text} |\n"
+            )
+
+        md_content += (
+            "\n> 本项目仅对上游公开规则进行自动化整理、合并、去重及格式转换。  \n"
+            "> 原始规则的版权、许可及相关权益归各原作者及上游项目所有；"
+            "使用时请同时遵循对应上游项目的许可与说明。  \n"
+            "> 如果这些规则对你有帮助，也请访问并支持上述原始项目。\n"
         )
 
     # --------------------------------------------------------
