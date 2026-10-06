@@ -39,14 +39,14 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs_IP.txt",
 
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
-        "https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
+"https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml",
     ],
     "Proxy_Global": [
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
-        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
-        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
-        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
+"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt",
+"https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt",
+"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml",
          ],
 
     "mydirect": [
@@ -57,7 +57,7 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list",
         "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml",
         "https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/refs/heads/main/rules/clash/global.yaml",
-        "https://raw.githubusercontent.com/DustinWin/domain-list-custom/refs/heads/domains/ai.list",
+        "https://raw.githubusercontent.com/DustinWin/domain-list-custom/domains/ai.list",
          ],
     
 }
@@ -646,35 +646,82 @@ def looks_like_html(data: bytes, content_type: str = "") -> bool:
     return any(head.startswith(marker) for marker in html_markers)
 
 
+def _declared_charset(content_type: str) -> str | None:
+    """提取 HTTP Content-Type 中声明的 charset，仅作为弱提示使用。"""
+    m = re.search(r"charset=([\w.\-]+)", content_type or "", re.IGNORECASE)
+    if not m:
+        return None
+    return m.group(1).strip('"\\\'').lower()
+
+
+def _looks_like_mojibake(text: str) -> bool:
+    """
+    检测常见 UTF-8 被错误按 latin1/cp1252 解码后的乱码特征。
+
+    这里只拦截高置信度特征，避免误伤正常规则内容。
+    """
+    sample = text[:20000]
+    markers = (
+        "Ã", "Â", "â€", "â€™", "â€œ", "â€", "â€“", "â€”",
+        "ä¸", "ä¹", "äº", "å®", "æ–", "çš", "é€", "ï»¿",
+        "�",
+    )
+    hits = sum(sample.count(m) for m in markers)
+    # 规则文件以 ASCII 为主，出现多个此类组合通常已经足够可疑。
+    return hits >= 3
+
+
 def decode_text_bytes(data: bytes, content_type: str = "") -> str:
     """
-    解码规则文本。优先 UTF-8/UTF-8 BOM；必要时兼容 GB18030。
-    不使用 errors='replace'，避免静默制造真正的乱码。
-    """
-    # 优先使用 HTTP charset（若明确提供）
-    charset = None
-    m = re.search(r"charset=([\w.\-]+)", content_type or "", re.IGNORECASE)
-    if m:
-        charset = m.group(1).strip('"\'').lower()
+    安全解码规则文本。
 
-    candidates = []
-    if charset:
-        candidates.append(charset)
-    candidates.extend(["utf-8-sig", "utf-8", "gb18030"])
+    重要：不盲信 GitHub 加速/CDN返回的 charset。
+    一些代理会把实际 UTF-8 错误标成 ISO-8859-1、GBK 等；如果优先
+    使用该 charset，decode() 可能成功但产生 mojibake（假成功）。
+
+    顺序：
+      1. UTF-8 BOM / UTF-8（严格）
+      2. GB18030（兼容常见中文源）
+      3. HTTP 声明 charset（仅兜底）
+    """
+    declared = _declared_charset(content_type)
+
+    candidates = ["utf-8-sig", "utf-8", "gb18030"]
+    if declared and declared not in candidates:
+        candidates.append(declared)
 
     tried = set()
-    for enc in candidates:
-        if enc in tried:
-            continue
-        tried.add(enc)
-        try:
-            return data.decode(enc)
-        except (UnicodeDecodeError, LookupError):
-            pass
+    mojibake_candidates = []
 
-    raise UnicodeDecodeError(
-        "unknown", data, 0, min(len(data), 1),
-        "无法按 UTF-8/GB18030 解码规则源"
+    for enc in candidates:
+        enc_key = enc.lower()
+        if enc_key in tried:
+            continue
+        tried.add(enc_key)
+        try:
+            text = data.decode(enc)
+        except (UnicodeDecodeError, LookupError):
+            continue
+
+        if _looks_like_mojibake(text):
+            mojibake_candidates.append(enc)
+            continue
+
+        if declared and enc_key != declared.lower():
+            # 只在声明值明显可疑时记录，方便从执行日志定位加速节点问题。
+            if declared.lower() not in ("utf-8", "utf8", "utf-8-sig"):
+                print(
+                    f"  ⚠️ HTTP 声明 charset={declared}，"
+                    f"但内容按 {enc} 严格解码正常；已忽略可疑 charset"
+                )
+        return text
+
+    extra = ""
+    if mojibake_candidates:
+        extra = f"；以下编码虽可解码但疑似产生乱码: {', '.join(mojibake_candidates)}"
+    raise UnicodeError(
+        "无法可靠解码规则源：UTF-8/GB18030/HTTP charset 均失败"
+        + extra
     )
 
 
