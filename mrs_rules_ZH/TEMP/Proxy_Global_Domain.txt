@@ -1010,6 +1010,8 @@
 +.adpornu.xyz
 +.ads-twitter.com
 +.adsense.com
++.adsensecustomsearchads.com
++.adsenseformobileapps.com
 +.adskcloud.com
 +.adskcloud.net
 +.adskeng.net
@@ -1019,6 +1021,7 @@
 +.adtcc.com
 +.adtidy.net
 +.adtidy.org
++.adtrafficquality.google
 +.adult
 +.adult-doujin-free-information-bureau.officialblog.jp
 +.adult-h.com
@@ -1085,6 +1088,10 @@
 +.adventuresbydisney.com
 +.advertfan.com
 +.advertisercommunity.com
++.advertiserscommunity.com
++.adwords-community.com
++.adwords.com
++.adwordsexpress.com
 +.adx.promo
 +.ae
 +.ae.org
@@ -2050,6 +2057,8 @@
 +.aporntv.com
 +.apornvideo.com
 +.app
++.app-ads-services.com
++.app-analytics-services-att.com
 +.app-analytics-services.com
 +.app-dynamics.com
 +.app-measurement-cn.com
@@ -4075,6 +4084,7 @@
 +.blog.de
 +.blog.descargasgay.com
 +.blog.exblog.co.jp
++.blog.google
 +.blog.jp
 +.blog.kangye.org
 +.blog.qooza.hk
@@ -5640,6 +5650,7 @@
 +.cert-gib.com
 +.cert-gib.ru
 +.certificat2.com
++.certificate-transparency.dev
 +.certificate-transparency.org
 +.certinomis.com
 +.certinomis.fr
@@ -5695,6 +5706,7 @@
 +.charmescorts.com
 +.charticulator.com
 +.chat.com
++.chat.gle
 +.chatango.com
 +.chatgpt.com
 +.chatgpt.livekit.cloud
@@ -6101,7 +6113,6 @@
 +.click-url.com
 +.clickedu.co.uk
 +.clickserve.cc-dt.com
-+.clickserver.googleads.com
 +.clien.net
 +.climate-server.com
 +.cling.omy.sg
@@ -6989,6 +7000,7 @@
 +.deepfreeze.tech
 +.deepl.com
 +.deepmind.com
++.deepmind.google
 +.deepwiki.com
 +.deepwiki.org
 +.deezer.com
@@ -7352,6 +7364,7 @@
 +.digital-rb.com
 +.digital-wb.ru
 +.digitalassetlinks.org
++.digitalattackmap.com
 +.digitalcertvalidation.com
 +.digitaldesire.com
 +.digitalhub.com
@@ -7766,6 +7779,8 @@
 +.doubibackup.com
 +.doubiyunbackup.com
 +.doubleclick-cn.net
++.doubleclick.cn
++.doubleclick.com
 +.doubleclick.net
 +.doublethinklab.org
 +.doubmirror.cf
@@ -7793,6 +7808,7 @@
 +.dowjoneson.com
 +.download.com
 +.download.dappcdn.com
++.download.qatp1.net
 +.downloadpass.com
 +.downloadsforipod.com
 +.dphk.org
@@ -10561,6 +10577,7 @@
 +.g-tvapp.com
 +.g-xxxhub.com
 +.g.ai
++.g.cn
 +.g.co
 +.g.dev
 +.g.kfd.me
@@ -10802,6 +10819,7 @@
 +.gemfire.net
 +.gemfury.com
 +.gemini.com
++.gemini.google
 +.gen.lib.rus.ec
 +.gencraft.com
 +.gendai.net
@@ -10957,6 +10975,7 @@
 +.ggjav.com
 +.ggoogle.com
 +.ggpds.com
++.ggpht.cn
 +.ggpht.com
 +.ggsel.com
 +.ggsel.net
@@ -11069,6 +11088,7 @@
 +.gizlen.net
 +.gizmoxxx.com
 +.gjczz.com
++.gkecnapps.cn
 +.gl
 +.gladporn.com
 +.glam0ur.com
@@ -11511,8 +11531,12 @@
 +.google.vu
 +.google.ws
 +.googleacquisitionmigration.com
++.googleadapis.com
++.googleads-cn.com
++.googleads.com
 +.googleadservices-cn.com
 +.googleadservices.com
++.googleadsserving.cn
 +.googleanalytics.com
 +.googleapis-cn.com
 +.googleapis.cn
@@ -11527,6 +11551,7 @@
 +.googlecensorship.org
 +.googlecert.net
 +.googlechinawebmaster.com
++.googlecnapps.cn
 +.googlecode.com
 +.googlecommerce.com
 +.googlecompare.co.uk
@@ -11738,11 +11763,12 @@
 +.gslink.us
 +.gsrc.io
 +.gstatic-cn.com
++.gstatic.cn
 +.gstatic.com
++.gstaticcnapps.cn
 +.gsuite.com
 +.gt
 +.gt536.top
-+.gtm.oasisfeng.com
 +.gtricks.com
 +.gts-vpn.com
 +.gtv.org
@@ -12303,6 +12329,7 @@
 +.hexieshe.xyz
 +.hexxeh.net
 +.hey.boo
++.hey.gle
 +.heydoga.com
 +.heydouga.com
 +.heyuedi.com
@@ -17459,6 +17486,7 @@
 +.mongodb.org
 +.monica.im
 +.monitorchina.org
++.monitoring.qpdp1.net
 +.monitorware.com
 +.monitrix.net
 +.monlamit.org
@@ -18362,6 +18390,7 @@
 +.neurology.org
 +.neustar
 +.neverforget8964.org
++.neverware.com
 +.nevex.com
 +.new
 +.new-3lunch.net
@@ -19211,6 +19240,7 @@
 +.oanencore.com
 +.oann.com
 +.oasis.io
++.oasisfeng.com
 +.oath.cloud
 +.oath.com
 +.oauth.net
@@ -19311,6 +19341,7 @@
 +.oiobbs.com
 +.oitabank.co.jp
 +.oizoblog.com
++.ok.gle
 +.ok.me
 +.ok.ru
 +.ok.xxx
@@ -21107,7 +21138,10 @@
 +.prizrak.app
 +.procopytips.com
 +.proctoscopeexam.com
++.prod-controlbe.floonet.goog
++.prod-databe.floonet.goog
 +.prod-my.games
++.prod.databe.floonet.goog
 +.prodcontest.com
 +.prodrive-japan.com
 +.product.co.jp
@@ -21312,6 +21346,7 @@
 +.q13.com
 +.q13fox.com
 +.qa
++.qagpublic.qatp1.net
 +.qanote.com
 +.qatarescortsvip.com
 +.qattdh.cc
@@ -21325,6 +21360,7 @@
 +.qcomgeo2.com
 +.qctconnect.com
 +.qdiehzz7.me
++.qgadmin.qcpp1.net
 +.qgirl.com.tw
 +.qhigh.com
 +.qi-gong.me
@@ -21394,6 +21430,8 @@
 +.qualcommventures.cn
 +.qualcommventures.com
 +.qualphone.com
++.qualysapi.qatp1.net
++.qualysguard.qpdp1.net
 +.quanben-xiaoshuo.com
 +.quanben.io
 +.quannengshen.org
@@ -21790,6 +21828,7 @@
 +.regiongold.com
 +.registerhulu.com
 +.registeridm.com
++.registry.google
 +.reimu.net
 +.reiporno.com
 +.relateiq.com
@@ -22436,6 +22475,7 @@
 +.scaleform.com
 +.scandalplanet.com
 +.scanlover.com
++.scanservice1.qcpp1.net
 +.scartel.ru
 +.scasino.com
 +.scat-enema.com
@@ -23859,6 +23899,9 @@
 +.stadia.dev
 +.staffhub.ms
 +.stage64.hk
++.staging-controlbe.floonet.goog
++.staging-databe.floonet.goog
++.staging.databe.floonet.goog
 +.standard.co.uk
 +.standardchartered.com
 +.standardsuniversity.org
@@ -29440,6 +29483,7 @@
 +.ysx-mm.com
 +.yt
 +.yt.be
++.ytapi.com
 +.ytht.net
 +.ytimg.com
 +.ytn.co.kr
