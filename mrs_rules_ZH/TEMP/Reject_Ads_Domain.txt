@@ -69598,7 +69598,6 @@
 +.creatives.gunosy.com
 +.creatives.inmotionhosting.com
 +.creatives.pichunter.com
-+.creatives.rgadvert.com
 +.creatives.summitconnect.co.uk
 +.creatives.x2lt.com
 +.creatives1.ftimg.net
@@ -236526,6 +236525,7 @@
 +.rg84983is.com
 +.rgaaabezlzkde.site
 +.rgaagnida.com
++.rgadvert.com
 +.rganizationsuch.com
 +.rgarcorsbqfss.online
 +.rgauwvaznptsx.com
@@ -580521,7 +580521,6 @@ rg35.net
 rg403.com
 rg6u6kf7.pokeray.com
 rg777.tech
-rgadvert.com
 rgahmllbgubakm.com
 rgato.com
 rgcblgor.com
