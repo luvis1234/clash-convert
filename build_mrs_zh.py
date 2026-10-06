@@ -81,6 +81,7 @@ RULE_GROUPS = {
 
     "NTP": [
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ntp.yaml",
+        "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/NTPService/NTPService.yaml",
          ],
     
 }
