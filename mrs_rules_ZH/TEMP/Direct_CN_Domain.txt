@@ -14463,6 +14463,7 @@
 +.bank-of-china.com
 +.bank-of-tianjin.com
 +.bankalliance.net
++.bankcomm.cn
 +.bankcomm.com
 +.bankcomm.com.au
 +.bankcomm.com.mo
@@ -14472,6 +14473,7 @@
 +.bankhr.com
 +.banklilv.com
 +.bankofbbg.com
++.bankofbeijing.com.cn
 +.bankofchangsha.com
 +.bankofchina.com
 +.bankofdl.com
@@ -17492,6 +17494,7 @@
 +.boruntong.com
 +.boryou.com
 +.bos.xin
++.bosc.cn
 +.boscuser.com
 +.bosdsoft.com
 +.boseclub.com
@@ -17735,6 +17738,7 @@
 +.bs008.com
 +.bs2005.com
 +.bsagit.com
++.bsb.com.cn
 +.bsbgjj.com
 +.bsbkjt.com
 +.bsbsb.top
@@ -20394,6 +20398,7 @@
 +.cgahz.com
 +.cgames.com
 +.cgangs.com
++.cgbchina.com.cn
 +.cgboo.com
 +.cgbtek.com
 +.cgc.press
@@ -22231,6 +22236,7 @@
 +.chinaunicom.com.hk
 +.chinaunicomglobal.com
 +.chinaunionpay.com
++.chinaunionpay.com.cn
 +.chinaunionpay.net
 +.chinauniversalasset.com
 +.chinaunix.com
@@ -22828,6 +22834,7 @@
 +.ciaoca.com
 +.ciapst.org
 +.ciaxkzxy.com
++.cib.com.cn
 +.cibaike.com
 +.cibawl.com
 +.cibfintech.com
@@ -23002,6 +23009,7 @@
 +.citexpo.org
 +.citgc.com
 +.citiais.com
++.citibank.com.cn
 +.citic
 +.citic-wealth.com
 +.citic.com
@@ -23589,6 +23597,7 @@
 +.cmanuf.com
 +.cmb-leasing.com
 +.cmbajia.com
++.cmbc.com.cn
 +.cmbc.run
 +.cmbchina.biz
 +.cmbchina.com
@@ -26748,6 +26757,8 @@
 +.cuour.com
 +.cuour.org
 +.cuoxin.com
++.cup.com.cn
++.cup62.cn
 +.cupdapp.com
 +.cupdata.com
 +.cupddns.com
@@ -47713,7 +47724,10 @@
 +.hsayi.com
 +.hsbank.cc
 +.hsbbs.com
++.hsbc.com.cn
 +.hsbc.com.hk
++.hsbcinsurance.com.cn
++.hsbcqh.com.cn
 +.hsbdc.com
 +.hsbianma.com
 +.hscarbonfibre.com
@@ -49291,6 +49305,7 @@
 +.hx99.net
 +.hxacc.com
 +.hxage.com
++.hxb.com.cn
 +.hxbdf120.com
 +.hxbdxled.com
 +.hxbl.com
@@ -59391,6 +59406,7 @@
 +.ksfang.com
 +.kshahn.com
 +.kshaoteng.com
++.kshbank.cn
 +.kshfgf.com
 +.kshjn.com
 +.kshot.com
@@ -67620,6 +67636,7 @@
 +.mryys.com
 +.mrzhenggang.com
 +.ms
++.ms-bank.cn
 +.ms08067.com
 +.ms211.com
 +.ms315.com
@@ -68074,6 +68091,7 @@
 +.myarowanas.com
 +.myauth.us
 +.mybabya.com
++.mybank.cn
 +.mybarrefitness.com
 +.mybdqn.com
 +.mybj.com
@@ -69781,6 +69799,7 @@
 +.njcangong.com
 +.njcaringmedical.com
 +.njcatv.net
++.njcb.com.cn
 +.njcbcmjt.com
 +.njccwei.com
 +.njcdata.com
@@ -71669,6 +71688,7 @@
 +.onealert.com
 +.oneapm.com
 +.oneasp.com
++.onebank.com.cn
 +.onebash.com
 +.onebiji.com
 +.onebox.site
@@ -85193,6 +85213,7 @@
 +.spcloudhw.com
 +.spcloudhw.net
 +.spcywang.com
++.spdb.com.cn
 +.spdbh5.com
 +.spdbuser.com
 +.spdcat.com
@@ -92936,6 +92957,7 @@
 +.unionpay.com
 +.unionpay.net
 +.unionpay95516.cc
++.unionpayintl.cn
 +.unionpayintl.com
 +.unionpaysecure.com
 +.unionsy.com
@@ -95665,6 +95687,7 @@
 +.wegdj.com
 +.wegene.com
 +.wego-healthcare.com
++.wegobank.cn
 +.wegooooo.com
 +.wehandbio.com
 +.wehefei.com
