@@ -1,0 +1,34 @@
+name: 规则问题
+description: 报告规则误匹配、漏匹配或源规则异常
+title: "[Rule] "
+labels:
+  - rules
+body:
+  - type: dropdown
+    attributes:
+      label: 问题类型
+      options:
+        - 误拦截
+        - 漏匹配
+        - 上游源失效
+        - Domain 分类异常
+        - IP 分类异常
+        - Classical 分类异常
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: 规则组
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: 涉及域名/IP/规则
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 补充说明
