@@ -7814,7 +7814,6 @@
 +.dowjoneson.com
 +.download.com
 +.download.dappcdn.com
-+.download.qatp1.net
 +.downloadpass.com
 +.downloadsforipod.com
 +.dphk.org
@@ -17503,7 +17502,6 @@
 +.mongodb.org
 +.monica.im
 +.monitorchina.org
-+.monitoring.qpdp1.net
 +.monitorware.com
 +.monitrix.net
 +.monlamit.org
@@ -21366,7 +21364,6 @@
 +.q13.com
 +.q13fox.com
 +.qa
-+.qagpublic.qatp1.net
 +.qanote.com
 +.qatarescortsvip.com
 +.qattdh.cc
@@ -21380,7 +21377,6 @@
 +.qcomgeo2.com
 +.qctconnect.com
 +.qdiehzz7.me
-+.qgadmin.qcpp1.net
 +.qgirl.com.tw
 +.qhigh.com
 +.qi-gong.me
@@ -21450,8 +21446,6 @@
 +.qualcommventures.cn
 +.qualcommventures.com
 +.qualphone.com
-+.qualysapi.qatp1.net
-+.qualysguard.qpdp1.net
 +.quanben-xiaoshuo.com
 +.quanben.io
 +.quannengshen.org
@@ -22496,7 +22490,6 @@
 +.scaleform.com
 +.scandalplanet.com
 +.scanlover.com
-+.scanservice1.qcpp1.net
 +.scartel.ru
 +.scasino.com
 +.scat-enema.com

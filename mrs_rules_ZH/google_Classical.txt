@@ -1,10 +1,8 @@
 domain-keyword,appspot
 domain-keyword,blogspot
-domain-keyword,gemini
 domain-keyword,generativelanguage
 domain-keyword,gmail
 domain-keyword,google
-domain-keyword,gstatic
 domain-keyword,recaptcha
 domain-keyword,youtube
 domain-keyword,ytimg

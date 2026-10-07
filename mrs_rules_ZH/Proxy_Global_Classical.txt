@@ -22,12 +22,10 @@ domain-keyword,futu6
 domain-keyword,futubull
 domain-keyword,futunn
 domain-keyword,futuopen
-domain-keyword,gemini
 domain-keyword,generativelanguage
 domain-keyword,gmail
 domain-keyword,google
 domain-keyword,googlecdn
-domain-keyword,gstatic
 domain-keyword,iijcdn
 domain-keyword,instagram
 domain-keyword,itiger
@@ -59,7 +57,6 @@ domain-keyword,xesim
 domain-keyword,xesimcc
 domain-keyword,youtube
 domain-keyword,ytimg
-domain-regex,(?i)(^|\.)[a-z0-9-]*futu[0-9a-z-]*\.(com|net|cn|com\.cn|hk|sg|au|ca|jp|my)$
 domain-regex,(?i)(^|\.)[a-z0-9-]*futubull[a-z0-9-]*\.(com|net|cn|hk|sg|au|ca|jp|my)$
 domain-regex,(?i)(^|\.)[a-z0-9-]*futuholdings[a-z0-9-]*\.com$
 domain-regex,(?i)(^|\.)[a-z0-9-]*futunn[a-z0-9-]*\.(com|net|cn|com\.cn|hk|sg|au|ca|jp|my)$
