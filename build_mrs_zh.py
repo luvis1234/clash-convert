@@ -39,6 +39,7 @@ RULE_GROUPS = {
     "Direct_CN": [
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs_IP.txt",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/private.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-bank-cn.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml",
