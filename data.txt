@@ -1,5 +1,4 @@
 payload:
-payload:
 - '+.ldhy.click'
 - '+.mktoresp.com'
 - '+.teddymobile.cn'
