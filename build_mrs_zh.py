@@ -85,6 +85,11 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/NTPService/NTPService.yaml",
          ],
     
+    "APPLE_CN": [
+        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/apple-cn.yaml",
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt",
+         ],
+    
 }
 
 
