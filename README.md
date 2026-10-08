@@ -21,7 +21,7 @@
 
 ### 📦 自动生成的 MRS 规则集订阅链接
 
-> ⏱ **最后同步时间**：`2026-10-08 08:06:41` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-08 09:00:56` (UTC+8)
 
 你可以直接在 Mihomo 配置文件中引用以下链接：
 
@@ -41,13 +41,14 @@
 
 ### 📦 自动生成的 MRS 规则集订阅链接 (ZH)
 
-> ⏱ **最后同步时间**：`2026-10-08 08:07:00` (UTC+8)
+> ⏱ **最后同步时间**：`2026-10-08 09:01:21` (UTC+8)
 
 | 文件名 | 规则类型 (Behavior) | 规则数量 | 下载链接 |
 | :--- | :---: | :---: | :--- |
 | **AI_Classical.txt** | `classical` | 37 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Classical.txt) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_Classical.txt) |
 | **AI_Domain.mrs** | `domain` | 737 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_Domain.mrs) |
 | **AI_IP.mrs** | `ipcidr` | 6 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/AI_IP.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/AI_IP.mrs) |
+| **APPLE_CN_Domain.mrs** | `domain` | 162 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/APPLE_CN_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/APPLE_CN_Domain.mrs) |
 | **Direct_CN_Classical.txt** | `classical` | 1 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Direct_CN_Classical.txt) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Direct_CN_Classical.txt) |
 | **Direct_CN_Domain.mrs** | `domain` | 113,730 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Direct_CN_Domain.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Direct_CN_Domain.mrs) |
 | **Direct_CN_IP.mrs** | `ipcidr` | 12,535 | [GitHub Raw](https://raw.githubusercontent.com/luvis1234/clash-convert/main/mrs_rules_ZH/Direct_CN_IP.mrs) <br> [jsDelivr CDN](https://cdn.jsdelivr.net/gh/luvis1234/clash-convert@main/mrs_rules_ZH/Direct_CN_IP.mrs) |
@@ -134,11 +135,11 @@ rules:
 | [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters) | `Reject_Ads` |
 | [ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR) | `AI` |
 | [Aethersailor/Custom_OpenClash_Rules](https://github.com/Aethersailor/Custom_OpenClash_Rules) | `Direct_CN` |
-| [bgpeer/rules](https://github.com/bgpeer/rules) | `AI`, `Direct_CN`, `google`, `NTP`, `Proxy_Global`, `Reject_Ads` |
+| [bgpeer/rules](https://github.com/bgpeer/rules) | `AI`, `APPLE_CN`, `Direct_CN`, `google`, `NTP`, `Proxy_Global`, `Reject_Ads` |
 | [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script) | `AI`, `Direct_CN`, `google`, `NTP`, `Proxy_Global`, `Reject_Ads` |
 | [DustinWin/domain-list-custom](https://github.com/DustinWin/domain-list-custom) | `AI` |
 | [hagezi/dns-blocklists](https://github.com/hagezi/dns-blocklists) | `Reject_Ads` |
-| [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) | `Direct_CN`, `Proxy_Global`, `Reject_Ads` |
+| [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) | `APPLE_CN`, `Direct_CN`, `Proxy_Global`, `Reject_Ads` |
 | [luvis1234/clash-convert](https://github.com/luvis1234/clash-convert) | `mydirect`, `Reject_Ads` |
 | [viewer12/OverseasAI.list](https://github.com/viewer12/OverseasAI.list) | `AI` |
 | [VPSDance/ai-proxy-rules](https://github.com/VPSDance/ai-proxy-rules) | `AI` |
