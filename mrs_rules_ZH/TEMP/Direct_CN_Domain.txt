@@ -1356,6 +1356,7 @@
 +.111zyw.com
 +.112.100.in-addr.arpa
 +.112112.com
++.112114.eu.org
 +.112114.xyz
 +.112192.com
 +.1122.com
@@ -12675,6 +12676,7 @@
 +.aoxiang100.com
 +.aoxingrelang.com
 +.aoxintong.com
++.aoxox.com
 +.aoya-hk.com
 +.aoyanchang.com
 +.aoyangzg.com
@@ -16398,6 +16400,7 @@
 +.bistream.net
 +.bitahub.com
 +.bitauto.com
++.bitauto.hk
 +.bitautoimg.com
 +.bitautotech.com
 +.bitbe.at
@@ -72847,6 +72850,7 @@
 +.paikew.com
 +.paiky.com
 +.paiky.net
++.pailedi.com
 +.pailitao.com
 +.pailixiang.com
 +.paimaprint.com
@@ -82414,6 +82418,7 @@
 +.shenzhenair.com
 +.shenzhenbianhua.com
 +.shenzhencefa.com
++.shenzhendongwei.com
 +.shenzhenew.com
 +.shenzheninvestment.com
 +.shenzhenjgw.com
@@ -84440,6 +84445,7 @@
 +.sjyx.com
 +.sjyybz.com
 +.sjyyt.com
++.sjyywy.com
 +.sjyyy.com
 +.sjz-marathon.com
 +.sjz.cc
@@ -87694,6 +87700,7 @@
 +.szfuture.com
 +.szfw.org
 +.szfx.com
++.szfx.top
 +.szfxdev.com
 +.szfyhd.com
 +.szfyzb.com
@@ -88582,6 +88589,7 @@
 +.tangdouhdn.com
 +.tangdouimg.com
 +.tangdouz.com
++.tange365.com
 +.tangeche.com
 +.tangfc.com
 +.tanggu11g.com
@@ -107033,6 +107041,7 @@
 +.ysgfood.com
 +.ysghh.com
 +.ysgtg.com
++.yshoufa.com
 +.yshp.net
 +.yshsports.com
 +.yshw1.com
