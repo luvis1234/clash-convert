@@ -17879,6 +17879,7 @@
 +.bryzq.com
 +.bs-56.com
 +.bs-dolfin.net
++.bs-iot.com
 +.bs-lab.com
 +.bs-marathon.com
 +.bs-yc.com
@@ -18509,6 +18510,7 @@
 +.byyapp.com
 +.byyc.net
 +.byyfy.net
++.byyoung.top
 +.byytfy.com
 +.byzhihuo.com
 +.byzjbyq.com
@@ -52472,6 +52474,7 @@
 +.ipip.net
 +.ipjingling.com
 +.ipjisuanqi.com
++.ipjrh.com
 +.ipktv.com
 +.ipku.com
 +.iplascloud.com
@@ -68839,6 +68842,7 @@
 +.naiping.net
 +.naisuanbeng.com
 +.naitang.com
++.naitanghuyu.com
 +.naitta.com
 +.naiveadmin.com
 +.naiveblue.com
@@ -81494,6 +81498,7 @@
 +.sgla.com
 +.sglituo.com
 +.sgliulian.com
++.sgllife.com
 +.sgllk.com
 +.sgmart.com
 +.sgmlink.com
@@ -85676,6 +85681,7 @@
 +.spsicloudport.com
 +.spsisctgroup.com
 +.spsisncl.com
++.spst1.com
 +.spst2.com
 +.spsy.org
 +.sptcc.com
@@ -89913,6 +89919,7 @@
 +.thejamy.com
 +.thejiangmen.com
 +.thejie.com
++.thejoyridegames.com
 +.thejoyrun.com
 +.thekunlunbeijing.com
 +.thekunlunjingan.com
@@ -97581,6 +97588,7 @@
 +.wiseasy.com
 +.wisebond.net
 +.wisecity.net
++.wisecleaner.net
 +.wisecotech.com
 +.wisedoo.com
 +.wisedsp.net
@@ -99816,6 +99824,7 @@
 +.xescdn.com
 +.xesdns.com
 +.xesee.com
++.xesim.cc
 +.xesim.net
 +.xesimg.com
 +.xesv5.com
@@ -100550,6 +100559,7 @@
 +.xiaomi.org
 +.xiaomi.tw
 +.xiaomiaozai.com
++.xiaomiauto.com
 +.xiaomicache.com
 +.xiaomicorp.com
 +.xiaomicorp.net
@@ -104884,6 +104894,7 @@
 +.yi-fengshui.com
 +.yi-hall.com
 +.yi-i.com
++.yi-ll.com
 +.yi-oa.com
 +.yi-programmer.com
 +.yi-sky.com

@@ -421,6 +421,7 @@
 +.supermaven.com
 +.sweep.dev
 +.synthesia.io
++.syntx.ai
 +.tabbyml.com
 +.tabnine.com
 +.talkai.info
