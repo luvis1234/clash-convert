@@ -1312,6 +1312,7 @@
 +.10de7e1f17f512b2.com
 +.10ec4a74b10281.beer
 +.10fang.com
++.10fuzhu.com
 +.10gjkj.com
 +.10gt.com
 +.10guoying.com
@@ -1319,6 +1320,7 @@
 +.10idc.com
 +.10isp.com
 +.10jqka.com.cn
++.10laodian.com
 +.10moons.com
 +.10p07v10o5.com
 +.10pkpk.com
@@ -18507,6 +18509,7 @@
 +.byxue.com
 +.byxx.com
 +.byxy.com
++.byyang.top
 +.byyapp.com
 +.byyc.net
 +.byyfy.net
@@ -31327,7 +31330,10 @@
 +.dvrdydns.com
 +.dvvvs.com
 +.dw-microbiology.com
++.dw2.co
 +.dw4.co
++.dw8.co
++.dw9.co
 +.dwbxg.com
 +.dwdds.com
 +.dwejyx.com
@@ -40285,10 +40291,12 @@
 +.gt-semi.com
 +.gt47xc.com
 +.gt520.com
++.gta5max.com
 +.gtac.cc
 +.gtadata.com
 +.gtags.net
 +.gtajl.com
++.gtakm.com
 +.gtan.com
 +.gtaos.com
 +.gtarcade.com
@@ -40985,6 +40993,7 @@
 +.guyuehome.com
 +.guyuenglish.com
 +.guyungame.com
++.guyuns.asia
 +.guzhang.com
 +.guzhangting.com
 +.guzhenm.com
@@ -47990,6 +47999,7 @@
 +.hsgtour.net
 +.hshan.com
 +.hshdyw.com
++.hshh.org
 +.hshhlj.com
 +.hshj.cc
 +.hshl360.com
@@ -48828,6 +48838,7 @@
 +.hudun.com
 +.hudunsoft.com
 +.huduntech.com
++.hueihuei.top
 +.huelead.com
 +.huenhuenfood.com
 +.hufangkeji.com
@@ -54716,6 +54727,7 @@
 +.jieyue.net
 +.jieyuechina.com
 +.jieyuechina.net
++.jieyunwangluokeji.com
 +.jifang360.com
 +.jifang365.com
 +.jifang369.com
@@ -62421,6 +62433,7 @@
 +.linkbux.com
 +.linkchant.com
 +.linkchina.hk
++.linkcircle.net
 +.linkcubecloud.net
 +.linkdesign.tech
 +.linkdialy.com
@@ -64178,6 +64191,7 @@
 +.lvzeep.com
 +.lvzheng.com
 +.lw0634.net
++.lw5.co
 +.lw54.com
 +.lwccc.net
 +.lwcj.com
@@ -65404,6 +65418,7 @@
 +.mathleague.hk
 +.mathoe.com
 +.mathpretty.com
++.maticooads.com
 +.matistyle.com
 +.matlabsky.com
 +.matoaudio.com
@@ -72199,6 +72214,7 @@
 +.opencloudgpt.online
 +.opencloudos.org
 +.opencloudos.tech
++.opencool.top
 +.opencourt.vip
 +.opendatalab.com
 +.opendns123.com
@@ -72608,6 +72624,7 @@
 +.ourltc.com
 +.ourmate.net
 +.ourmis.com
++.ourom.top
 +.ourpalm.com
 +.ourplat.net
 +.ourplay.net
@@ -73995,6 +74012,7 @@
 +.pjgear.com
 +.pjhome.net
 +.pjhubs.com
++.pjnoeru.top
 +.pjob.net
 +.pjtime.com
 +.pjtka.com
@@ -75064,6 +75082,7 @@
 +.pzhsz.com
 +.pzhwater.com
 +.pzhwyw.com
++.pziqna.net
 +.pzjdimg.com
 +.pzjiadian.com
 +.pzlink.com
@@ -76237,6 +76256,7 @@
 +.qinzidna.com
 +.qionghi.com
 +.qiongming.com
++.qiongshu.net
 +.qiow.net
 +.qipai.com
 +.qipai007.com
@@ -80029,6 +80049,7 @@
 +.sbsjk.com
 +.sbt-sh.com
 +.sbt56.com
++.sbtia.com
 +.sbtibose.com
 +.sbtjt.com
 +.sbtzy.net
@@ -86817,6 +86838,7 @@
 +.suteidc.com
 +.suteshop.com
 +.suting123.com
++.suto.top
 +.sutpc.com
 +.sutune.me
 +.sutuobang.com
@@ -88480,6 +88502,7 @@
 +.taipumed.com
 +.taiqiedu.com
 +.taiqigame.com
++.taiqp.com
 +.taiquan.com
 +.tairock.com
 +.tairos.cc
@@ -90038,6 +90061,7 @@
 +.threep.top
 +.threetong.com
 +.threewater.net
++.threewinnersid.com
 +.thrive-chemicals.com
 +.ths123.com
 +.ths123.com.cn
@@ -94717,6 +94741,7 @@
 +.volcano-force.com
 +.volcanoaisearchshare.com
 +.volcanoarkshare.com
++.volcanomob.com
 +.volcapig.com
 +.volcapp.com
 +.volcappbuilder.com
@@ -110173,6 +110198,7 @@
 +.zhidesoft.com
 +.zhidianfan.com
 +.zhidianlife.com
++.zhidianmijin.top
 +.zhidieyun.com
 +.zhidiy.com
 +.zhidtech.com
@@ -112168,6 +112194,7 @@
 +.zm0772.com
 +.zm1717.com
 +.zmapp.com
++.zmaticoo.com
 +.zmaxfilm.com
 +.zmaxhotels.cc
 +.zmbesta.com
