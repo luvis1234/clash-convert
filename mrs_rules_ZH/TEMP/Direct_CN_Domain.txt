@@ -40292,6 +40292,8 @@
 +.gt47xc.com
 +.gt520.com
 +.gta5max.com
++.gta5studio.com
++.gta5xforce.com
 +.gtac.cc
 +.gtadata.com
 +.gtags.net
@@ -40303,6 +40305,7 @@
 +.gtarsc.com
 +.gtastart.com
 +.gtaxqh.com
++.gtazhiyu.com
 +.gtbuy.work
 +.gtc-power.com
 +.gtcedu.com
@@ -79114,6 +79117,9 @@
 +.rsl.cc
 +.rslg-china.com
 +.rsm.download.prss.microsoft.com
++.rsmods.cc
++.rsmods.me
++.rsmods.net
 +.rsnschina.com
 +.rsplcdcs.com
 +.rspwj.com
