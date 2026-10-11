@@ -1,9 +1,7 @@
-domain-keyword,anthropic
 domain-keyword,bedrock
 domain-keyword,bedrock-runtime
 domain-keyword,chatgpt-async-webps
 domain-keyword,chatgpt-async-webps-prod
-domain-keyword,claude
 domain-keyword,colab
 domain-keyword,datadog
 domain-keyword,developerprofiles
