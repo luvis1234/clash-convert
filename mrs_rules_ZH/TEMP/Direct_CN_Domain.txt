@@ -10907,6 +10907,7 @@
 +.aibeike.com
 +.aibiaomei.com
 +.aibiaow.com
++.aibilun.com
 +.aibing.cc
 +.aibll.com
 +.aibo123.com
@@ -11930,6 +11931,7 @@
 +.aliyunwaf4.com
 +.aliyunwaf5.com
 +.aliyunx.com
++.alizch.com
 +.alizhaopin.com
 +.alizhizhu.com
 +.alizila.com
@@ -20478,6 +20480,7 @@
 +.cfd-china.com
 +.cfd163.com
 +.cfdns43.com
++.cfdns46.com
 +.cfdns5.com
 +.cfdns81.com
 +.cfdp.org
@@ -24932,6 +24935,7 @@
 +.codeaha.com
 +.codebaoku.com
 +.codebe.org
++.codebuddy.ai
 +.codebuddy.info
 +.codebuddy.net
 +.codebuddy.pro
@@ -30085,6 +30089,7 @@
 +.dnsjiasu001.com
 +.dnsjp.cc
 +.dnsjxla.com
++.dnski.com
 +.dnslin.com
 +.dnsmeasurement.com
 +.dnsmsn.com
@@ -61659,6 +61664,7 @@
 +.lewenss.com
 +.lewenxsw.com
 +.lewifi.com
++.lewl88.com
 +.lex.download.prss.microsoft.com
 +.lexar.com
 +.lexed.org
@@ -73267,6 +73273,7 @@
 +.pcdtg.com
 +.pcdy5zn.com
 +.pceggs.com
++.pcelves.com
 +.pceva.net
 +.pcfphs.com
 +.pcfreetime.com
@@ -76524,6 +76531,7 @@
 +.qldgd.com
 +.qldzj.com
 +.qledu.net
++.qlgfdns.com
 +.qlhimalayantm.com
 +.qlife-lab.com
 +.qling.com
@@ -98176,6 +98184,7 @@
 +.wordstorming.com
 +.wordsunny.com
 +.workbenchapi.com
++.workbuddy.ai
 +.workbuddy.host
 +.workbuddy.link
 +.workchat.com
@@ -106135,6 +106144,7 @@
 +.ymuuy.com
 +.ymvkt.com
 +.ymwcds.org
++.ymwfy.com
 +.ymwl.net
 +.ymxinke.com
 +.ymxinxi.com
