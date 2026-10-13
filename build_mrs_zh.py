@@ -41,7 +41,7 @@ RULE_GROUPS = {
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/private.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-bank-cn.yaml",
-        "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml",
+        #"https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/private.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/cn.yaml",
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-cn.yaml",
