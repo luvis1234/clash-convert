@@ -387257,6 +387257,7 @@ api.logs.ledigajobb.se
 api.logs.rook-connect.com
 api.lootably.com
 api.loretesimorix.com
+api.m.jd.com
 api.mailmojo.no
 api.majorgeeks.com
 api.masscan.cloud
@@ -387368,6 +387369,9 @@ api3.dating.com
 api3.ksapisrv.com
 api3.samsungcareers.work
 api4.dating.com
+api5-normal-gl2.amemv.com
+api5-normal-hl.fqnovel.com
+api5-social-m-lf.amemv.com
 api5.dating.com
 api6.dating.com
 api64.de
@@ -388002,6 +388006,7 @@ app.linkila.com
 app.linkpod.co
 app.lktecno.com
 app.mailerlite.com
+app.market.xiaomi.com
 app.medfilesystems.com
 app.microgent.ru
 app.migc.xiaomi.com
@@ -390774,6 +390779,7 @@ assets.snosites.com
 assets.squarewebsites.org
 assets.sr.roku.com
 assets.studermfg.com
+assets.tbcdn.cn
 assets.ti-media.net
 assets.video.yahoo.net
 assets.videowise.com
@@ -391078,6 +391084,7 @@ at-rdx2-lgtvsdp-com.aws-prd.net
 at-setrafimoney.org
 at-straussonline-jt.shop
 at-whatsapp.com
+at.alicdn.com
 at.alpine-point.com
 at.eeelgnte.shop
 at.esrlive.com
@@ -407055,6 +407062,7 @@ brokensilenze.net
 brokenstones.is
 brokenstones.me
 brokenteens.com
+broker.mina.mi.com
 broker.mqtt.cool
 broker.mqtt.pandora.xiaomi.com
 brokerandco.com
@@ -437192,6 +437200,7 @@ dlcgxmentykv.com
 dlcodes.com
 dld.bz
 dldepot.com
+dldir1v6.qq.com
 dldir2.qq.com
 dldir3.qq.com
 dldiuzdkrqbk.com
@@ -442913,6 +442922,8 @@ ec0.com
 ec2-13-230-253-66.ap-northeast-1.compute.amazonaws.com
 ec2-18-191-163-220.us-east-2.compute.amazonaws.com
 ec2f1xubcblb.ru
+ec3-core-hl.ecombdapi.com
+ec5-core-hl.ecombdapi.com
 ec5movies.com
 ec922003.com
 eca1d7792ad5de43.com
@@ -443152,6 +443163,7 @@ ecom-tracking.thyssenkrupp.com
 ecom-trackmon.prod.k8s.soliver.com
 ecom.mss.hertz.io
 ecom.wix.com
+ecom5-normal-m-zjg.ecombdapi.com
 ecomail.ecopellet.it
 ecomario.shop
 ecombdpage.com
@@ -455565,6 +455577,7 @@ findepended.com
 finder-live.info
 finderbilling.xyz
 finderhy.video.qq.com
+finderydy.video.qq.com
 findexi.ink
 findfiles.net
 findfor.net
@@ -479270,6 +479283,9 @@ hisearch-dra-dt-dbankcloud-com-dra.appacc.dbankedge.cn
 hisearch-dra-dt-dbankcloud-com-dra.edge.dbankedge.cn
 hisense-beacons.xumo.com
 hisense-lite-beacons.xumo.com
+hisense-resource-cmp.yysh.mgtv.com
+hisense-sytt-cdn-mam.hisense.ottcn.com
+hisense-unified-exc.yysh.mgtv.com
 hishchnik-films-lordfilm.ru
 hishchnik-lordfilm3.ru
 hishchnik-smerti-lordfilme.ru
@@ -482355,6 +482371,7 @@ hudaaldosari.com
 hudb.pl
 hudbee.com
 hudl.md-apis.medallia.com
+hudong.alicdn.com
 hudozhnik-lordfilms.ru
 hudsonorg-my-sharepoint.com
 hudsonvalleyinvest.com
@@ -485317,6 +485334,7 @@ im-d.org
 im-excellent.com
 im-gateway-log.dewu.com
 im-internet.eu
+im-open.douyin.com
 im-web-whatsapp.com
 im.cz
 im.mstar.com
@@ -485567,7 +485585,9 @@ img.yeuketqua.net
 img1.360buyimg.com
 img1.blogblog.com
 img1.bog.ge
+img10.360buyimg.com
 img11.weikeimg.com
+img12.360buyimg.com
 img13.360buyimg.com
 img2.avant.com
 img2.bog.ge
@@ -489893,6 +489913,7 @@ isa-tutu.net
 isaac-live.com
 isaacformation.com
 isaacvargas.com
+isaas5-normal-hl.ecombdapi.com
 isabeladandaro.com.br
 isabellabombagi.com
 isabellahotelboutique.com
@@ -506155,6 +506176,7 @@ lf-event-manager.oceanengine.com
 lf-headquarters-speed.yhgfb-cn-static.com
 lf-headquarters-speed.yhgfb-cn-static.com.1046296236066394.queniubg.com
 lf-normal-gr-sourcecdn.bytegecko.com
+lf-webcast-gr-sourcecdn.bytegecko.com
 lf-whatsapp.com
 lf.alliesservite.shop
 lf.dracoencinal.com
@@ -506736,6 +506758,7 @@ life-is-beautiful.in
 life-is-luminous.com
 life-nanjing.com.cn
 life-of-pi-lordfilm.cam
+life-service-open.zijieapi.com
 life.io
 life.judyfay.com
 life.yuomyt.com
@@ -536131,6 +536154,7 @@ mida.so
 midalo.de
 midas-luck-casino.fr
 midas-luckcasino.fr
+midas.gtimg.cn
 midasbytes.com
 midascovid.com
 midashop.game-en.com
@@ -537836,6 +537860,7 @@ mmapiws.com
 mmarquez.info
 mmastreams.cc
 mmbfmlrd.com
+mmbiz.qpic.cn
 mmbluxury.co.uk
 mmbrush.com
 mmbti.com
@@ -539024,6 +539049,7 @@ mon0-misc-hl.amemv.com
 mon0-misc-lf.amemv.com
 mon0-misc-lq.amemv.com
 mon11-misc-hl.amemv.com
+mon11-misc-hl.fqnovel.com
 mon11-misc-hl.toutiaoapi.com
 mon11-misc-lf.amemv.com
 mon11-misc-lq.amemv.com
@@ -541907,6 +541933,7 @@ mpc-prod-23-s6uit34pua-ue.a.run.app
 mpc2-prod-24-is5qnl632q-uw.a.run.app
 mpc2-prod-25-is5qnl632q-wl.a.run.app
 mpc2-prod-26-is5qnl632q-uc.a.run.app
+mpcdn.weixin.qq.com
 mpds-smart1.online
 mpds-smart3.online
 mpds-smart4.online
@@ -557749,6 +557776,7 @@ openbookletupr.info
 openbridgem.info
 openbrookhome.eu
 openbuzz.in
+opencapture.ys7.com
 opencart24.gr
 opencdb84507.com
 opencdb84508.com
@@ -561073,9 +561101,12 @@ p2poolmining.net
 p2r.eu
 p2z.in
 p3-flow-imagex-sign.byteimg.com
+p3-novel-sign.byteimg.com
 p3-novel.byteimg.com
+p3-reading-sign.fqnovelpic.com
 p3-sign.douyinpic.com
 p3-webcast.douyinpic.com
+p3.douyinpic.com
 p3.isanook.com
 p3.ssl.qhimgs0.com
 p3.tribution.mobi
@@ -568552,6 +568583,7 @@ play-io-casino.fr
 play-iocasino.fr
 play-lustgoddess.com
 play-magneticslots.fr
+play-mam-v1.hismarttv.com
 play-old-pc-games.com
 play-regal-france.fr
 play-services-telemetry.googleapis.com
@@ -604871,6 +604903,7 @@ snroto.com
 snrwwc.com
 sns-amazon.com
 sns-clauder-cdn.beer
+sns-na-i1.xhscdn.com
 sns-na-i4.xhscdn.com
 sns-note-i4.xhscdn.com
 sns-video-al.xhscdn.com
@@ -622607,6 +622640,7 @@ storage.engagech.com
 storage.groupees.com
 storage.smartapps.cn
 storage07x.cfd
+storage2.360buyimg.com
 storagebox.ie
 storageinridgecrest.com
 storageprofiler.com
@@ -663895,6 +663929,7 @@ webcasinozone.com
 webcast-open.douyin.com
 webcast.amemv.com
 webcast.berkeley.edu
+webcast5-open-hl.douyin.com
 webcastmetrics.com
 webcastzzers.info
 webcatalog.io
