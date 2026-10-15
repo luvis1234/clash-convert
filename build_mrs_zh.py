@@ -18,6 +18,7 @@ RULE_GROUPS = {
     "Reject_Ads": [
         "https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ads-all.yaml",
         "https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/data.txt",
+        "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/ips/tif.txt",
         "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical.yaml",
         "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
