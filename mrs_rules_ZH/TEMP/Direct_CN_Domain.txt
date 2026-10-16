@@ -9453,6 +9453,7 @@
 +.9fav.com
 +.9fb8d5b6bff66a4d.com
 +.9fbank.com
++.9fe06a.fyi
 +.9fe3e7d4c10311.beer
 +.9fh5.com
 +.9first.com
@@ -29235,6 +29236,7 @@
 +.ditiezu.com
 +.ditiezu.net
 +.ditrit.com
++.dittocdn.com
 +.ditu.live.com
 +.dituhui.com
 +.dituw.net
@@ -29593,6 +29595,7 @@
 +.dns-waf.com
 +.dns.com
 +.dns.la
++.dns.lat
 +.dns.pub
 +.dns002.com
 +.dns0755.net
@@ -39551,6 +39554,7 @@
 +.graueneko.xyz
 +.gravity-engine.com
 +.graz.quest
++.grboi.com
 +.grcbank.com
 +.grchina.com
 +.great-future.com
@@ -59922,7 +59926,6 @@
 +.lamoton.com
 +.lampbi.com
 +.lampouomo.com
-+.lamwatch.com
 +.lamyu.com
 +.lan
 +.lan-bridge.com
@@ -63875,6 +63878,7 @@
 +.lzfssp2007.com
 +.lzfyhgm.com
 +.lzfzct.com
++.lzgame.top
 +.lzgas.com
 +.lzgbdst.com
 +.lzgd.net
@@ -74275,6 +74279,7 @@
 +.pymh.com
 +.pyneo.com
 +.pyou.com
++.pyquan.com
 +.pyral07m8m.com
 +.pyrc.net
 +.pyshszh.com
@@ -81503,6 +81508,7 @@
 +.shengsci.com
 +.shengshizhicheng.com
 +.shengtai.com
++.shengtai.cyou
 +.shengtaigroup.net
 +.shengtian.com
 +.shengtiangames.com
@@ -83801,7 +83807,6 @@
 +.skyworthnj.com
 +.skyworthznxyj.com
 +.skyxinli.com
-+.skyxvpn.com
 +.skyyin.org
 +.skyzhan.com
 +.skznsb.com
@@ -88757,6 +88762,7 @@
 +.tenganxinxi.com
 +.tengbai-it.com
 +.tengbo.cc
++.tengcanxi.com
 +.tengchangjiancai.com
 +.tengdatumu.com
 +.tengdawl.com
@@ -89329,7 +89335,6 @@
 +.tianmumusic.com
 +.tianmunews.com
 +.tianmupe.com
-+.tiannbo.com
 +.tiannilaw.com
 +.tianning.xyz
 +.tianninghr.com
@@ -94848,6 +94853,7 @@
 +.wawayaya.net
 +.wawayu.tv
 +.wawlhld.com
++.wawo.cc
 +.waxiaoxia.com
 +.waxpi.com
 +.waxrain.com
@@ -99077,6 +99083,7 @@
 +.xhjyxxw.com
 +.xhlcsl.com
 +.xhlsgs.com
++.xhlylx.com
 +.xhma.com
 +.xhmedia.com
 +.xhmwxy.com
@@ -101768,7 +101775,6 @@
 +.xtw-system.com
 +.xtwzyx.com
 +.xtx6.com
-+.xtxbemp.xyz
 +.xtxcm.com
 +.xtxh.net
 +.xtxnxk.sbs
