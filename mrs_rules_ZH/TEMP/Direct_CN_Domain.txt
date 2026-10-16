@@ -13035,6 +13035,7 @@
 +.astra-biotech.com
 +.astral-vector.com
 +.astroai-in.com
++.astrobox.online
 +.astron.ac
 +.astronergy.com
 +.astropulsion.com
@@ -14219,6 +14220,7 @@
 +.bamboofactorychina.com
 +.bambooolab.com
 +.bambu-lab.com
++.bambulab.com
 +.bamengame.com
 +.bamensq.com
 +.bamenzhushou.com
@@ -101300,6 +101302,7 @@
 +.xn--dlqw10borzgxh.com
 +.xn--dtq23gl66e.com
 +.xn--eh1a34ykpl.com
++.xn--estr6ge7tok1a.com
 +.xn--fhq79jyym9nh74hfm8a.com
 +.xn--fiq03fftg7m2c.com
 +.xn--fiq06jqoz14s.com
