@@ -8939,6 +8939,7 @@
 +.facebboook.com
 +.facebcook.com
 +.facebdok.com
++.facebgook.com
 +.facebhook.com
 +.facebkkk.com
 +.facebo-ok.com
@@ -8966,6 +8967,7 @@
 +.facebooe.com
 +.faceboof.com
 +.facebooi.com
++.facebooik.com
 +.facebooik.org
 +.facebooj.com
 +.facebook-corp.com
@@ -9127,6 +9129,7 @@
 +.facecbook.org
 +.facecook.com
 +.facecook.org
++.facedbook.com
 +.faceebok.com
 +.faceebook.com
 +.faceebot.com
@@ -13618,6 +13621,7 @@
 +.instagramtr.com
 +.instagran.com
 +.instagranm.com
++.instagrem.com
 +.instagrm.com
 +.instagtram.com
 +.instagy.com
@@ -15649,6 +15653,7 @@
 +.lmstudio.ai
 +.lmsys.org
 +.lnkd.in
++.lnstagram-help.com
 +.load.to
 +.loanbuilder.com
 +.lobsangwangyal.com
@@ -19694,6 +19699,7 @@
 +.payhulu.com
 +.paylike.com
 +.payment.ru
++.paypa1.com
 +.paypa1.org
 +.paypaal.com
 +.paypal-activate.com
