@@ -51,7 +51,6 @@
 +.devimages-cdn.apple.com
 +.devstreaming-cdn.apple.com
 +.download.developer.apple.com
-+.experiments.apple.com
 +.gs-loc-cn.apple.com
 +.gs-loc.apple.com
 +.gsp10-ssl-cn.ls.apple.com
@@ -74,7 +73,6 @@
 +.guzzoni-apple-com.v.aaplimg.com
 +.guzzoni.apple.com
 +.guzzoni.smoot.apple.com
-+.iadsdk.apple.com
 +.images.apple.com.edgekey.net.globalredir.akadns.net
 +.init-kt.apple.com
 +.init-p01md-lb.push-apple.com.akadns.net

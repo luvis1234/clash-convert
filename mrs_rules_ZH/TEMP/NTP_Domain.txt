@@ -154,7 +154,6 @@ time.cloudflare.com
 time.euro.apple.com
 time.facebook.com
 time.google.com
-time.izatcloud.net
 time.xtracloud.net
 time1.facebook.com
 time2.facebook.com
