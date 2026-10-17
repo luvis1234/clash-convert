@@ -720,8 +720,15 @@ def subtract_ad_ip_networks(networks, ad_networks):
                         f"{MAX_IP_RULES_AFTER_AD_EXCLUSION:,}；请检查 Reject_Ads IP 源。"
                     )
 
+    # collapse_addresses() 不能混合 IPv4 与 IPv6；最终汇总时必须继续按版本分开。
+    final_v4 = [net for net in output if net.version == 4]
+    final_v6 = [net for net in output if net.version == 6]
+    output = (
+        list(ipaddress.collapse_addresses(final_v4))
+        + list(ipaddress.collapse_addresses(final_v6))
+    )
     output = sorted(
-        ipaddress.collapse_addresses(output),
+        output,
         key=lambda n: (n.version, int(n.network_address), n.prefixlen),
     )
     stats = {
