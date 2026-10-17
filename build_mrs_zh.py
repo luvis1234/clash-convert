@@ -106,6 +106,11 @@ LOG_FILE = os.path.join(OUTPUT_DIR, "build_mrs_zh.log")
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024  # 单个规则源最大 64 MiB
 VALID_PLAIN_DOMAIN_MODES = {"exact", "suffix"}
 
+# 广告规则隔离：Reject_Ads 作为最高优先级排除基准。
+# 其他所有规则组在输出前都会排除与其重叠的广告规则。
+AD_EXCLUSION_GROUP = "Reject_Ads"
+MAX_IP_RULES_AFTER_AD_EXCLUSION = 1_000_000
+
 
 # ============================================================
 # 纯文本 domain list 的默认语义
@@ -171,10 +176,75 @@ def setup_logging():
 
 
 def setup_dirs():
-    """初始化输出和临时目录。"""
+    """初始化输出目录，并清理本次构建使用的临时目录。"""
     Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
+
+    # TEMP 只保存中间产物，不应跨构建保留，避免旧临时文件干扰排查。
+    if os.path.isdir(TEMP_DIR):
+        shutil.rmtree(TEMP_DIR)
     Path(TEMP_DIR).mkdir(parents=True, exist_ok=True)
 
+
+
+def get_mihomo_version(mihomo_path: str) -> str:
+    """读取 mihomo 版本信息；失败时返回可读占位信息。"""
+    try:
+        result = subprocess.run(
+            [mihomo_path, "-v"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+        )
+        text = (result.stdout or result.stderr or "").strip()
+        return text or "unknown"
+    except Exception as e:
+        return f"unknown ({e})"
+
+
+def cleanup_group_outputs(group_name: str, keep=None):
+    """删除某规则组不再属于本次构建结果的旧输出。
+
+    keep 为需要保留的文件名集合；默认删除该组全部标准输出。
+    """
+    keep = set(keep or ())
+    candidates = (
+        f"{group_name}_Domain.mrs",
+        f"{group_name}_IP.mrs",
+        f"{group_name}_Classical.txt",
+    )
+    for filename in candidates:
+        if filename in keep:
+            continue
+        path = os.path.join(OUTPUT_DIR, filename)
+        if os.path.isfile(path):
+            try:
+                os.remove(path)
+                print(f"  🧹 已删除旧输出: {path}")
+            except OSError as e:
+                print(f"  ⚠️ 删除旧输出失败 {path}: {e}")
+
+
+def validate_readme_markers(readme_content: str):
+    """确保 README 自动生成区域标记唯一且成对，避免误覆盖人工内容。"""
+    start = "<!-- RULES_ZH_START -->"
+    end = "<!-- RULES_ZH_END -->"
+    start_count = readme_content.count(start)
+    end_count = readme_content.count(end)
+
+    if start_count == 0 and end_count == 0:
+        return False
+    if start_count != 1 or end_count != 1:
+        raise RuntimeError(
+            "README 自动区域标记异常："
+            f"RULES_ZH_START={start_count}, RULES_ZH_END={end_count}。"
+            "请确保两个标记各只有一个。"
+        )
+    if readme_content.find(start) > readme_content.find(end):
+        raise RuntimeError("README 自动区域标记顺序错误：START 位于 END 之后。")
+    return True
 
 
 def validate_config():
@@ -190,6 +260,12 @@ def validate_config():
 
     if not RULE_GROUPS:
         errors.append("RULE_GROUPS 为空，没有任何规则组可处理。")
+
+    if AD_EXCLUSION_GROUP not in RULE_GROUPS:
+        errors.append(
+            f"广告排除基准规则组 {AD_EXCLUSION_GROUP!r} 不存在；"
+            "无法保证其他规则组排除广告规则。"
+        )
 
     seen_global = {}
     for group, urls in RULE_GROUPS.items():
@@ -225,6 +301,7 @@ def validate_config():
         errors.append("未找到 mihomo 命令，请安装并加入 PATH。")
     else:
         print(f"🔧 mihomo: {mihomo}")
+        print(f"🔧 Mihomo 版本: {get_mihomo_version(mihomo)}")
 
     for msg in warnings:
         print(f"⚠️ 配置提示: {msg}")
@@ -248,7 +325,7 @@ def content_has_html_residue(content: str) -> bool:
 
 def validate_parsed_result(url: str, content: str, parsed):
     """解析结果健全性检查，防止网页/错误页/空文件继续污染输出。"""
-    suffixes, exacts, ipcidrs, others = parsed
+    suffixes, exacts, ipcidrs, others, unknown_types = parsed
     total = len(suffixes) + len(exacts) + len(ipcidrs) + len(others)
 
     if not content.strip():
@@ -335,8 +412,17 @@ def normalize_domain(val: str) -> str:
 
 
 def parse_rules_from_content(content: str):
-    """解析 Clash/Mihomo 规则，并严格分离 Domain、目标 IP 和 Classical。"""
+    """解析 Clash/Mihomo 规则，并严格分离 Domain、目标 IP 和 Classical。
+
+    返回值额外包含未知 Classical 规则类型统计，用于日志告警；
+    未知类型仍保留到 Classical，避免未来 Mihomo 新规则被静默丢弃。
+    """
     suffixes, exacts, ipcidrs, others = set(), set(), set(), set()
+    unknown_types = {}
+
+    def strip_safe_inline_comment(value: str) -> str:
+        """仅对确定为普通值的字段剥离空白后的 # 注释，避免影响 regex 等规则。"""
+        return re.split(r"\s+#", value, maxsplit=1)[0].strip()
 
     def add_domain(target, value, rule_type):
         value=value.strip()
@@ -362,17 +448,24 @@ def parse_rules_from_content(content: str):
             parts=[p.strip() for p in rule.split(',')]
             typ,val=parts[0],parts[1] if len(parts)>1 else ''
             if typ in ('rule-set','sub-rule'): continue
-            if typ=='domain-suffix': add_domain(suffixes,val,'DOMAIN-SUFFIX')
-            elif typ=='domain': add_domain(exacts,val,'DOMAIN')
+            if typ=='domain-suffix': add_domain(suffixes,strip_safe_inline_comment(val),'DOMAIN-SUFFIX')
+            elif typ=='domain': add_domain(exacts,strip_safe_inline_comment(val),'DOMAIN')
             elif typ in ('ip-cidr','ip-cidr6'):
+                val = strip_safe_inline_comment(val)
                 cidr=canonical_ip_cidr(val)
                 if cidr: ipcidrs.add(cidr)
                 elif val: others.add(rule)
             elif typ=='src-ip-cidr':
-                if val: others.add(rule)
-            elif typ in ('domain-keyword','domain-regex'):
+                val = strip_safe_inline_comment(val)
+                if val: others.add(','.join([typ, val] + parts[2:]))
+            elif typ=='domain-keyword':
+                val = strip_safe_inline_comment(val)
+                if val: others.add(','.join([typ, val] + parts[2:]))
+            elif typ=='domain-regex':
                 if val: others.add(rule)
             else:
+                if typ:
+                    unknown_types[typ] = unknown_types.get(typ, 0) + 1
                 others.add(','.join(parts))
             continue
 
@@ -388,7 +481,7 @@ def parse_rules_from_content(content: str):
             if PLAIN_DOMAIN_MODE=='suffix': suffixes.add(domain)
             else: exacts.add(domain)
 
-    return suffixes,exacts,ipcidrs,others
+    return suffixes,exacts,ipcidrs,others,unknown_types
 
 
 def _domain_parents(domain: str):
@@ -409,6 +502,242 @@ def deduplicate_domains(suffixes: set, exacts: set):
             continue
         optimized_exacts.add(domain)
     return optimized_suffixes,optimized_exacts
+
+
+def _domain_covered_by_suffix_set(domain: str, suffixes: set) -> bool:
+    """判断域名是否被广告 DOMAIN-SUFFIX 集合覆盖。"""
+    domain = normalize_domain(domain)
+    if not domain or '*' in domain:
+        return domain in suffixes
+    if domain in suffixes:
+        return True
+    return any(parent in suffixes for parent in _domain_parents(domain))
+
+
+def extract_ad_domain_keywords(ad_others: set) -> set:
+    """从 Reject_Ads Classical 规则中提取 DOMAIN-KEYWORD 的字面关键词。
+
+    这些关键词只用于 Reject_Ads 自身的 Domain/Domain-Suffix 冗余精简。
+    不使用 DOMAIN-KEYWORD 对其他规则组的域名做子串排除。
+    """
+    keywords = set()
+    for rule in ad_others:
+        if not rule.startswith("domain-keyword,"):
+            continue
+        parts = rule.split(",", 2)
+        if len(parts) < 2:
+            continue
+        keyword = parts[1].strip().lower()
+        if keyword:
+            keywords.add(keyword)
+    return keywords
+
+
+def compile_domain_keyword_pattern(keywords: set):
+    """把 DOMAIN-KEYWORD 集合编译为字面子串匹配正则；空集合返回 None。"""
+    if not keywords:
+        return None
+    # 长关键词优先仅为日志/调试时更直观；所有关键词均 re.escape，按字面匹配。
+    alternatives = sorted((re.escape(k) for k in keywords), key=len, reverse=True)
+    return re.compile("|".join(alternatives), re.IGNORECASE)
+
+
+def exclude_ad_domains(
+    suffixes: set,
+    exacts: set,
+    ad_suffixes: set,
+    ad_exacts: set,
+):
+    """从普通规则组中排除与 Reject_Ads Domain 规则直接重叠的域名。
+
+    规则：
+      - 广告 suffix 覆盖相同/子级 suffix，也覆盖其下 exact；
+      - 广告 exact 只删除同名 exact，不会扩大为 suffix；
+      - DOMAIN-KEYWORD 不参与其他规则组域名的子串排除。
+    """
+    kept_suffixes = set()
+    kept_exacts = set()
+    suffix_removed = 0
+    exact_removed = 0
+
+    for domain in suffixes:
+        if _domain_covered_by_suffix_set(domain, ad_suffixes):
+            suffix_removed += 1
+            continue
+        kept_suffixes.add(domain)
+
+    for domain in exacts:
+        if domain in ad_exacts or _domain_covered_by_suffix_set(domain, ad_suffixes):
+            exact_removed += 1
+            continue
+        kept_exacts.add(domain)
+
+    stats = {
+        "suffix_removed": suffix_removed,
+        "exact_removed": exact_removed,
+    }
+    return kept_suffixes, kept_exacts, stats
+
+
+def prune_ad_domains_by_keywords(
+    suffixes: set,
+    exacts: set,
+    ad_keywords: set,
+):
+    """用 Reject_Ads 自身 DOMAIN-KEYWORD 精简其 Domain 规则。
+
+    该步骤只作用于 Reject_Ads 自身，且必须发生在：
+      1. 完整 Reject_Ads 基准已经用于排除其他规则组的重叠规则之后；
+      2. Reject_Ads_Domain.mrs 生成之前。
+
+    例如 DOMAIN-KEYWORD,abc 已经能够覆盖 zxabc.com / zx-abc.com，
+    则这些 DOMAIN / DOMAIN-SUFFIX 规则可从 Reject_Ads_Domain.mrs 中移除，
+    但 DOMAIN-KEYWORD,abc 本身仍保留在 Reject_Ads_Classical.txt 中。
+    """
+    keyword_pattern = compile_domain_keyword_pattern(set(ad_keywords or ()))
+    if keyword_pattern is None:
+        return set(suffixes), set(exacts), {
+            "suffix_removed": 0,
+            "exact_removed": 0,
+            "total_removed": 0,
+        }
+
+    kept_suffixes = set()
+    kept_exacts = set()
+    suffix_removed = 0
+    exact_removed = 0
+
+    for domain in suffixes:
+        if keyword_pattern.search(normalize_domain(domain)):
+            suffix_removed += 1
+            continue
+        kept_suffixes.add(domain)
+
+    for domain in exacts:
+        if keyword_pattern.search(normalize_domain(domain)):
+            exact_removed += 1
+            continue
+        kept_exacts.add(domain)
+
+    return kept_suffixes, kept_exacts, {
+        "suffix_removed": suffix_removed,
+        "exact_removed": exact_removed,
+        "total_removed": suffix_removed + exact_removed,
+    }
+
+
+def subtract_ad_ip_networks(networks, ad_networks):
+    """从普通 IP/CIDR 规则中精确扣除 Reject_Ads 的 IP 网段。
+
+    对部分重叠不粗暴删除整个正常网段，而是用 summarize_address_range
+    将剩余地址重新汇总为 CIDR，因此可以真正排除广告 IP，同时保留非广告地址。
+    """
+    src = [normalize_ip_cidr(item) for item in networks]
+    src = [net for net in src if net is not None]
+    exc = [normalize_ip_cidr(item) for item in ad_networks]
+    exc = [net for net in exc if net is not None]
+
+    by_version_src = {4: [], 6: []}
+    by_version_exc = {4: [], 6: []}
+    for net in src:
+        by_version_src[net.version].append(net)
+    for net in exc:
+        by_version_exc[net.version].append(net)
+
+    output = []
+    fully_removed = 0
+    partially_split = 0
+    removed_addresses = 0
+
+    for version in (4, 6):
+        sources = sorted(
+            ipaddress.collapse_addresses(by_version_src[version]),
+            key=lambda n: (int(n.network_address), n.prefixlen),
+        )
+        exclusions = sorted(
+            ipaddress.collapse_addresses(by_version_exc[version]),
+            key=lambda n: (int(n.network_address), n.prefixlen),
+        )
+        addr_cls = ipaddress.IPv4Address if version == 4 else ipaddress.IPv6Address
+        ex_index = 0
+
+        for source in sources:
+            source_start = int(source.network_address)
+            source_end = int(source.broadcast_address)
+
+            while (
+                ex_index < len(exclusions)
+                and int(exclusions[ex_index].broadcast_address) < source_start
+            ):
+                ex_index += 1
+
+            cursor = source_start
+            had_overlap = False
+            kept_ranges = []
+            k = ex_index
+
+            while k < len(exclusions):
+                exclusion = exclusions[k]
+                ex_start = int(exclusion.network_address)
+                ex_end = int(exclusion.broadcast_address)
+                if ex_start > source_end:
+                    break
+                if ex_end < source_start:
+                    k += 1
+                    continue
+
+                overlap_start = max(cursor, ex_start, source_start)
+                overlap_end = min(source_end, ex_end)
+                if overlap_start <= overlap_end:
+                    had_overlap = True
+                    if cursor < overlap_start:
+                        kept_ranges.append((cursor, overlap_start - 1))
+                    removed_addresses += overlap_end - overlap_start + 1
+                    cursor = max(cursor, overlap_end + 1)
+                    if cursor > source_end:
+                        break
+                k += 1
+
+            if not had_overlap:
+                output.append(source)
+                continue
+
+            if cursor <= source_end:
+                kept_ranges.append((cursor, source_end))
+
+            if not kept_ranges:
+                fully_removed += 1
+                continue
+
+            partially_split += 1
+            for start, end in kept_ranges:
+                output.extend(
+                    ipaddress.summarize_address_range(addr_cls(start), addr_cls(end))
+                )
+                if len(output) > MAX_IP_RULES_AFTER_AD_EXCLUSION:
+                    raise RuntimeError(
+                        "广告 IP 排除后 CIDR 数量异常膨胀，超过安全上限 "
+                        f"{MAX_IP_RULES_AFTER_AD_EXCLUSION:,}；请检查 Reject_Ads IP 源。"
+                    )
+
+    output = sorted(
+        ipaddress.collapse_addresses(output),
+        key=lambda n: (n.version, int(n.network_address), n.prefixlen),
+    )
+    stats = {
+        "input_networks": len(src),
+        "output_networks": len(output),
+        "fully_removed": fully_removed,
+        "partially_split": partially_split,
+        "removed_addresses": removed_addresses,
+    }
+    return [str(net) for net in output], stats
+
+
+def exclude_ad_classical(others: set, ad_others: set):
+    """Classical 规则按解析后的完整规范化文本精确排除。"""
+    kept = others.difference(ad_others)
+    return kept, len(others) - len(kept)
 
 
 def convert_to_mrs(
@@ -604,6 +933,10 @@ def update_readme(success_files):
     md_content = (
         "\n### 📦 自动生成的 MRS 规则集订阅链接 (ZH)\n\n"
         f"> ⏱ **最后同步时间**：`{now_str}` (UTC+8)\n\n"
+        f"> 🛡️ **广告规则隔离**：`{AD_EXCLUSION_GROUP}` 作为最高优先级基准；"
+        "其他所有规则组会先排除与其直接重叠的 Domain、IP/CIDR 和 Classical 规则。"
+        f"随后仅在 `{AD_EXCLUSION_GROUP}` 自身内部，使用广告 `DOMAIN-KEYWORD` 按 Mihomo 子串语义"
+        "精简已被关键词覆盖的 Domain/Domain-Suffix 规则，再生成最终规则集。\n\n"
         "| 文件名 | 规则类型 (Behavior) | 规则数量 | 下载链接 |\n"
         "| :--- | :---: | :---: | :--- |\n"
     )
@@ -772,13 +1105,41 @@ def update_readme(success_files):
         ) as f:
 
             f.write(
-                "# 规则集订阅列表\n\n"
-                "## 基础规则\n"
+                "# Mihomo Ruleset Builder\n\n"
+                "自动聚合多个公开规则源，对域名、IP/CIDR 和 Classical 规则进行"
+                "解析、合并、去重与格式转换，并生成适用于 Mihomo 的规则集。\n\n"
+                "## ✨ 项目特点\n\n"
+                "- 自动下载并合并多个上游规则源\n"
+                "- 自动区分 Domain、IP/CIDR、Classical 规则\n"
+                "- 自动域名去重和 IP/CIDR 合并\n"
+                "- 自动生成 Mihomo `.mrs` 规则集\n"
+                "- 自动检测 GitHub HTML 页面污染\n"
+                "- 自动生成构建日志\n"
+                f"- 自动以 `{AD_EXCLUSION_GROUP}` 为基准排除其他规则组中的广告规则\n"
+                "- 自动生成 README 使用示例和上游致谢\n\n"
+                "## 📦 基础规则\n\n"
                 "<!-- RULES_START -->\n"
                 "<!-- RULES_END -->\n\n"
-                "## 合并与去重规则 (ZH)\n"
+                "## 📦 合并与去重规则 (ZH)\n\n"
                 "<!-- RULES_ZH_START -->\n"
-                "<!-- RULES_ZH_END -->\n"
+                "<!-- RULES_ZH_END -->\n\n"
+                "## 🔄 更新与缓存说明\n\n"
+                "本项目规则由自动化任务定期生成。GitHub Raw 为推荐的权威下载地址；"
+                "jsDelivr CDN 可能由于缓存机制短时间返回旧版本，请优先使用 GitHub Raw 验证最新内容。\n\n"
+                "## ⚠️ 免责声明\n\n"
+                "本项目仅对公开规则源进行自动化下载、解析、合并、去重及格式转换。"
+                "规则内容及可用性主要取决于上游规则源，使用后可能出现误拦截、漏匹配或网络异常，"
+                "请根据实际环境自行调整。上游规则的版权、许可及相关权益归对应原作者及项目所有，"
+                "使用时请遵守对应上游项目的许可与说明。\n\n"
+                "## 🐛 问题反馈\n\n"
+                "欢迎通过 GitHub Issues 反馈规则源失效、解析异常、MRS 转换失败、规则分类错误或 README 自动生成异常。"
+                "提交问题时建议附上规则组、源 URL 和 `mrs_rules_ZH/build_mrs_zh.log`。\n\n"
+                "## 🤝 参与贡献\n\n"
+                "欢迎提交 Issue 或 Pull Request。详细要求请参阅 [CONTRIBUTING.md](CONTRIBUTING.md)。\n\n"
+                "## 🔐 安全问题\n\n"
+                "请按照 [SECURITY.md](SECURITY.md) 中的说明报告安全问题。\n\n"
+                "## 📄 License\n\n"
+                "本项目代码许可方式请参阅 [LICENSE](LICENSE)。上游规则数据仍遵循各自项目的许可要求。\n"
             )
 
     # --------------------------------------------------------
@@ -795,8 +1156,9 @@ def update_readme(success_files):
     # --------------------------------------------------------
     # 替换自动生成区域
     # --------------------------------------------------------
+    has_markers = validate_readme_markers(readme_content)
     pattern = re.compile(
-        r"<!-- RULES_ZH_START -->.*<!-- RULES_ZH_END -->",
+        r"<!-- RULES_ZH_START -->.*?<!-- RULES_ZH_END -->",
         re.DOTALL,
     )
 
@@ -806,7 +1168,7 @@ def update_readme(success_files):
         "<!-- RULES_ZH_END -->"
     )
 
-    if pattern.search(readme_content):
+    if has_markers and pattern.search(readme_content):
 
         new_content = pattern.sub(
             replacement,
@@ -1033,9 +1395,23 @@ def main():
     try:
         validate_config()
 
-        for group_name, urls in RULE_GROUPS.items():
+        group_order = [AD_EXCLUSION_GROUP] + [
+            name for name in RULE_GROUPS if name != AD_EXCLUSION_GROUP
+        ]
+        prepared_groups = {}
+        ad_baseline = None
+        ad_keywords = set()
+
+        # ========================================================
+        # 阶段 1：下载、解析、聚合；先建立完整 Reject_Ads 基准
+        # ========================================================
+        for group_name in group_order:
+            urls = RULE_GROUPS[group_name]
             print(f"\n🔄 正在处理规则组: {group_name} ...")
-            all_suffixes = set(); all_exacts = set(); all_ipcidrs = set(); all_others = set()
+            all_suffixes = set()
+            all_exacts = set()
+            all_ipcidrs = set()
+            all_others = set()
             group_success = 0
             group_failed = 0
 
@@ -1044,8 +1420,17 @@ def main():
                 for future in as_completed(futures):
                     url = futures[future]
                     try:
-                        _, (suffs, exts, ips, oths) = future.result()
-                        all_suffixes.update(suffs); all_exacts.update(exts); all_ipcidrs.update(ips); all_others.update(oths)
+                        _, (suffs, exts, ips, oths, unknown_types) = future.result()
+                        all_suffixes.update(suffs)
+                        all_exacts.update(exts)
+                        all_ipcidrs.update(ips)
+                        all_others.update(oths)
+                        if unknown_types:
+                            summary = ", ".join(
+                                f"{rule_type}={count}"
+                                for rule_type, count in sorted(unknown_types.items())
+                            )
+                            print(f"  ⚠️ 检测到未知 Classical 规则类型: {summary}")
                         group_success += 1
                         source_success += 1
                         print(
@@ -1058,48 +1443,238 @@ def main():
                         source_failed += 1
                         print(f"  ❌ 下载或解析失败 {url}: {e}")
 
-            print(f"  📊 源处理结果: 成功 {group_success}/{len(urls)}，失败 {group_failed}/{len(urls)}")
+            print(
+                f"  📊 源处理结果: 成功 {group_success}/{len(urls)}，"
+                f"失败 {group_failed}/{len(urls)}"
+            )
 
             if group_success == 0:
-                print("  ❌ 本规则组所有源均失败，为防止旧文件冒充新结果，不生成该组输出。")
+                cleanup_group_outputs(group_name)
+                if group_name == AD_EXCLUSION_GROUP:
+                    raise RuntimeError(
+                        f"{AD_EXCLUSION_GROUP} 所有源均失败，无法建立广告排除基准；"
+                        "为避免其他规则组混入广告规则，本次构建终止。"
+                    )
+                print("  ❌ 本规则组所有源均失败，旧输出已清理，不生成该组结果。")
                 continue
 
             optimized_ipcidrs = deduplicate_ip_networks(all_ipcidrs)
-            if not any((all_suffixes, all_exacts, optimized_ipcidrs, all_others)):
-                print("  ⚠️ 本规则组没有解析出任何规则，跳过。")
+
+            # ----------------------------------------------------
+            # Reject_Ads：先建立“完整”广告基准，不做 keyword 自身精简。
+            # 这个完整基准会先用于所有其他规则组的重叠排除。
+            # ----------------------------------------------------
+            if group_name == AD_EXCLUSION_GROUP:
+                print(
+                    f"  🧹 开始域名去重。合并前域名数: "
+                    f"{len(all_suffixes) + len(all_exacts):,}"
+                )
+                opt_suffixes, opt_exacts = deduplicate_domains(all_suffixes, all_exacts)
+                print(
+                    f"  ✨ 域名去重完成。优化后域名数: "
+                    f"{len(opt_suffixes) + len(opt_exacts):,}"
+                )
+
+                ad_keywords = extract_ad_domain_keywords(all_others)
+                ad_baseline = {
+                    "suffixes": set(opt_suffixes),
+                    "exacts": set(opt_exacts),
+                    "ipcidrs": list(optimized_ipcidrs),
+                    "others": set(all_others),
+                }
+                prepared_groups[group_name] = {
+                    "suffixes": set(opt_suffixes),
+                    "exacts": set(opt_exacts),
+                    "ipcidrs": list(optimized_ipcidrs),
+                    "others": set(all_others),
+                }
+
+                print(
+                    "  🛡️ 完整广告排除基准已建立："
+                    f"suffix={len(opt_suffixes):,}, "
+                    f"exact={len(opt_exacts):,}, "
+                    f"ipcidr={len(optimized_ipcidrs):,}, "
+                    f"classical={len(all_others):,}, "
+                    f"domain-keyword={len(ad_keywords):,}"
+                )
+
+                short_keywords = sorted(k for k in ad_keywords if len(k) <= 2)
+                if short_keywords:
+                    preview = ", ".join(short_keywords[:20])
+                    more = " ..." if len(short_keywords) > 20 else ""
+                    print(
+                        "  ⚠️ Reject_Ads 含长度≤2的 DOMAIN-KEYWORD；"
+                        "它们只用于 Reject_Ads 自身 Domain 精简，但仍可能覆盖大量广告域名："
+                        f"{preview}{more}"
+                    )
+                if group_failed:
+                    print(
+                        f"  ⚠️ {AD_EXCLUSION_GROUP} 有 {group_failed:,} 个源失败，"
+                        "本次广告排除基准可能不完整，请检查日志。"
+                    )
                 continue
 
-            print(f"  🧹 开始域名去重。合并前域名数: {len(all_suffixes)+len(all_exacts):,}")
+            # ----------------------------------------------------
+            # 其他规则组：只按 Reject_Ads 的直接 Domain/IP/Classical
+            # 重叠关系排除；DOMAIN-KEYWORD 不参与域名子串排除。
+            # ----------------------------------------------------
+            if ad_baseline is None:
+                raise RuntimeError(
+                    f"尚未建立 {AD_EXCLUSION_GROUP} 广告排除基准，"
+                    f"拒绝继续处理 {group_name}。"
+                )
+
+            all_suffixes, all_exacts, domain_stats = exclude_ad_domains(
+                all_suffixes,
+                all_exacts,
+                ad_baseline["suffixes"],
+                ad_baseline["exacts"],
+            )
+            optimized_ipcidrs, ip_stats = subtract_ad_ip_networks(
+                optimized_ipcidrs,
+                ad_baseline["ipcidrs"],
+            )
+            all_others, classical_removed = exclude_ad_classical(
+                all_others,
+                ad_baseline["others"],
+            )
+
+            removed_domain = domain_stats["suffix_removed"] + domain_stats["exact_removed"]
+            print(
+                "  🛡️ Reject_Ads 直接重叠排除完成："
+                f"Domain={removed_domain:,} "
+                f"(suffix={domain_stats['suffix_removed']:,}, "
+                f"exact={domain_stats['exact_removed']:,})，"
+                f"Classical={classical_removed:,}"
+            )
+            print(
+                "  🛡️ IP 排除："
+                f"输入 CIDR={ip_stats['input_networks']:,}，"
+                f"完全删除={ip_stats['fully_removed']:,}，"
+                f"部分拆分={ip_stats['partially_split']:,}，"
+                f"排除地址数={ip_stats['removed_addresses']:,}，"
+                f"输出 CIDR={ip_stats['output_networks']:,}"
+            )
+            if removed_domain == 0 and classical_removed == 0 and ip_stats["removed_addresses"] == 0:
+                print("  ✓ 未发现与 Reject_Ads 直接重叠的规则。")
+
+            if not any((all_suffixes, all_exacts, optimized_ipcidrs, all_others)):
+                print("  ⚠️ 本规则组在广告重叠排除后没有剩余规则，旧输出将清理。")
+                cleanup_group_outputs(group_name)
+                continue
+
+            print(
+                f"  🧹 开始域名去重。合并前域名数: "
+                f"{len(all_suffixes) + len(all_exacts):,}"
+            )
             opt_suffixes, opt_exacts = deduplicate_domains(all_suffixes, all_exacts)
-            print(f"  ✨ 域名去重完成。优化后域名数: {len(opt_suffixes)+len(opt_exacts):,}")
+            print(
+                f"  ✨ 域名去重完成。优化后域名数: "
+                f"{len(opt_suffixes) + len(opt_exacts):,}"
+            )
+
+            prepared_groups[group_name] = {
+                "suffixes": set(opt_suffixes),
+                "exacts": set(opt_exacts),
+                "ipcidrs": list(optimized_ipcidrs),
+                "others": set(all_others),
+            }
+
+        # ========================================================
+        # 阶段 2：所有其他组已完成 Ad 重叠排除之后，才使用
+        # Reject_Ads DOMAIN-KEYWORD 精简 Reject_Ads 自己的域名规则。
+        # ========================================================
+        ad_group = prepared_groups.get(AD_EXCLUSION_GROUP)
+        if ad_group is None:
+            raise RuntimeError(f"{AD_EXCLUSION_GROUP} 未成功准备，无法继续生成输出。")
+
+        before_ad_domains = len(ad_group["suffixes"]) + len(ad_group["exacts"])
+        ad_group["suffixes"], ad_group["exacts"], keyword_stats = prune_ad_domains_by_keywords(
+            ad_group["suffixes"],
+            ad_group["exacts"],
+            ad_keywords,
+        )
+        after_ad_domains = len(ad_group["suffixes"]) + len(ad_group["exacts"])
+        print(
+            f"\n🔎 {AD_EXCLUSION_GROUP} DOMAIN-KEYWORD 自身精简完成："
+            f"精简前={before_ad_domains:,}，"
+            f"移除={keyword_stats['total_removed']:,} "
+            f"(suffix={keyword_stats['suffix_removed']:,}, "
+            f"exact={keyword_stats['exact_removed']:,})，"
+            f"保留={after_ad_domains:,}"
+        )
+        print(
+            "  ℹ️ DOMAIN-KEYWORD 仅精简 Reject_Ads 自身域名；"
+            "未用于其他规则组的域名子串排除。"
+        )
+
+        # ========================================================
+        # 阶段 3：完成全部排除与精简后，统一生成 MRS / Classical。
+        # ========================================================
+        print("\n📦 开始生成最终规则集文件 ...")
+        for group_name in group_order:
+            group = prepared_groups.get(group_name)
+            if group is None:
+                continue
+
+            opt_suffixes = group["suffixes"]
+            opt_exacts = group["exacts"]
+            optimized_ipcidrs = group["ipcidrs"]
+            all_others = group["others"]
+            expected_outputs = set()
+
+            if not any((opt_suffixes, opt_exacts, optimized_ipcidrs, all_others)):
+                print(f"  ⚠️ {group_name}: 最终没有可输出规则，清理旧文件。")
+                cleanup_group_outputs(group_name)
+                continue
+
+            print(f"\n  ▶ 生成规则组: {group_name}")
 
             if opt_suffixes or opt_exacts:
-                name = f"{group_name}_Domain"; path = os.path.join(TEMP_DIR, f"{name}.txt")
+                name = f"{group_name}_Domain"
+                path = os.path.join(TEMP_DIR, f"{name}.txt")
                 with open(path, 'w', encoding='utf-8', newline='\n') as f:
-                    for d in sorted(opt_suffixes): f.write(f"+.{d}\n")
-                    for d in sorted(opt_exacts): f.write(f"{d}\n")
+                    for d in sorted(opt_suffixes):
+                        f.write(f"+.{d}\n")
+                    for d in sorted(opt_exacts):
+                        f.write(f"{d}\n")
                 count = len(opt_suffixes) + len(opt_exacts)
                 if convert_to_mrs(path, 'text', 'domain', name):
-                    success_list.append((f"{name}.mrs", 'domain', count))
+                    filename = f"{name}.mrs"
+                    expected_outputs.add(filename)
+                    success_list.append((filename, 'domain', count))
 
             if optimized_ipcidrs:
-                name = f"{group_name}_IP"; path = os.path.join(TEMP_DIR, f"{name}.txt")
+                name = f"{group_name}_IP"
+                path = os.path.join(TEMP_DIR, f"{name}.txt")
                 with open(path, 'w', encoding='utf-8', newline='\n') as f:
-                    for ip in optimized_ipcidrs: f.write(f"{ip}\n")
+                    for ip in optimized_ipcidrs:
+                        f.write(f"{ip}\n")
                 count = len(optimized_ipcidrs)
                 if convert_to_mrs(path, 'text', 'ipcidr', name):
-                    success_list.append((f"{name}.mrs", 'ipcidr', count))
+                    filename = f"{name}.mrs"
+                    expected_outputs.add(filename)
+                    success_list.append((filename, 'ipcidr', count))
 
             if all_others:
-                name = f"{group_name}_Classical"; path = os.path.join(OUTPUT_DIR, f"{name}.txt")
+                name = f"{group_name}_Classical"
+                path = os.path.join(OUTPUT_DIR, f"{name}.txt")
                 rules = sorted(all_others)
                 with open(path, 'w', encoding='utf-8', newline='\n') as f:
-                    for rule in rules: f.write(f"{rule}\n")
+                    for rule in rules:
+                        f.write(f"{rule}\n")
                 if os.path.getsize(path) <= 0:
                     print(f"  ❌ Classical 文件异常为空: {path}")
                 else:
-                    print(f"  📝 Classical text 已生成: {path} (共 {len(rules):,} 条规则)")
-                    success_list.append((f"{name}.txt", 'classical', len(rules)))
+                    print(
+                        f"  📝 Classical text 已生成: {path} "
+                        f"(共 {len(rules):,} 条规则)"
+                    )
+                    filename = f"{name}.txt"
+                    expected_outputs.add(filename)
+                    success_list.append((filename, 'classical', len(rules)))
+
+            cleanup_group_outputs(group_name, keep=expected_outputs)
 
         update_readme(success_list)
 
@@ -1113,7 +1688,6 @@ def main():
         print(f"📝 日志文件: {LOG_FILE}")
         print("=" * 72)
 
-        # 部分源失败时仍允许成功结果输出，但给 CI 一个明确告警。
         if source_failed:
             print("⚠️ 本次构建存在源失败，请检查日志；成功源的结果仍已生成。")
 
@@ -1128,7 +1702,6 @@ def main():
             sys.stdout.flush()
             sys.stderr.flush()
         finally:
-            # 不主动关闭 sys.stdout/sys.stderr 包装器，只关闭底层日志句柄前先恢复终端。
             sys.stdout = sys.__stdout__
             sys.stderr = sys.__stderr__
             log_handle.close()
