@@ -1658,6 +1658,7 @@
 +.12sporting.com
 +.12yao.com
 +.12ym.com
++.12zayb.com
 +.13.gs
 +.130.org
 +.130014.xyz
@@ -22412,6 +22413,7 @@
 +.citybrain.com
 +.citygf.com
 +.cityhui.com
++.cityhuitech.com
 +.citylinker.com
 +.cityoncenter.com
 +.cityos.com
@@ -83240,6 +83242,7 @@
 +.solidstatelion.com
 +.soliner.com
 +.solipharma.com
++.sollin.top
 +.solo-launcher.com
 +.solochex.com
 +.soloknight.xyz
@@ -111020,6 +111023,7 @@ cl4-cn.apple.com
 cl4.apple.com
 cl5-cdn.origin-apple.com.akadns.net
 cl5.apple.com
+clickserver.googleads.com
 client-api.itunes.apple.com
 client.amplifi.com
 clientflow.apple.com
