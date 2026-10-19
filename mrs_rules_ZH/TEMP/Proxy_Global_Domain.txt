@@ -15987,6 +15987,7 @@
 +.magic-net.info
 +.magicalmirai.com
 +.magicmovies.com
++.magnific.com
 +.mahabodhi.org
 +.mahajantech.com
 +.mahjongsoul.com
@@ -17603,6 +17604,7 @@
 +.mthruf.com
 +.mtn
 +.mtr
++.mts-link.ru
 +.mts-ws.net
 +.mts.ru
 +.mtsbank.ru
@@ -20765,6 +20767,7 @@
 +.postimg.cc
 +.postimg.org
 +.postini.com
++.postman.com
 +.posty.kr
 +.postyourgirls.ws
 +.potato.im
