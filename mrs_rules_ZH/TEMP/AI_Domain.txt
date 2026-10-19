@@ -164,6 +164,7 @@
 +.fal.ai
 +.fastspring.com
 +.fathom.video
++.featureassets.org
 +.firecrawl.dev
 +.fireflies.ai
 +.firefly.adobe.com

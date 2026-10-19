@@ -18642,6 +18642,7 @@
 +.cc0808.com
 +.cc11bh.com
 +.cc39ute.shop
++.cc44dd.com
 +.cc55k.com
 +.cc707.com
 +.cc8.cc
@@ -22414,7 +22415,6 @@
 +.citybrain.com
 +.citygf.com
 +.cityhui.com
-+.cityhuitech.com
 +.citylinker.com
 +.cityoncenter.com
 +.cityos.com
@@ -59446,6 +59446,7 @@
 +.lattefinance.com
 +.lattice.vip
 +.laungee.com
++.laupqc.com
 +.laurelfilms.com
 +.lauyoo.com
 +.lavago.com
@@ -69931,6 +69932,7 @@
 +.obsapp.net
 +.obsbot.com
 +.obsidian-display.com
++.obsworks.com
 +.obtelecom.com
 +.obyee.com
 +.ocahs.com
@@ -86522,6 +86524,8 @@
 +.talk915.com
 +.talkgw.com
 +.talkingchina.com
++.talkingdata.com
++.talkingdata.net
 +.talkwithtrend.com
 +.talkyun.com
 +.talldns.com
@@ -87330,6 +87334,7 @@
 +.tencentads.net
 +.tencentadx.com
 +.tencentanxin.com
++.tencentapigw.com
 +.tencentapis.com
 +.tencentapp.com
 +.tencentapps.com
@@ -93045,6 +93050,7 @@
 +.walknode.com
 +.walkthechat.com
 +.walle-web.io
++.wallecube.com
 +.wallet.io
 +.walletio.io
 +.wallmatechina.com
@@ -105398,6 +105404,7 @@
 +.yunqiju.com
 +.yunqin.online
 +.yunqishi.net
++.yunqishi8.com
 +.yunqishuju.com
 +.yunque360.com
 +.yunquna.com
@@ -106362,6 +106369,7 @@
 +.zaxline.com
 +.zaxzn.com
 +.zaysz.com
++.zazhipu.com
 +.zazsz.com
 +.zb-kc.com
 +.zb1.org
@@ -111025,7 +111033,6 @@ cl4-cn.apple.com
 cl4.apple.com
 cl5-cdn.origin-apple.com.akadns.net
 cl5.apple.com
-clickserver.googleads.com
 client-api.itunes.apple.com
 client.amplifi.com
 clientflow.apple.com

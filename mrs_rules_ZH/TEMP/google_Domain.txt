@@ -150,7 +150,6 @@
 +.dart.dev
 +.dartlang.org
 +.dartpad.dev
-+.dartsearch.net
 +.dataliberation.org
 +.dclk
 +.debug.com
@@ -426,7 +425,6 @@
 +.google.vu
 +.google.ws
 +.googleacquisitionmigration.com
-+.googleads.com
 +.googleapis-cn.com
 +.googleapis.cn
 +.googleapis.com
