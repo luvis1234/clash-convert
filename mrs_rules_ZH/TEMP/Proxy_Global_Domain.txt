@@ -16127,7 +16127,6 @@
 +.marketo.co.uk
 +.marketo.tv
 +.marketodesigner.com
-+.marketolive.com
 +.marketwatch.com
 +.markingmenus.com
 +.markzuckerberg.com
@@ -19471,14 +19470,12 @@
 +.otpbank.ru
 +.otsuka
 +.otto.de
-+.otzo.com
 +.oudoll.com
 +.ouo.io
 +.oup.com
 +.ouplaw.com
 +.our-notes.jp
 +.ourdearamy.com
-+.ourhobby.com
 +.ouroath.com
 +.oursexgames.com
 +.ourshdtv.com
@@ -22429,7 +22426,6 @@
 +.servercore.live
 +.serverfault.com
 +.serverlesslibrary.net
-+.serveusers.com
 +.services-apple.net
 +.services-exchange.com
 +.serviceshp.com
@@ -25803,7 +25799,6 @@
 +.ukit.ai
 +.ukit.com
 +.ukit.group
-+.ukit.me
 +.ukliferadio.co.uk
 +.ukoz.ru
 +.ukraina.ru
@@ -26638,7 +26633,6 @@
 +.vixen.com
 +.vixengroup.com
 +.vixvids.to
-+.vizvaz.com
 +.vjav.com
 +.vjmedia.com.hk
 +.vk-apps.com

@@ -81,6 +81,7 @@
 +.ciciai.com
 +.ciciaicdn.com
 +.civitai.com
++.claicode.com
 +.clau.de
 +.claude.ai
 +.claude.app
@@ -164,7 +165,6 @@
 +.fal.ai
 +.fastspring.com
 +.fathom.video
-+.featureassets.org
 +.firecrawl.dev
 +.fireflies.ai
 +.firefly.adobe.com

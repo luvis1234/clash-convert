@@ -14092,6 +14092,7 @@
 +.baokaodaxue.com
 +.baoke-cn.com
 +.baoku.com
++.baoku.one
 +.baokuaishou.com
 +.baolansz.com
 +.baoleyun.com
@@ -17141,6 +17142,7 @@
 +.brother-movie.com
 +.brotherchem.com
 +.browserleaks.com
++.browserscan.net
 +.browurl.com
 +.brpcb.com
 +.brsiee.com
@@ -20216,7 +20218,6 @@
 +.chdqyy.com
 +.chdtp.com
 +.che-shijie.com
-+.che.com
 +.che0.com
 +.che101.com
 +.che168.com
@@ -69932,7 +69933,6 @@
 +.obsapp.net
 +.obsbot.com
 +.obsidian-display.com
-+.obsworks.com
 +.obtelecom.com
 +.obyee.com
 +.ocahs.com
@@ -86524,8 +86524,6 @@
 +.talk915.com
 +.talkgw.com
 +.talkingchina.com
-+.talkingdata.com
-+.talkingdata.net
 +.talkwithtrend.com
 +.talkyun.com
 +.talldns.com
@@ -86764,6 +86762,7 @@
 +.taotaocar.com
 +.taotaoit.com
 +.taotian.com
++.taotoken.net
 +.taotu8.net
 +.taotv.com
 +.taotv.net
@@ -89518,6 +89517,7 @@
 +.traceint.com
 +.tracestour.com
 +.tracevision.tv
++.trackingio.com
 +.trackingmore.com
 +.tracup.com
 +.tracyclass.com
@@ -105404,7 +105404,6 @@
 +.yunqiju.com
 +.yunqin.online
 +.yunqishi.net
-+.yunqishi8.com
 +.yunqishuju.com
 +.yunque360.com
 +.yunquna.com
@@ -106369,7 +106368,6 @@
 +.zaxline.com
 +.zaxzn.com
 +.zaysz.com
-+.zazhipu.com
 +.zazsz.com
 +.zb-kc.com
 +.zb1.org
