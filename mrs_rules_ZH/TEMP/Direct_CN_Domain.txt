@@ -42928,6 +42928,7 @@
 +.hanyutai.com
 +.hanyuwatch.com
 +.hanyya.com
++.hanzhe.site
 +.hanzhesh.com
 +.hanzhong123.com
 +.hanzhonggas.com
@@ -50541,7 +50542,6 @@
 +.immivip.com
 +.immomo.com
 +.immomogame.com
-+.immortalwrt.org
 +.immotors.com
 +.immune-path.com
 +.immusician.com
@@ -111044,6 +111044,7 @@ cn.download.nvidia.com
 cn.widevine.com
 cn.windowssearch.com
 communities.apple.com
+configuration.apple.com
 configuration.apple.com.akadns.net
 connectivitycheck.gstatic.com
 crl-lb.apple.com.akadns.net
@@ -111151,8 +111152,10 @@ init-p01st-lb.push-apple.com.akadns.net
 init-p01st.push.apple.com
 init-s01st-lb.push-apple.com.akadns.net
 init-s01st.push.apple.com
+init.ess.apple.com
 init.gc-lb.apple.com.akadns.net
 init.gc.apple.com
+init.itunes.apple.com
 instant.arubanetworks.com
 iosapps.itunes.apple.com
 ip.istatmenus.app
@@ -111219,6 +111222,7 @@ mediaprima.rastream.com
 mensura.cdn-apple.com
 mesu-cdn.apple.com.akadns.net
 mesu-china.apple.com.akadns.net
+mesu.apple.com
 mgugaklive.nowcdn.co.kr
 misc-assets.itunes.apple.com
 ml.cdn-apple.com
@@ -111246,6 +111250,7 @@ oscdn.apple.com
 oscdn.origin-apple.com.akadns.net
 osxapps.itunes.apple.com
 ott-live.olympicchannel.com
+pancake.apple.com
 pba0.apple.com
 pd-nk.itunes.apple.com
 pd.itunes.apple.com
@@ -111298,6 +111303,7 @@ sf-api-token-service.itunes.apple.com
 sh-pod2-smp-device.apple.com
 shell.cdn.office.net
 slive.ytn.co.kr
+smp-device-content.apple.com
 sms.imagetasks.com
 sp.itunes.apple.com
 speedysub.music.apple.com
