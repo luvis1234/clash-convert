@@ -1527,6 +1527,7 @@
 +.ally
 +.almalinux.org
 +.almasdarnews.com
++.almostmy.com
 +.alohatube.com
 +.alotporn.com
 +.alphabet.asia
@@ -9330,6 +9331,7 @@
 +.fapteencam.com
 +.faptitans.com
 +.fapvid.com
++.faqserv.com
 +.fareastpornhub.com
 +.farfetch-apps.com
 +.farfetch-contents.com
@@ -24434,7 +24436,6 @@
 +.telebay.com
 +.telecomspace.com
 +.telega.info
-+.telega.me
 +.telega.one
 +.telegra.ph
 +.telegram-cdn.org

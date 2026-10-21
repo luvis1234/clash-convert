@@ -12167,6 +12167,7 @@
 +.apk8.com
 +.apkbus.com
 +.apkdv.com
++.apkevery.com
 +.apkhot.com
 +.apkj.com
 +.apkplug.com
@@ -20218,6 +20219,7 @@
 +.chdqyy.com
 +.chdtp.com
 +.che-shijie.com
++.che.com
 +.che0.com
 +.che101.com
 +.che168.com
@@ -87335,7 +87337,6 @@
 +.tencentads.net
 +.tencentadx.com
 +.tencentanxin.com
-+.tencentapigw.com
 +.tencentapis.com
 +.tencentapp.com
 +.tencentapps.com
