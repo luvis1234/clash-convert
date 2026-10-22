@@ -50718,6 +50718,7 @@
 +.infinity8ball.com
 +.infinitynewtab.com
 +.infinitytab.com
++.infistar.cc
 +.inflyway.com
 +.info-insur.com
 +.info-monitor.com
