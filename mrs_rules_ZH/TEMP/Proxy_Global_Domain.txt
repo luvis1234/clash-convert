@@ -248,6 +248,7 @@
 +.233abc.com
 +.233v2.com
 +.2371tom.com
++.24.place
 +.24h.tv
 +.24hbook.com
 +.24hjav.com
@@ -4026,6 +4027,8 @@
 +.blockbuster
 +.blockcast.it
 +.blockchain.com
++.blockchair.com
++.blockchair.net
 +.blockcn.com
 +.blockedbyhk.com
 +.blockfrost.io
@@ -6471,6 +6474,7 @@
 +.cr
 +.crabporn.com
 +.crackle.com
++.craftifyx.com
 +.craigslist.org
 +.crankplayer.com
 +.crashbandicoot.com
@@ -6551,6 +6555,7 @@
 +.crypto.com
 +.cryptocompare.com
 +.cryptographyengineering.com
++.cryptoid.info
 +.cryptomus.com
 +.crypton.co.jp
 +.crysis.jp
@@ -6953,6 +6958,7 @@
 +.delcamtv.com
 +.delcamuniversity.com
 +.delcamusa.com
++.delets.cash
 +.delets.online
 +.delicious.com
 +.delicious.com.au
@@ -9274,6 +9280,7 @@
 +.fanbox.cc
 +.fandango.com
 +.fandom.com
++.fanfiction.net
 +.fanfictionero.com
 +.fanfox.net
 +.fangbinxing.com
@@ -10364,6 +10371,7 @@
 +.fundsupermart.com
 +.funf.tw
 +.funimation.com
++.funko.com
 +.funkyimg.com
 +.funnyfacebook.org
 +.funnyordie.com
@@ -10513,6 +10521,7 @@
 +.game-repack.site
 +.game735.com
 +.gameapps.hk
++.gamebanana.com
 +.gamebase.com.tw
 +.gamebeforethegame.com
 +.gamebiz.jp
@@ -10803,6 +10812,7 @@
 +.getporn.tv
 +.getpricetag.com
 +.getprintersupports.com
++.getsafety.com
 +.getscorecash.com
 +.getsentry.com
 +.getsession.org
@@ -10992,6 +11002,8 @@
 +.glass8.eu
 +.gle
 +.gleline.com
++.glitchprod.com
++.glitchproductions.store
 +.glitchwave.com
 +.global-sci.org
 +.globaledu.org
@@ -15234,6 +15246,7 @@
 +.kundun1069.com
 +.kuokgroup
 +.kurashsultan.com
++.kurs.expert
 +.kurtmunger.com
 +.kusocity.com
 +.kusugurizanmai.com
@@ -16049,6 +16062,7 @@
 +.makemymood.com
 +.makerepeater.jp
 +.makesenseofdata.com
++.makeship.com
 +.makeshop.jp
 +.makingstartshere.com
 +.makkahnewspaper.com
@@ -19531,6 +19545,7 @@
 +.owind.com
 +.owl.li
 +.owltail.com
++.ownaj.com
 +.owxd.xyz
 +.oxfordaasc.com
 +.oxfordartonline.com
@@ -21133,6 +21148,7 @@
 +.pythonhosted.org
 +.pythonic.life
 +.pytorch.org
++.pyup.io
 +.pzforever.skin
 +.pzforever01.homes
 +.pzhanfor.today
@@ -21298,6 +21314,7 @@
 +.r18lu-avi.shop
 +.r18lu.com
 +.r2.dev
++.r2modman.com
 +.r34porn.net
 +.ra.gg
 +.rabbitscams.com
@@ -22071,6 +22088,7 @@
 +.safeliner.tech
 +.safepal.com
 +.safervpn.com
++.safetycli.com
 +.saffrontech.com
 +.sagabank.co.jp
 +.sage-observability.tech
@@ -23805,6 +23823,7 @@
 +.steaminventoryhelper.com
 +.steamladder.com
 +.steamofporn.com
++.steamos.cloud
 +.steampowered.com
 +.steamserver.net
 +.steamstatic.com
@@ -24559,6 +24578,7 @@
 +.tgirlpostop.com
 +.tgp6.com
 +.tgstat.com
++.tgtime.store
 +.tgtube.com
 +.tgutube.com
 +.th
@@ -24817,6 +24837,8 @@
 +.thunderbird.net
 +.thunderbolttechnology.net
 +.thundermail.com
++.thunderstore.io
++.thunderstore.org
 +.thywords.com
 +.thywords.com.tw
 +.thz7.net
@@ -25055,6 +25077,7 @@
 +.tmei-taoyuan.com
 +.tmi.me
 +.tmiaf.ru
++.tmimgcdn.com
 +.tmobile.com
 +.tmpp.org
 +.tmsnrt.rs
@@ -27745,6 +27768,7 @@
 +.worldoftanks.eu
 +.worldofwarcraft.com
 +.worldofwarplanes.com
++.worldofwarships.asia
 +.worldofwarships.com
 +.worldpopulationreview.com
 +.worldpornvideos.com
@@ -29040,6 +29064,7 @@
 +.youskbe.com
 +.youthnetradio.org
 +.youthwant.com.tw
++.youtooz.com
 +.youtrack.cloud
 +.youtrannytube.com
 +.youtu.be
