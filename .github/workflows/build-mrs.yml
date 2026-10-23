@@ -1,6 +1,6 @@
 name: Build and Convert MRS Rules
 
-# 触发条件：推送到main分支build_mrs_zh.py文件变化，手动触发，或者每 10 小时触发一次
+# 触发条件：推送到 main 分支且 build_mrs_zh.py 发生变化、手动触发，或按计划运行
 on:
   push:
     branches:
@@ -9,15 +9,12 @@ on:
       - 'build_mrs_zh.py'
   workflow_dispatch:
   schedule:
-    # 这里的 cron 表达式表示在每天的 00:00 和 10:00，以及 20:00 (UTC 时间) 触发。
-    # 实际上由于 24 不能被 10 整除，无法实现完美的“每隔10小时”。
-    # 我们通常用特定时间点来近似。以下表达式会在每天的 0时, 10时, 20时 运行 (UTC)
+    # 每天 00:00、10:00、20:00（UTC）运行
     - cron: '0 0,10,20 * * *'
 
 jobs:
   build-mrs:
     runs-on: ubuntu-latest
-    # 必须赋予 GITHUB_TOKEN 写权限，否则无法将生成的文件 push 回仓库
     permissions:
       contents: write
 
@@ -33,43 +30,163 @@ jobs:
       - name: Install Python dependencies
         run: pip install pyyaml
 
-      - name: Install mihomo core
+      - name: Check and prepare project Mihomo core
+        shell: bash
         run: |
-            # 1. 使用 jq 获取官方最新 release 的版本号
-            LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r .tag_name)
-            echo "获取到最新版本: $LATEST_VERSION"
-            
-            # 2. 拼接正确的下载链接并下载
-            wget -O mihomo.gz "https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/mihomo-linux-amd64-${LATEST_VERSION}.gz"
-            
-            # 3. 解压并安装
-            gunzip mihomo.gz
-            chmod +x mihomo
-            sudo mv mihomo /usr/local/bin/
-            
-            # 4. 验证安装
-            mihomo -v
+          set -Eeuo pipefail
+
+          # 将压缩版核心存入仓库，避免将体积较大的解压二进制直接提交到 Git。
+          # 首次运行会创建 mihomo/ 并下载最新稳定版；之后只有版本变化才下载。
+          CORE_DIR="$GITHUB_WORKSPACE/mihomo"
+          CORE_ARCHIVE="$CORE_DIR/mihomo-linux-amd64.gz"
+          VERSION_FILE="$CORE_DIR/VERSION"
+          CORE_BIN="$CORE_DIR/mihomo"
+          API_URL="https://api.github.com/repos/MetaCubeX/mihomo/releases/latest"
+
+          mkdir -p "$CORE_DIR"
+          TEMP_DIR="$(mktemp -d)"
+          trap 'rm -rf "$TEMP_DIR"' EXIT
+
+          # 检查压缩包、解压并验证核心可执行。
+          validate_archive() {
+            local archive="$1"
+            local binary="$2"
+
+            [[ -s "$archive" ]] || return 1
+            gzip -t "$archive" || return 1
+            gzip -dc "$archive" > "$binary" || return 1
+            chmod +x "$binary"
+            "$binary" -v >/dev/null 2>&1
+          }
+
+          LOCAL_VERSION=""
+          LOCAL_CORE_VALID="false"
+
+          if [[ -s "$CORE_ARCHIVE" && -s "$VERSION_FILE" ]]; then
+            LOCAL_VERSION="$(tr -d '\r\n' < "$VERSION_FILE")"
+            if validate_archive "$CORE_ARCHIVE" "$TEMP_DIR/local-mihomo"; then
+              LOCAL_CORE_VALID="true"
+              echo "本地 Mihomo 核心有效，版本记录：${LOCAL_VERSION:-未知}"
+            else
+              echo "::warning::项目中的 Mihomo 核心校验失败，将尝试重新下载。"
+            fi
+          else
+            echo "未发现完整的本地 Mihomo 核心，将执行首次下载。"
+          fi
+
+          # GitHub latest Release API 返回最新正式版，不包含 Draft/Prerelease。
+          API_OK="false"
+          if API_RESPONSE="$(curl -fsSL \
+              --retry 3 \
+              --retry-all-errors \
+              --retry-delay 2 \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "$API_URL")"; then
+            if LATEST_VERSION="$(jq -er \
+                '.tag_name | strings | select(length > 0 and . != "null")' \
+                <<< "$API_RESPONSE")" \
+              && [[ "$LATEST_VERSION" =~ ^v[0-9][0-9A-Za-z._-]*$ ]]; then
+              API_OK="true"
+              echo "官方最新稳定版：$LATEST_VERSION"
+            else
+              echo "::warning::Mihomo API 响应中没有有效的 Release 版本号。"
+              jq -r '.message // .' <<< "$API_RESPONSE" 2>/dev/null || true
+            fi
+          else
+            echo "::warning::查询 Mihomo 官方版本失败。"
+          fi
+
+          if [[ "$API_OK" == "true" ]]; then
+            if [[ "$LOCAL_CORE_VALID" == "true" && "$LOCAL_VERSION" == "$LATEST_VERSION" ]]; then
+              echo "本地版本与官方版本一致，跳过核心下载。"
+            else
+              echo "需要首次下载或更新 Mihomo 核心：${LOCAL_VERSION:-无本地版本} -> $LATEST_VERSION"
+              DOWNLOAD_URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/mihomo-linux-amd64-${LATEST_VERSION}.gz"
+              TEMP_ARCHIVE="$TEMP_DIR/mihomo-linux-amd64.gz"
+
+              # 下载到临时文件，只有完整校验成功才替换仓库中的旧核心。
+              if curl -fSL \
+                  --retry 3 \
+                  --retry-all-errors \
+                  --retry-delay 2 \
+                  -o "$TEMP_ARCHIVE" \
+                  "$DOWNLOAD_URL" \
+                && validate_archive "$TEMP_ARCHIVE" "$TEMP_DIR/new-mihomo"; then
+                mv "$TEMP_ARCHIVE" "$CORE_ARCHIVE"
+                printf '%s\n' "$LATEST_VERSION" > "$VERSION_FILE"
+                LOCAL_VERSION="$LATEST_VERSION"
+                LOCAL_CORE_VALID="true"
+                echo "Mihomo 核心已成功更新并通过校验。"
+              else
+                if [[ "$LOCAL_CORE_VALID" == "true" ]]; then
+                  echo "::warning::新核心下载或校验失败，保留并继续使用现有本地核心：$LOCAL_VERSION"
+                else
+                  echo "::error::首次下载或核心校验失败，且没有可用的本地核心。"
+                  exit 1
+                fi
+              fi
+            fi
+          elif [[ "$LOCAL_CORE_VALID" == "true" ]]; then
+            echo "::warning::无法确认官方最新版本，继续使用已校验的本地核心：$LOCAL_VERSION"
+          else
+            echo "::error::无法获取官方版本，且项目中没有可用的本地 Mihomo 核心。"
+            exit 1
+          fi
+
+          # 每次运行都从项目内保存的压缩包提取核心；不安装系统级 Mihomo。
+          validate_archive "$CORE_ARCHIVE" "$CORE_BIN" || {
+            echo "::error::项目本地 Mihomo 核心最终校验失败。"
+            exit 1
+          }
+
+          echo "$CORE_DIR" >> "$GITHUB_PATH"
+          echo "最终使用的项目本地 Mihomo 核心："
+          "$CORE_BIN" -v
+
+      # 先保存首次下载或更新的核心，避免后续规则构建失败导致核心未持久化。
+      - name: Persist Mihomo core update
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add mihomo/mihomo-linux-amd64.gz mihomo/VERSION
+
+          if git diff --cached --quiet; then
+            echo "Mihomo 核心文件没有变化，无需单独提交。"
+            exit 0
+          fi
+
+          git commit -m "chore: update Mihomo core"
+          git push
 
       # 原有的规则转换任务（输出至 mrs_rules_sp）
       - name: Run original conversion script
         run: python build_mrs.py
 
-      # 新增的合并与去重转换任务（输出至 mrs_rules_ZH）
+      # 合并与去重转换任务（输出至 mrs_rules_ZH）
       - name: Run ZH domain merging and deduplication script
         run: python build_mrs_zh.py
 
-      # 统一提交并推送原规则集与新规则集
+      # 统一提交生成的规则文件以及 README
       - name: Commit and push generated MRS files
+        shell: bash
         run: |
-          # 配置 Git 提交者信息为 GitHub Actions Bot
+          set -Eeuo pipefail
+
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          # 同时追踪两个输出目录以及更新后的 README
+
+          # 只提交规则输出与 README；Mihomo 核心已在前一步单独持久化。
           git add mrs_rules_sp/ mrs_rules_ZH/ README.md
-          
-          # 如果有文件变更则提交，没有变更则静默退出避免报错
-          git commit -m "Auto-generate and merge MRS rules via mihomo" || exit 0
-          
-          # 推送回当前分支
+
+          if git diff --cached --quiet; then
+            echo "规则文件没有变化，无需提交。"
+            exit 0
+          fi
+
+          git commit -m "Auto-generate MRS rules"
           git push
