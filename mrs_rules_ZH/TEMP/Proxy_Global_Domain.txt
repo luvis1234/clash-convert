@@ -10491,6 +10491,7 @@
 +.g1.com.br
 +.g6hentai.com
 +.ga
++.ga.jspm.io
 +.gab.com
 +.gabia.net
 +.gabocorp.com
