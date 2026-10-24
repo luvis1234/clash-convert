@@ -98860,6 +98860,7 @@
 +.xingpai.com
 +.xingpaibilliard.com
 +.xingpan.com
++.xingpaste.com
 +.xingpin.com
 +.xingqier.com
 +.xingqisihuishou.com
