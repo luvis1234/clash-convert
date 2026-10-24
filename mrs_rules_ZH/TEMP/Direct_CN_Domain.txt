@@ -13575,7 +13575,6 @@
 +.baidusx.cc
 +.baidusx.com
 +.baidutab.com
-+.baidutieba.com
 +.baidutt.com
 +.baiduux.com
 +.baiduwaf.com
