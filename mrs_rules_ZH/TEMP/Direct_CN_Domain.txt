@@ -7449,6 +7449,7 @@
 +.77nt.info
 +.77pin.net
 +.77shu.com
++.77shuku.info
 +.77shuku.la
 +.77shuku.org
 +.77socks.com
@@ -91705,6 +91706,7 @@
 +.uzkqymgs.com
 +.uzosibzk.com
 +.uzshare.com
++.uzzf.com
 +.v-56.com
 +.v-jitp-dom.com
 +.v-jitp-dom.net
@@ -111131,6 +111133,7 @@ gayotv.net
 gonglchuangl.net
 googleapis-cn.com
 googleapps-cn.com
+googletraveladservices-cn.com
 gpb-hls.streamguys1.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
