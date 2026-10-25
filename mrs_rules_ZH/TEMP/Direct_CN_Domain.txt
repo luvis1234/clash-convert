@@ -10761,6 +10761,7 @@
 +.aitkcn.com
 +.aitntnews.com
 +.aito.auto
++.aitongqian.com
 +.aitoolwang.com
 +.aitrans.net
 +.aitransfy.com
@@ -88672,6 +88673,7 @@
 +.tjsjx.com
 +.tjskq.com
 +.tjskqyy.com
++.tjsptech.com
 +.tjst.net
 +.tjstats.com
 +.tjtele.com
@@ -93468,6 +93470,7 @@
 +.wanyuwang.com
 +.wanyx.com
 +.wanzaiwater.com
++.wanzd.com
 +.wanzhizr.com
 +.wanzhoujob.com
 +.wanzhoumo.com
