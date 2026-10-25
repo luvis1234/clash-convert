@@ -19376,6 +19376,7 @@
 +.cdqz.net
 +.cdrbs.net
 +.cdrcb.com
++.cdrcbank.com
 +.cdren.net
 +.cdrich.com
 +.cdrjob.com
@@ -25278,6 +25279,7 @@
 +.cqyygz.com
 +.cqyyjc.com
 +.cqyysx.com
++.cqyyxc.com
 +.cqyyzy.com
 +.cqyznews.com
 +.cqzbcg.com
@@ -49285,6 +49287,7 @@
 +.ibaizhu.com
 +.ibanana.club
 +.ibanbu.com
++.ibangbank.com
 +.ibanggo.com
 +.ibangkf.com
 +.ibangtiao.com
@@ -51411,6 +51414,7 @@
 +.isi-gf.com
 +.isiabio.com
 +.isign.ren
++.isigning.com
 +.isigu.com
 +.isilent.me
 +.isilicontech.com
@@ -67332,6 +67336,7 @@
 +.nannjlnk.com
 +.nanobody-biolab.com
 +.nanochrom.com
++.nanocorechip.com
 +.nanoeast.net
 +.nanoer.net
 +.nanoinglobal.com
@@ -111012,6 +111017,7 @@ aod.itunes.apple.com
 api-edge.apps.apple.com
 api.blipsandchitz.me
 app-site-association.cdn-apple.com
+app.moegirl.org.cn
 appldnld.apple.com
 appleid.cdn-apple.com
 apptrailers.itunes.apple.com
@@ -111348,6 +111354,7 @@ static.gc.apple.com
 statics.teams.cdn.office.net
 stocks-sparkline-lb.apple.com.akadns.net
 stocks-sparkline.apple.com
+storage.moegirl.org.cn
 store.apple.com
 store.apple.com.edgekey.net
 store.apple.com.edgekey.net.globalredir.akadns.net
