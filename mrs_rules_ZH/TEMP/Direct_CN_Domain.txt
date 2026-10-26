@@ -1896,7 +1896,6 @@
 +.16757.com
 +.16768.com
 +.168.192.in-addr.arpa
-+.168.com
 +.16816.com
 +.168267xz.com
 +.168338.com
@@ -32773,7 +32772,6 @@
 +.f2time.com
 +.f315.cc
 +.f3322.net
-+.f3322.org
 +.f33eb245b1022.beer
 +.f397350c0958109e.com
 +.f3ff28a3e1015.beer
@@ -46695,7 +46693,6 @@
 +.htgkdz.com
 +.htguosheng.com
 +.htgwf.com
-+.hth.com
 +.hthbet.com
 +.hti-instrument.com
 +.htidc.com
@@ -56569,7 +56566,6 @@
 +.kaiyuanweilaikeji.com
 +.kaiyuedoors.com
 +.kaiyueyun.com
-+.kaiyun.com
 +.kaiyun.net
 +.kaiyun360.com
 +.kaiyuncare.com
@@ -56857,7 +56853,6 @@
 +.kazhifu.com
 +.kazithai.com
 +.kazl.com
-+.kb.com
 +.kb54.com
 +.kb9.com
 +.kbans.com
@@ -60271,6 +60266,7 @@
 +.libaclub.com
 +.libai.com
 +.libaidns.com
++.libaishuo.com
 +.libao007.com
 +.libaopay.com
 +.libawall.com
@@ -71427,6 +71423,7 @@
 +.peiyingo.com
 +.peiyinshenqi.club
 +.peiyinxiu.com
++.peiyou.com
 +.peiyue.com
 +.peizi.com
 +.pejdw.com
@@ -110841,7 +110838,6 @@ gayotv.net
 gonglchuangl.net
 googleapis-cn.com
 googleapps-cn.com
-googletraveladservices-cn.com
 gpb-hls.streamguys1.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
