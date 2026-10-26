@@ -1896,6 +1896,7 @@
 +.16757.com
 +.16768.com
 +.168.192.in-addr.arpa
++.168.com
 +.16816.com
 +.168267xz.com
 +.168338.com
@@ -22168,6 +22169,7 @@
 +.cindaflc.com
 +.cindasc.com
 +.cindasoft.com
++.cindy.app
 +.cinehello.com
 +.cingta.com
 +.ciniaoppt.com
@@ -32772,6 +32774,7 @@
 +.f2time.com
 +.f315.cc
 +.f3322.net
++.f3322.org
 +.f33eb245b1022.beer
 +.f397350c0958109e.com
 +.f3ff28a3e1015.beer
@@ -46693,6 +46696,7 @@
 +.htgkdz.com
 +.htguosheng.com
 +.htgwf.com
++.hth.com
 +.hthbet.com
 +.hti-instrument.com
 +.htidc.com
@@ -56566,6 +56570,7 @@
 +.kaiyuanweilaikeji.com
 +.kaiyuedoors.com
 +.kaiyueyun.com
++.kaiyun.com
 +.kaiyun.net
 +.kaiyun360.com
 +.kaiyuncare.com
@@ -56853,6 +56858,7 @@
 +.kazhifu.com
 +.kazithai.com
 +.kazl.com
++.kb.com
 +.kb54.com
 +.kb9.com
 +.kbans.com
@@ -91434,7 +91440,6 @@
 +.uzkqymgs.com
 +.uzosibzk.com
 +.uzshare.com
-+.uzzf.com
 +.v-56.com
 +.v-jitp-dom.com
 +.v-jitp-dom.net
@@ -96057,6 +96062,7 @@
 +.wuhanghyy.com
 +.wuhanhexin.com
 +.wuhanins.com
++.wuhanjijin.com
 +.wuhanjingce.com
 +.wuhankb.com
 +.wuhankq.com
@@ -96898,6 +96904,7 @@
 +.xahxp.com
 +.xaidc.com
 +.xainjo.com
++.xaippc.com
 +.xaixs.org
 +.xajfwy.com
 +.xajiason.com

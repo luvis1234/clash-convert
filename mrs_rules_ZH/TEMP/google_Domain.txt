@@ -457,6 +457,7 @@
 +.googlesource.com
 +.googlestore.com
 +.googlesverige.com
++.googletraveladservices-cn.com
 +.googleusercontent.com
 +.googleventures.com
 +.googlevideo.com
