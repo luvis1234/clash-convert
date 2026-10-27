@@ -111047,7 +111047,9 @@ seed.siri.apple.com
 sequoia.apple.com
 setmeup.arubanetworks.com
 sf-api-token-service.itunes.apple.com
+sh-pod1-smp-device.apple.com
 sh-pod2-smp-device.apple.com
+sh-pod3-smp-device.apple.com
 shell.cdn.office.net
 slive.ytn.co.kr
 smp-device-content.apple.com

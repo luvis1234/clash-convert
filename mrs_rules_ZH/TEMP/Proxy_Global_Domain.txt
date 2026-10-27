@@ -2452,6 +2452,7 @@
 +.artel.watch
 +.arteldoc.com
 +.arteldoc.tv
++.artificialanalysis.ai
 +.artixlinux.org
 +.artnudegalleries.com
 +.artoferotica.info
@@ -6068,6 +6069,7 @@
 +.clickedu.co.uk
 +.clien.net
 +.climate-server.com
++.cline.bot
 +.cling.omy.sg
 +.clinica-tibet.ru
 +.clinical-videos.com
@@ -6331,6 +6333,7 @@
 +.comm-verse.com
 +.commandandconquer.com
 +.commandarms.com
++.commandcode.ai
 +.commbank
 +.comments.app
 +.commentshk.com
@@ -6385,6 +6388,7 @@
 +.contechacademy.com
 +.contentful.com
 +.contest.com
++.context7.com
 +.convio.net
 +.convrgencegame.com
 +.coobay.com
@@ -16597,6 +16601,7 @@
 +.met-nude.com
 +.meta.ai
 +.meta.com
++.metaaiusercontent.com
 +.metaaivm.com
 +.metabora.io
 +.metabrainz.org
@@ -18782,6 +18787,7 @@
 +.notion.so
 +.notionusercontent.com
 +.nottinghampost.com
++.nousresearch.com
 +.novafile.com
 +.novelai.net
 +.novelasia.com
@@ -24783,6 +24789,7 @@
 +.thinkgeek.com
 +.thinkingtaiwan.com
 +.thinkofliving.com
++.thinkorswim.com
 +.thinkquarterly.co.uk
 +.thinkquarterly.com
 +.thinkwithgoogle.com

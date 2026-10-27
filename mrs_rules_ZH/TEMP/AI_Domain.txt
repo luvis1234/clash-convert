@@ -481,6 +481,9 @@ antigravity.googleapis.com
 api.cloudflare.com
 api.msn.com
 api.ngc.nvidia.com
+appsgenaiserver-pa.clients.google.com
+appsgenaiserver-pa.clients6.google.com
+appsgenaiserver-pa.googleapis.com
 assets.msn.com
 auth.meta.com
 aws-language-servers.us-east-1.amazonaws.com
