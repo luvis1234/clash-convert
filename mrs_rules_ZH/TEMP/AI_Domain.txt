@@ -36,6 +36,7 @@
 +.arena.ai
 +.arize.com
 +.artbreeder.com
++.artificialanalysis.ai
 +.assemblyai.com
 +.atmeta.com
 +.augment.dev
