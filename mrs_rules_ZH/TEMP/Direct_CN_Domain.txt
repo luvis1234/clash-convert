@@ -19919,6 +19919,7 @@
 +.changyuangroup.com
 +.changyudz.com
 +.changyushengwu.com
++.changzhi.top
 +.changzhinews.com
 +.chanjet.com
 +.chanjue.net
@@ -47720,6 +47721,7 @@
 +.huluxia.net
 +.huluzc.com
 +.humaiyouxi.com
++.human-horizons.com
 +.humanplustech.com
 +.humanrights-china.org
 +.humanwellcaps.com
@@ -59459,6 +59461,7 @@
 +.ldb.cc
 +.ldbj.com
 +.ldbmcs.com
++.ldboost.com
 +.ldd.me
 +.lddengine.com
 +.lddgo.net
@@ -75703,6 +75706,7 @@
 +.qzxdianzi.com
 +.qzxkeji.com
 +.qzxx.com
++.qzy.xyz
 +.qzyckhzx.com
 +.qzynhhmm.com
 +.qzyonyou.com
@@ -98164,6 +98168,7 @@
 +.xiaoyanjiusheng.com
 +.xiaoyantong.com
 +.xiaoyanwenxue.com
++.xiaoyao.co
 +.xiaoyaodsx.com
 +.xiaoyaoxi.com
 +.xiaoyaoyou.com
