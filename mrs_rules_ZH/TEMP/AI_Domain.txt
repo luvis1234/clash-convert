@@ -278,6 +278,7 @@
 +.meetgeek.ai
 +.mem.ai
 +.meta.ai
++.metaaiusercontent.com
 +.metaaivm.com
 +.midjourney.com
 +.milvus.io
