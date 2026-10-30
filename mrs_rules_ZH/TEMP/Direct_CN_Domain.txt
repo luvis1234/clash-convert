@@ -7827,6 +7827,7 @@
 +.845e4a87610292.beer
 +.846645d29f0aa91f.com
 +.84684.net
++.847ds.com
 +.848.com
 +.848.tv
 +.84d8388721016.beer
@@ -57713,6 +57714,7 @@
 +.kkdnsv1.com
 +.kkdownload.com
 +.kkdzpt.com
++.kke.com.hk
 +.kkeji.com
 +.kkexcel.com
 +.kkffdns.com
@@ -71254,6 +71256,7 @@
 +.panyuwater.com
 +.paodoo.com
 +.paojiao.com
++.paojiaoyun.com
 +.paoka.com
 +.paokucloud.com
 +.paolanhuanbao.com
@@ -85057,6 +85060,7 @@
 +.sxjg-wl.com
 +.sxjgkg.com
 +.sxjhzsgc.com
++.sxjiabeide.com
 +.sxjianli.com
 +.sxjinfengjiuye.com
 +.sxjky.com
@@ -89226,6 +89230,8 @@
 +.topit.pro
 +.topjoy.com
 +.topjoycloud.com
++.topkee.com
++.topkee.top
 +.topkhealth.com
 +.topku.com
 +.toplife.com
@@ -103301,6 +103307,7 @@
 +.yixiu.cloud
 +.yixiubx.com
 +.yixiuxueyuan.com
++.yixlab.com
 +.yixuan.net
 +.yixue.com
 +.yixue99.com
