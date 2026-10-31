@@ -11291,6 +11291,7 @@
 +.allrace.com
 +.allred.vip
 +.allsafeip.com
++.allsaints.top
 +.allsaintsmusic.com
 +.allschool.com
 +.allschoolcdn.com
@@ -33960,6 +33961,7 @@
 +.ffy.com
 +.ffzww.com
 +.fg.cc
++.fgaiservice.com
 +.fgba.net
 +.fgcndigital.com
 +.fgeekcloud.com
