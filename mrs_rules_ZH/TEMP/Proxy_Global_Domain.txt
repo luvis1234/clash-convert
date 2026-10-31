@@ -25225,6 +25225,7 @@
 +.torproject.org
 +.torrentgalaxy.to
 +.torrentkitty.tv
++.torrentleech.org
 +.torrentmac.net
 +.torrentprivacy.com
 +.torrentproject.se
@@ -29245,6 +29246,7 @@
 +.youtubekids.com
 +.youtubemobilesupport.com
 +.youversion.com
++.youversionapi.com
 +.youwin.com
 +.youwuss.com
 +.youx.xxx

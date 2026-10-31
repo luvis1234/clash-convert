@@ -11416,7 +11416,6 @@
 +.amiyabot.com
 +.amo-solar.com
 +.amo9.com
-+.amobbs.com
 +.amoe.cc
 +.amonxu.com
 +.amoydxmed.com
@@ -86246,7 +86245,6 @@
 +.szyuda88.com
 +.szyundingschool.com
 +.szyuxin.com
-+.szyweibo.com
 +.szyxue.com
 +.szyxwdz.com
 +.szyxwkj.com
