@@ -44487,6 +44487,7 @@
 +.hexiangroup.com
 +.hexiaoxiang.com
 +.hexie.cc
++.hexieark.com
 +.hexieshaanxi.com
 +.hexilai.com
 +.hexin-puleather.com
@@ -45538,6 +45539,7 @@
 +.hndfzx.com
 +.hndgxh.com
 +.hndhsyjt.com
++.hndk1.com
 +.hndlhx.com
 +.hndlks.com
 +.hndmtjc.com
@@ -57740,6 +57742,7 @@
 +.kkmh.com
 +.kkmicro.com
 +.kkmm.com
++.kkmmy.com
 +.kkmop.com
 +.kkong.vip
 +.kkrb.net
@@ -60078,6 +60081,7 @@
 +.letwind.com
 +.letwx.com
 +.leuok.com
++.leux.net
 +.levc.com
 +.levcauto.com
 +.levect.com
@@ -62449,6 +62453,7 @@
 +.luxemon.com
 +.luxiangba.com
 +.luxiangdong.com
++.luxiangwu.com
 +.luxiangwu.net
 +.luxiaoche.com
 +.luxichemical.com
@@ -90543,6 +90548,7 @@
 +.tyjsq.com
 +.tykd.com
 +.tykmedicines.com
++.tylk.cc
 +.tylls.com
 +.tymcdn.com
 +.tymotor.cc
@@ -111147,7 +111153,6 @@ gayotv.net
 gonglchuangl.net
 googleapis-cn.com
 googleapps-cn.com
-googletraveladservices-cn.com
 gpb-hls.streamguys1.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
