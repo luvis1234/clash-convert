@@ -2852,6 +2852,7 @@
 +.224837439.xyz
 +.224m.com
 +.225.cc
++.225284.xyz
 +.2255039.com
 +.2258.com
 +.2259.com
@@ -17344,6 +17345,7 @@
 +.bustoprint.com
 +.bustruckexpo.com
 +.busuanzi.cc
++.busyming.com
 +.but7.com
 +.butair.com
 +.butao.com
@@ -27456,6 +27458,7 @@
 +.dd2007.com
 +.dd369.com
 +.dd373.com
++.dd3862.com
 +.dd4.com
 +.dd536adb110272.beer
 +.dd666mir.com
@@ -29503,6 +29506,7 @@
 +.doubanio.com
 +.doubao-dev.com
 +.doubao.com
++.doubaoapps.com
 +.doubaocdn.com
 +.doubaozhidao.com
 +.doubean.com
@@ -110726,6 +110730,7 @@
 +.zymc1.com
 +.zymkcdn.com
 +.zymkshop.com
++.zymls.com
 +.zyms8.me
 +.zyoffice.com
 +.zyoo.net
