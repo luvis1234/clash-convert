@@ -55098,8 +55098,6 @@
 +.jsddz.net
 +.jsdebang.com
 +.jsdehui.com
-+.jsdelivr.com
-+.jsdelivr.net
 +.jsdesign1.com
 +.jsdesoft.com
 +.jsdgb.com
@@ -74767,6 +74765,7 @@
 +.qpaimg.com
 +.qpdca.com
 +.qpdiy.com
++.qpe27.top
 +.qpgame.com
 +.qpgczx.com
 +.qphospital.com
