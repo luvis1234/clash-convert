@@ -12327,6 +12327,7 @@
 +.areader.com
 +.arebz.com
 +.arefly.com
++.arena-cn.com
 +.arenabreakoutcn.com
 +.arerberte.com
 +.areweloongyet.com
@@ -35180,6 +35181,7 @@
 +.ftqq.com
 +.ftsafe.com
 +.ftsfund.com
++.ftsup.com
 +.ftswcc.com
 +.fttrs.com
 +.ftuan.com
@@ -64345,6 +64347,7 @@
 +.meimingbao.net
 +.meimingteng.com
 +.meimingxuan.com
++.meimuyingxiao.com
 +.meinali.com
 +.meinenggas.com
 +.meinenggou.com
@@ -73476,6 +73479,7 @@
 +.qdfuns.com
 +.qdgaoshanyun.com
 +.qdgjj.com
++.qdgsny.com
 +.qdgw.com
 +.qdgxjt.com
 +.qdhantang.com
@@ -110620,6 +110624,7 @@
 +.zxnic.net
 +.zxnrh.com
 +.zxoid.com
++.zxp7.cc
 +.zxpcloud.com
 +.zxpec.com
 +.zxpmq.com
@@ -111177,6 +111182,7 @@ gayotv.net
 gonglchuangl.net
 googleapis-cn.com
 googleapps-cn.com
+googletraveladservices-cn.com
 gpb-hls.streamguys1.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
