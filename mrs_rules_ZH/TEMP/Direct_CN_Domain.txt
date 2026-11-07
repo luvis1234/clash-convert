@@ -25931,6 +25931,7 @@
 +.ctzcdn.com
 +.ctzcdn.net
 +.ctzg.com
++.ctzpj.com
 +.cu-air.com
 +.cu5gaia.com
 +.cuaa.net
@@ -28068,6 +28069,7 @@
 +.dgeia.com
 +.dgg.net
 +.dggcyy.com
++.dggdjt.com
 +.dggdk.com
 +.dgggs.com
 +.dgghy.com
@@ -42693,6 +42695,7 @@
 +.hanascitygas.com
 +.hanbi.live
 +.hanbige.com
++.hanbodianzi.com
 +.hanboshi.com
 +.hanbridge.org
 +.hanchacha.com
@@ -51896,6 +51899,7 @@
 +.ixzgkzps.com
 +.ixzzcgl.com
 +.iy-cd.com
++.iya365.com
 +.iyamusic.com
 +.iyangxi.com
 +.iyaou.com
@@ -63960,6 +63964,7 @@
 +.mazhizuo.com
 +.mazida.com
 +.mb-go.com
++.mb518.com
 +.mba518.com
 +.mbabao.com
 +.mbachina.com
@@ -87980,6 +87985,7 @@
 +.thepuli.com
 +.theringlive.com
 +.thesetech.com
++.theshikilab.com
 +.thesmartmelon.com
 +.theszt.com
 +.thetali.com
@@ -110699,6 +110705,7 @@
 +.zxsauto.com
 +.zxshe.com
 +.zxsmd.com
++.zxstech.com
 +.zxstyl.com
 +.zxswjx.com
 +.zxsx.org
