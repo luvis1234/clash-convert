@@ -2563,7 +2563,6 @@
 +.1nongjing.com
 +.1note.life
 +.1nyz.com
-+.1o057bolbb.com
 +.1o1o.xyz
 +.1otprlm.com
 +.1paibao.net
@@ -4014,7 +4013,6 @@
 +.37laboratory.com
 +.37med.com
 +.37pps.com
-+.37rk0rihje.com
 +.37swan.com
 +.37tang.com
 +.37tgy.com
@@ -17211,6 +17209,7 @@
 +.btgame.com
 +.btghotels.com
 +.btgljt.com
++.btgpy.com
 +.btgtravel.com
 +.bth.vip
 +.bthhotels.com
@@ -31377,7 +31376,6 @@
 +.eduzs.net
 +.edwiv.com
 +.edxmy.cc
-+.edyr2ip7zg.com
 +.ee067e33bd637916.com
 +.ee123.net
 +.ee1234.com
@@ -49532,6 +49530,7 @@
 +.ichinaenergy.com
 +.ichong123.com
 +.ichongdao.com
++.ichongjiayuan.com
 +.ichongqing.info
 +.ichtcm.com
 +.ichuanglan.com
@@ -49917,7 +49916,6 @@
 +.ifanrx.com
 +.ifareast.com
 +.ifatrabbit.com
-+.ifawj9hvvl.com
 +.ifaxin.com
 +.ifaxin.org
 +.ifconfig.cc
@@ -53669,6 +53667,7 @@
 +.jingweizhichuang.com
 +.jingwuhui.com
 +.jingwxcx.com
++.jingxi-wl.com
 +.jingxi.com
 +.jingxi.net
 +.jingxiang.work
@@ -67340,6 +67339,7 @@
 +.nanjingyinuo.com
 +.nanjixiong.com
 +.nanjtb.com
++.nanjyiyun.com
 +.nankaimba.org
 +.nanlew.com
 +.nanlingwater.com
@@ -75105,6 +75105,7 @@
 +.qsw.la
 +.qswk.com
 +.qswnet.com
++.qswpt.com
 +.qsxezgai.com
 +.qsxiaoshuo.com
 +.qsxiu.com
@@ -102899,6 +102900,7 @@
 +.yikao88.com
 +.yikaoapp.com
 +.yikaochacha.com
++.yikeapi.com
 +.yikebus.com
 +.yikedou.com
 +.yikeou.com
