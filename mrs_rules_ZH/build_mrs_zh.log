@@ -1,6 +1,6 @@
 ========================================================================
 🚀 MRS ZH 规则构建开始
-🕒 开始时间: 2026-11-10 17:37:49
+🕒 开始时间: 2026-11-11 00:30:41
 📁 输出目录: /home/runner/work/clash-convert/clash-convert/mrs_rules_ZH
 📝 执行日志: /home/runner/work/clash-convert/clash-convert/mrs_rules_ZH/build_mrs_zh.log
 ========================================================================
@@ -12,80 +12,80 @@ Use tags: with_gvisor
 ⚠️ 配置提示: URL 同时出现在 'Proxy_Global' 和 'google': https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml
 
 🔄 正在处理规则组: Reject_Ads ...
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.xiaomi-onlydomains.txt
-    suffix=0, exact=349, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple-onlydomains.txt
-    suffix=0, exact=104, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.huawei-onlydomains.txt
-    suffix=0, exact=146, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt
-    suffix=0, exact=201, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.oppo-realme-onlydomains.txt
-    suffix=0, exact=489, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt
-    suffix=0, exact=365, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt
-    suffix=0, exact=243, ipcidr=0, classical=0
-  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/ips/tif.txt
-    suffix=0, exact=0, ipcidr=35,005, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.amazon-onlydomains.txt
     suffix=0, exact=373, ipcidr=0, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.tiktok.extended-onlydomains.txt
     suffix=0, exact=828, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.apple-onlydomains.txt
+    suffix=0, exact=104, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.xiaomi-onlydomains.txt
+    suffix=0, exact=349, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.samsung-onlydomains.txt
+    suffix=0, exact=201, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.vivo-onlydomains.txt
+    suffix=0, exact=243, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.winoffice-onlydomains.txt
+    suffix=0, exact=365, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.huawei-onlydomains.txt
+    suffix=0, exact=146, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/native.oppo-realme-onlydomains.txt
+    suffix=0, exact=489, ipcidr=0, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/urlshortener-onlydomains.txt
-    suffix=0, exact=9,779, ipcidr=0, classical=0
+    suffix=0, exact=9,789, ipcidr=0, classical=0
+  ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/ips/tif.txt
+    suffix=0, exact=0, ipcidr=35,008, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/anti.piracy-onlydomains.txt
-    suffix=0, exact=60,883, ipcidr=0, classical=0
+    suffix=0, exact=60,957, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
-    suffix=197,182, exact=0, ipcidr=0, classical=0
+    suffix=197,596, exact=0, ipcidr=0, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.mini-onlydomains.txt
-    suffix=0, exact=187,016, ipcidr=0, classical=0
+    suffix=0, exact=185,834, ipcidr=0, classical=0
   ✓ https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/ultimate-onlydomains.txt
-    suffix=0, exact=264,198, ipcidr=0, classical=0
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ads-all.yaml
-    suffix=199,844, exact=0, ipcidr=0, classical=0
+    suffix=0, exact=264,254, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml
     suffix=241,657, exact=0, ipcidr=53, classical=0
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ads-all.yaml
+    suffix=197,182, exact=0, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingTest/AdvertisingTest_Domain.yaml
     suffix=301,899, exact=12,873, ipcidr=285, classical=0
   ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical.yaml
     suffix=301,899, exact=12,873, ipcidr=629, classical=280
   📊 源处理结果: 成功 19/19，失败 0/19
-  🧹 开始域名去重。合并前域名数: 843,133
-  ✨ 域名去重完成。优化后域名数: 686,766
-  🛡️ 完整广告排除基准已建立：suffix=377,444, exact=309,322, ipcidr=31,086, classical=280, domain-keyword=280
+  🧹 开始域名去重。合并前域名数: 842,088
+  ✨ 域名去重完成。优化后域名数: 686,113
+  🛡️ 完整广告排除基准已建立：suffix=377,033, exact=309,080, ipcidr=31,088, classical=280, domain-keyword=280
 
 🔄 正在处理规则组: Direct_CN ...
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-cn.yaml
     suffix=49, exact=0, ipcidr=0, classical=0
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/private.yaml
-    suffix=0, exact=0, ipcidr=28, classical=0
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-bank-cn.yaml
     suffix=60, exact=0, ipcidr=0, classical=0
-  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt
-    suffix=0, exact=0, ipcidr=28, classical=0
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/private.yaml
     suffix=118, exact=14, ipcidr=0, classical=1
+  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt
+    suffix=0, exact=0, ipcidr=28, classical=0
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/private.yaml
+    suffix=0, exact=0, ipcidr=28, classical=0
   ✓ https://raw.githubusercontent.com/Aethersailor/Custom_OpenClash_Rules/refs/heads/main/rule/Custom_Direct_Domain.yaml
     suffix=1,193, exact=0, ipcidr=0, classical=0
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml
-    suffix=0, exact=0, ipcidr=14,775, classical=0
-  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
-    suffix=0, exact=0, ipcidr=9,647, classical=0
   ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaIPs/ChinaIPs_IP.txt
     suffix=0, exact=0, ipcidr=19,619, classical=0
+  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    suffix=0, exact=0, ipcidr=9,647, classical=0
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/cn.yaml
+    suffix=0, exact=0, ipcidr=14,775, classical=0
   ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Domain.yaml
     suffix=109,881, exact=270, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
-    suffix=109,629, exact=559, ipcidr=0, classical=0
+    suffix=109,630, exact=559, ipcidr=0, classical=0
   ⚠️ 检测到未知 Classical 规则类型: ip-asn=2, process-name=31
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/cn.yaml
     suffix=109,751, exact=585, ipcidr=0, classical=81
   📊 源处理结果: 成功 12/12，失败 0/12
   🛡️ Reject_Ads 直接重叠排除完成：Domain=1,533 (suffix=1,471, exact=62)，Classical=0
   🛡️ IP 排除：输入 CIDR=11,676，完全删除=0，部分拆分=576，排除地址数=16,736，输出 CIDR=129,440
-  🧹 开始域名去重。合并前域名数: 111,940
-  ✨ 域名去重完成。优化后域名数: 111,599
+  🧹 开始域名去重。合并前域名数: 111,941
+  ✨ 域名去重完成。优化后域名数: 111,600
 
 🔄 正在处理规则组: Proxy_Global ...
   ⚠️ 检测到未知 Classical 规则类型: process-name=6
@@ -95,27 +95,27 @@ Use tags: with_gvisor
     suffix=829, exact=0, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
     suffix=4,452, exact=0, ipcidr=0, classical=0
+  ⚠️ 检测到未知 Classical 规则类型: process-name=27, process-name-regex=8, process-path-regex=15
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/clash/geolocation-!cn.yaml
+    suffix=313, exact=135, ipcidr=0, classical=96
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-!cn.yaml
+    suffix=829, exact=0, ipcidr=0, classical=0
+  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml
+    suffix=0, exact=0, ipcidr=8,426, classical=0
+  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
+    suffix=26,580, exact=771, ipcidr=0, classical=0
   ⚠️ 检测到未知 Classical 规则类型: ip-asn=2, process-name=32, process-name-regex=3, process-name-wildcard=4
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/google.yaml
     suffix=920, exact=242, ipcidr=5, classical=48
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/gfw.yaml
     suffix=4,433, exact=0, ipcidr=0, classical=0
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/tld-!cn.yaml
-    suffix=829, exact=0, ipcidr=0, classical=0
-  ⚠️ 检测到未知 Classical 规则类型: process-name=27, process-name-regex=8, process-path-regex=15
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/clash/geolocation-!cn.yaml
-    suffix=313, exact=135, ipcidr=0, classical=96
-  ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml
-    suffix=0, exact=0, ipcidr=8,426, classical=0
-  ✓ https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
-    suffix=26,575, exact=771, ipcidr=0, classical=0
   ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical.yaml
     suffix=6,850, exact=9, ipcidr=100, classical=26
   📊 源处理结果: 成功 10/10，失败 0/10
   🛡️ Reject_Ads 直接重叠排除完成：Domain=568 (suffix=445, exact=123)，Classical=0
   🛡️ IP 排除：输入 CIDR=8,524，完全删除=0，部分拆分=20，排除地址数=1,132，输出 CIDR=9,676
-  🧹 开始域名去重。合并前域名数: 30,831
-  ✨ 域名去重完成。优化后域名数: 29,718
+  🧹 开始域名去重。合并前域名数: 30,835
+  ✨ 域名去重完成。优化后域名数: 29,722
 
 🔄 正在处理规则组: mydirect ...
   ✓ https://raw.githubusercontent.com/luvis1234/clash-convert/refs/heads/main/mydirect.txt
@@ -126,14 +126,14 @@ Use tags: with_gvisor
   ⚠️ 本规则组在广告重叠排除后没有剩余规则，旧输出将清理。
 
 🔄 正在处理规则组: AI ...
+  ⚠️ 检测到未知 Classical 规则类型: ip-asn=3, process-name=23
+  ✓ https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/refs/heads/main/rules/clash/global.yaml
+    suffix=251, exact=60, ipcidr=6, classical=24
   ⚠️ 检测到未知 Classical 规则类型: ip-asn=2
   ✓ https://raw.githubusercontent.com/viewer12/OverseasAI.list/main/rule/Clash/OverseasAI/OverseasAI.list
     suffix=399, exact=84, ipcidr=2, classical=13
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/category-ai-!cn.yaml
     suffix=180, exact=37, ipcidr=0, classical=1
-  ⚠️ 检测到未知 Classical 规则类型: ip-asn=3, process-name=23
-  ✓ https://raw.githubusercontent.com/VPSDance/ai-proxy-rules/refs/heads/main/rules/clash/global.yaml
-    suffix=251, exact=60, ipcidr=6, classical=24
   ✓ https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml
     suffix=7, exact=3, ipcidr=0, classical=3
   📊 源处理结果: 成功 4/4，失败 0/4
@@ -143,12 +143,12 @@ Use tags: with_gvisor
   ✨ 域名去重完成。优化后域名数: 538
 
 🔄 正在处理规则组: google ...
-  ⚠️ 检测到未知 Classical 规则类型: process-name=6
-  ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml
-    suffix=684, exact=1, ipcidr=5, classical=11
   ⚠️ 检测到未知 Classical 规则类型: ip-asn=2, process-name=32, process-name-regex=3, process-name-wildcard=4
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geosite/google.yaml
     suffix=920, exact=242, ipcidr=5, classical=48
+  ⚠️ 检测到未知 Classical 规则类型: process-name=6
+  ✓ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml
+    suffix=684, exact=1, ipcidr=5, classical=11
   ✓ https://raw.githubusercontent.com/bgpeer/rules/refs/heads/main/geo/geoip/google.yaml
     suffix=0, exact=0, ipcidr=8,426, classical=0
   📊 源处理结果: 成功 3/3，失败 0/3
@@ -179,23 +179,23 @@ Use tags: with_gvisor
   🧹 开始域名去重。合并前域名数: 321
   ✨ 域名去重完成。优化后域名数: 160
 
-🔎 Reject_Ads DOMAIN-KEYWORD 自身精简完成：精简前=686,766，移除=23,822 (suffix=16,922, exact=6,900)，保留=662,944
+🔎 Reject_Ads DOMAIN-KEYWORD 自身精简完成：精简前=686,113，移除=23,808 (suffix=16,922, exact=6,886)，保留=662,305
   ℹ️ DOMAIN-KEYWORD 仅精简 Reject_Ads 自身域名；未用于其他规则组的域名子串排除。
 
 📦 开始生成最终规则集文件 ...
 
   ▶ 生成规则组: Reject_Ads
-  ✅ MRS 已生成: mrs_rules_ZH/Reject_Ads_Domain.mrs (5,026,290 bytes)
+  ✅ MRS 已生成: mrs_rules_ZH/Reject_Ads_Domain.mrs (5,019,472 bytes)
   ✅ MRS 已生成: mrs_rules_ZH/Reject_Ads_IP.mrs (81,996 bytes)
   📝 Classical text 已生成: mrs_rules_ZH/Reject_Ads_Classical.txt (共 280 条规则)
 
   ▶ 生成规则组: Direct_CN
-  ✅ MRS 已生成: mrs_rules_ZH/Direct_CN_Domain.mrs (540,959 bytes)
+  ✅ MRS 已生成: mrs_rules_ZH/Direct_CN_Domain.mrs (540,925 bytes)
   ✅ MRS 已生成: mrs_rules_ZH/Direct_CN_IP.mrs (151,244 bytes)
   📝 Classical text 已生成: mrs_rules_ZH/Direct_CN_Classical.txt (共 82 条规则)
 
   ▶ 生成规则组: Proxy_Global
-  ✅ MRS 已生成: mrs_rules_ZH/Proxy_Global_Domain.mrs (210,087 bytes)
+  ✅ MRS 已生成: mrs_rules_ZH/Proxy_Global_Domain.mrs (210,107 bytes)
   ✅ MRS 已生成: mrs_rules_ZH/Proxy_Global_IP.mrs (10,238 bytes)
   📝 Classical text 已生成: mrs_rules_ZH/Proxy_Global_Classical.txt (共 166 条规则)
 
@@ -220,6 +220,6 @@ Use tags: with_gvisor
 ✅ 成功源: 53
 ❌ 失败源: 0
 📦 成功输出: 17 个
-⏱️ 总耗时: 48.34 秒
+⏱️ 总耗时: 54.38 秒
 📝 日志文件: mrs_rules_ZH/build_mrs_zh.log
 ========================================================================

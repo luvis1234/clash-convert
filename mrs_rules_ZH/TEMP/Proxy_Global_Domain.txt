@@ -11574,6 +11574,8 @@
 +.grabpussy.com
 +.gradconnection.com
 +.gradeuptube.com
++.grafana.com
++.grafana.net
 +.grafolio.com
 +.graias.com
 +.graiasmovies.com
@@ -21294,6 +21296,7 @@
 +.quatrum.com.br
 +.quay.io
 +.quebec
++.questionablequesting.com
 +.questvisual.com
 +.quicinc.com
 +.quickbook.com.br
@@ -23518,6 +23521,7 @@
 +.soylent.com
 +.soylentnews.org
 +.sp.cool
++.spacebattles.com
 +.spaceexplored.com
 +.spaceforce.mil
 +.spacely.com.au
