@@ -35558,7 +35558,6 @@
 +.fxkedu.com
 +.fxlbb.com
 +.fxlbl.com
-+.fxltsbl.com
 +.fxm.so
 +.fxo2opt.com
 +.fxpai.com
@@ -80923,6 +80922,7 @@
 +.shirenzuojia.com
 +.shiritianchengtech.com
 +.shirongzhaoye.com
++.shirui3.com
 +.shisanzhi.com
 +.shiseidochina.com
 +.shishacharcoal.net
@@ -98326,6 +98326,7 @@
 +.xiaokepu.com
 +.xiaokjwl.com
 +.xiaokjwl66.com
++.xiaokuai.com
 +.xiaokuihua.net
 +.xiaokusha.com
 +.xiaolachuxing.com
@@ -106872,6 +106873,7 @@
 +.zemismart.com
 +.zen-est.com
 +.zencheer.com
++.zendao8.top
 +.zengenti.com
 +.zengjunpeng.com
 +.zengjunyin.com
