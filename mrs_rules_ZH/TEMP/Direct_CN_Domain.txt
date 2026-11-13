@@ -11883,6 +11883,7 @@
 +.anzhuoshouzhuan.com
 +.anzmy.com
 +.anzogame.com
++.anzz.site
 +.ao-di.com
 +.ao-hua.com
 +.ao3-cn.com
@@ -53082,6 +53083,7 @@
 +.jianzhimao.com
 +.jianzhiwangzhan.com
 +.jianzhiweike.net
++.jianzhixiaoke.net
 +.jianzhiyixin.com
 +.jianzhong-edu.com
 +.jianzhusheying.com
@@ -79763,6 +79765,7 @@
 +.sh-nemoto.com
 +.sh-oca.com
 +.sh-pet.com
++.sh-playmax.com
 +.sh-pn.com
 +.sh-pp.com
 +.sh-printing.com
@@ -83170,6 +83173,7 @@
 +.sobute.com
 +.socang.com
 +.socay.com
++.socbro.com
 +.soccerbar.cc
 +.socchina.net
 +.soche8.com
@@ -99857,6 +99861,7 @@
 +.xmcx.net
 +.xmcy.com
 +.xmdh.com
++.xmearth.online
 +.xmeasygo.com
 +.xmecard.com
 +.xmerak.com
