@@ -14920,6 +14920,7 @@
 +.betaflare.com
 +.betahub.tech
 +.betaidc.com
++.betaints.com
 +.betamao.me
 +.betaquantity.com
 +.betasmart.tech
@@ -39468,6 +39469,7 @@
 +.guazhuan.com
 +.guazi-apps.com
 +.guazi.com
++.guazi.fun
 +.guazi.net
 +.guazipai.com
 +.guazistatic.com
@@ -88826,6 +88828,7 @@
 +.tjmhc.com
 +.tjmldy.com
 +.tjmuch.com
++.tjnhscgs.com
 +.tjnjw.com
 +.tjoy.biz
 +.tjpa-china.org
@@ -103420,6 +103423,7 @@
 +.yishang.cc
 +.yishangwang.com
 +.yishangye.com
++.yishares.com
 +.yishengfanyi.com
 +.yishihui.com
 +.yishihui.net
