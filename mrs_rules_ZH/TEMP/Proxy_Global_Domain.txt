@@ -6935,6 +6935,7 @@
 +.deasians.com
 +.debank.com
 +.debian.org
++.debot.ai
 +.debug.com
 +.debugproject.com
 +.decentr.net
@@ -21689,6 +21690,7 @@
 +.religionnews.com
 +.religioustolerance.org
 +.remirepo.net
++.remna.dev
 +.remna.st
 +.rencapbank.ru
 +.renchead.com

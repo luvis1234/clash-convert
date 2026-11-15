@@ -18330,6 +18330,7 @@
 +.capsuleshanghai.com
 +.captain-cro.com
 +.captainbi.com
++.captive.apple.com
 +.capturetheflag.fun
 +.capvision.com
 +.capwhale.com
@@ -38658,7 +38659,6 @@
 +.google-hub.com
 +.googlebbs.net
 +.googlenav.com
-+.googleplus.party
 +.googleppy.com
 +.googlevoice.org
 +.googleyixia.com
@@ -111352,6 +111352,7 @@ cn.windowssearch.com
 communities.apple.com
 configuration.apple.com
 configuration.apple.com.akadns.net
+configuration.ls.apple.com
 connectivitycheck.gstatic.com
 crl-lb.apple.com.akadns.net
 crl.apple.com
@@ -111539,9 +111540,11 @@ moocs.unipus.cn
 movie.mcas.jp
 ms3.yichuntv.com
 music.apple.com
+musicstatus.itunes.apple.com
 musicstatus.music.apple.com
 mvod.itunes.apple.com
 myapp.itunes.apple.com
+mzstorekit.itunes.apple.com
 n18.rcs.revma.com
 necgokr2-724.acs.wecandeo.com
 nettvpro.live
