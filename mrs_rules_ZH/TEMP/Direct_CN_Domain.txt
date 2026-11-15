@@ -49735,6 +49735,7 @@
 +.idazhe.net
 +.idbhost.com
 +.idc-icp.com
++.idc.cash
 +.idc002.com
 +.idc021.com
 +.idc029.com
@@ -67129,6 +67130,7 @@
 +.mytaizhou.net
 +.mytaofun.com
 +.mytencentes.com
++.mytentv.com
 +.mythbird.com
 +.mythcall.com
 +.mythcare.com
