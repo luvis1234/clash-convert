@@ -57029,6 +57029,7 @@
 +.kantianqi.net
 +.kantsuu.com
 +.kantu.com
++.kanv7k.live
 +.kanwuye.com
 +.kanwz.net
 +.kanxiquan.com
@@ -60101,6 +60102,7 @@
 +.lenovoconnect.com
 +.lenovoeservice.com
 +.lenovofile.com
++.lenovofuturecenter.com
 +.lenovogame.com
 +.lenovohci.com
 +.lenovohuishang.com
@@ -74966,6 +74968,7 @@
 +.qpkaifa.com
 +.qplus.com
 +.qplusstatic.com
++.qpmcn.com
 +.qpmwg68cre9pci.com
 +.qpoc.com
 +.qpstar.com
@@ -107660,6 +107663,7 @@
 +.zhaokuaizhao.com
 +.zhaolaobanla.com
 +.zhaoliangji.com
++.zhaoliangjipc.com
 +.zhaoliming.net
 +.zhaoming.biz
 +.zhaomishijie.com
@@ -110046,6 +110050,7 @@
 +.znhospital.com
 +.znhr.com
 +.znhwhw.com
++.znigddzwz.cc
 +.znjchina.com
 +.znjj.tv
 +.znjs.com
