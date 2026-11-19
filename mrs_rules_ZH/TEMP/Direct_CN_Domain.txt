@@ -12067,7 +12067,6 @@
 +.api-m.com
 +.api-vod-qcloud.com
 +.api.crisp.chat
-+.api.myip.com
 +.api.so
 +.apiairasia.com
 +.apiandroid.com
@@ -20202,9 +20201,7 @@
 +.checi.org
 +.check.cc
 +.checkaigc.com
-+.checkip.dyndns.org
 +.checkip.pw
-+.checkipv6.dyndns.org
 +.checkmath.net
 +.checkoo.com
 +.checkpass.net
@@ -37892,7 +37889,6 @@
 +.gityuan.com
 +.gityx.com
 +.giveda.com
-+.giveup.top
 +.giyu8.com
 +.gizaworks.com
 +.gizwits.com
@@ -49606,6 +49602,7 @@
 +.icinfo.net
 +.icirculation.com
 +.icitizens.net
++.icitycdn.com
 +.icitymobile.com
 +.icixun.com
 +.iciyuan.com
@@ -49979,7 +49976,6 @@
 +.ifaxin.com
 +.ifaxin.org
 +.ifconfig.cc
-+.ifconfig.co
 +.ifcresidence.com
 +.ifdian.net
 +.ifeart.ltd
@@ -51168,7 +51164,6 @@
 +.ipaomi.com
 +.ipaotuan.com
 +.ipapark.com
-+.ipapi.co
 +.ipason.com
 +.ipay.so
 +.ipaylinks.com
@@ -57756,7 +57751,6 @@
 +.kissyj.com
 +.kissyui.com
 +.kit-lee.me
-+.kit327.com
 +.kitic.net
 +.kitiu.com
 +.kitking.com
@@ -94034,6 +94028,7 @@
 +.weboss.hk
 +.webpackjs.com
 +.webportal.cc
++.webportal.top
 +.webportalapi.com
 +.webpower.asia
 +.webpowerchina.com
@@ -105366,6 +105361,7 @@
 +.yueye7.com
 +.yueyear.com
 +.yueyitingxin.com
++.yueyouqu.com
 +.yueyouxs.com
 +.yueyu114.com
 +.yueyuanzhiye.com
