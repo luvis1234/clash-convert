@@ -1,4 +1,4 @@
-# Update Time: 2026-11-20 01:02:39 UTC
+# Update Time: 2026-11-21 00:37:10 UTC
 # Total Domains: 1220
 
 .1rtb.net
