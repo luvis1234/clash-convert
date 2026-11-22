@@ -4777,6 +4777,7 @@
 +.bravoteens.com
 +.bravotube.net
 +.bravotube.tv
++.bravotv.com
 +.brawlstars.com
 +.brawlstarsgame.com
 +.brazilpartneruniversity.com
@@ -6172,6 +6173,7 @@
 +.cna.com.tw
 +.cnabc.com
 +.cnbc.com
++.cnbccouncils.com
 +.cnbcfm.com
 +.cnbeta.com
 +.cnbeta.com.tw
@@ -9310,6 +9312,7 @@
 +.fantom.network
 +.fantv.hk
 +.fanyue.info
++.fanza.jp
 +.fap-xxx.com
 +.fap18.net
 +.fap666.com
@@ -9807,6 +9810,7 @@
 +.fo
 +.foampositeshoes.com
 +.fochk.org
++.focusfeatures.com
 +.focustaiwan.tw
 +.focusvpn.com
 +.fofg-europe.net
@@ -11847,6 +11851,7 @@
 +.hayabusa.media
 +.hayday.com
 +.haydaygame.com
++.hayu.com
 +.hayya.ae
 +.hbabit.com
 +.hbfile.net
@@ -13386,6 +13391,7 @@
 +.ilife.wang
 +.illawarramercury.com.au
 +.illgames.jp
++.illumination.com
 +.illusion111.com
 +.illusionas.com
 +.illusionchn.com
@@ -17595,7 +17601,6 @@
 +.msn.com
 +.msn.com.tw
 +.msn.net
-+.msnbc.com
 +.msnewskids.com
 +.msnewskids.net
 +.msnewskids.org
@@ -18065,7 +18070,10 @@
 +.nbcolympics.com
 +.nbcsports.com
 +.nbcudigitaladops.com
++.nbcumv.com
++.nbcunicareers.com
 +.nbcuniversal.com
++.nbcuniversalprivacy.com
 +.nbdh15.buzz
 +.nbtvpn.com
 +.nbys.tv
@@ -21625,6 +21633,7 @@
 +.renyurenquan.org
 +.renzhe.cloud
 +.repe21.com
++.replit.com
 +.repo.new
 +.report-megafon.ru
 +.repotama.com
@@ -24442,6 +24451,7 @@
 +.telegraph.co.uk
 +.telekom.com
 +.telekom.de
++.telemundo.com
 +.telerik.com
 +.telesco.pe
 +.telesec.de
@@ -25153,6 +25163,7 @@
 +.torrenty.org
 +.torrentz.eu
 +.torrindex.net
++.tortoisegit.org
 +.tortoisesvn.net
 +.torvpn.com
 +.toshiba
@@ -25755,6 +25766,7 @@
 +.udnfunlife.com
 +.udomain.hk
 +.udtrucksmeena.com
++.udxfpp.com
 +.ueberamazon.de
 +.uflash.tv
 +.uforadio.com.tw
@@ -25847,11 +25859,18 @@
 +.unitedsocialpress.com
 +.unity.com
 +.unity3d.com
++.universalbeijingresort.com
++.universalhorrorunleashed.com
++.universalkidsresort.com
 +.universalorlando.com
++.universalpictures.co.uk
 +.universalpictures.com
++.universalpicturesathome.com
 +.universalpicturesinternational.com
++.universalproductsexperiences.com
 +.universalscalablefirmware.org
 +.universalstudioshollywood.com
++.universalukproject.co.uk
 +.universitypressscholarship.com
 +.unix100.com
 +.unknownspace.org
@@ -25885,6 +25904,7 @@
 +.upfrontcfd.com
 +.upfrontfea.com
 +.upghsbc.com
++.uphe.com
 +.upholdjustice.org
 +.upjav.cc
 +.uplay-istrip.com
@@ -25946,6 +25966,7 @@
 +.usertrust.com
 +.usfk.mil
 +.usgs.gov
++.usj.co.jp
 +.usma.edu
 +.usmc.mil
 +.usocctn.com
