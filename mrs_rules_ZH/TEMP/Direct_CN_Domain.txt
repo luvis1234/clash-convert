@@ -58770,6 +58770,7 @@
 +.kunshandx.com
 +.kunst-x.com
 +.kuntaihotel.com
++.kuntapp.com
 +.kuntin.com
 +.kunyamedical.com
 +.kuo-yi.com
@@ -69093,6 +69094,7 @@
 +.nmgwhly.com
 +.nmgwxgs.com
 +.nmgyjszx.com
++.nmjsjs.com
 +.nmjtzy.com
 +.nmjyl.com
 +.nmkjxy.com
@@ -75797,6 +75799,7 @@
 +.quumibao.com
 +.quumii.com
 +.quvisa.com
++.quwan.co
 +.quwan.com
 +.quwangming.com
 +.quwenqing.com
@@ -95486,6 +95489,7 @@
 +.windfone.com
 +.windfonts.com
 +.windin.com
++.windinput.com
 +.windmsn.com
 +.windoor168.com
 +.windows10.pro
