@@ -10720,6 +10720,7 @@
 +.gemfury.com
 +.gemini.com
 +.gemini.google
++.gemma.ai
 +.gen.lib.rus.ec
 +.genbank.ru
 +.gencraft.com
@@ -29535,7 +29536,6 @@ doh-jp.blahdns.com
 doh-pure.onedns.net
 doh.42l.fr
 doh.armadillodns.net
-doh.centraleu.pi-dns.com
 doh.cleanbrowsing.org
 doh.crypto.sx
 doh.dnslify.com
@@ -29572,7 +29572,6 @@ hub.slarker.me
 i.jeded.com
 ibuki.cgnat.net
 imperial.insendi.com
-jcdns.fun
 jp.tiar.app
 jp.tiarap.org
 licdn.cn.cdn20.com
