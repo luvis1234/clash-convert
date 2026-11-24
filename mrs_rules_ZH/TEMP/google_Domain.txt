@@ -191,6 +191,7 @@
 +.gbiz
 +.gcr.io
 +.gemini.google
++.gemma.ai
 +.gerritcodereview.com
 +.get.app
 +.get.dev
