@@ -5130,6 +5130,7 @@
 +.cachefly.com
 +.cachefly.net
 +.cachinese.com
++.cachix.org
 +.cacnw.com
 +.cactusvpn.com
 +.cad-mep.com
@@ -9371,6 +9372,7 @@
 +.fastly.com
 +.fastly.io
 +.fastly.net
++.fastlydns.net
 +.fastlylabs.com
 +.fastlylb.net
 +.fastmail.com
@@ -26632,6 +26634,7 @@
 +.vivatube.com
 +.vivaxnxx.com
 +.vivo
++.vivox.com
 +.vivthomas.com
 +.vixen.com
 +.vixengroup.com
@@ -29508,6 +29511,7 @@ bybit.ada.support
 cbsi.live.ott.irdeto.com
 cbsplaylistserver.aws.syncbak.com
 cbsservice.aws.syncbak.com
+courses.myecnu.org
 crl.versign.net
 databank.worldbank.org
 datarouter.apps.netherrealm.com
