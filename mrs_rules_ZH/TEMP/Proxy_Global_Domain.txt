@@ -29533,6 +29533,7 @@ dns-tls.qis.io
 dns.aa.net.uk
 dns.aaflalo.me
 dns.containerpi.com
+dns.dnsoverhttps.net
 dns.flatuslifir.is
 dns.google
 dns.hostux.net
@@ -29551,11 +29552,13 @@ doh-jp.blahdns.com
 doh-pure.onedns.net
 doh.42l.fr
 doh.armadillodns.net
+doh.centraleu.pi-dns.com
 doh.cleanbrowsing.org
 doh.crypto.sx
 doh.dnslify.com
 doh.eastus.pi-dns.com
 doh.ffmuc.net
+doh.li
 doh.libredns.gr
 doh.northeu.pi-dns.com
 doh.onedns.net
@@ -29587,6 +29590,7 @@ hub.slarker.me
 i.jeded.com
 ibuki.cgnat.net
 imperial.insendi.com
+jcdns.fun
 jp.tiar.app
 jp.tiarap.org
 licdn.cn.cdn20.com
