@@ -8152,6 +8152,7 @@
 +.8ddbf947e1020.beer
 +.8dei.com
 +.8dexpress.com
++.8dks.com
 +.8dn.com
 +.8dol.com
 +.8dou.com
@@ -34288,6 +34289,7 @@
 +.fit2cloud.com
 +.fitgroup.com
 +.fitit100.com
++.fitkingshop.com
 +.fitoneapp.com
 +.fittentech.com
 +.fittingcn.com
@@ -39224,6 +39226,7 @@
 +.gtjt.com
 +.gtk-china.com
 +.gtkj.tech
++.gtl-test.com
 +.gtlggy.com
 +.gtlrxt.com
 +.gtm-a1b2.com
@@ -39984,6 +39987,7 @@
 +.gxar.com
 +.gxasjc.com
 +.gxasjn.com
++.gxau.net
 +.gxawjmy.com
 +.gxaxjy.com
 +.gxaxpc.com
@@ -67122,7 +67126,6 @@
 +.mypian.com
 +.mypiao.com
 +.mypiaojia.com
-+.mypikpak.net
 +.mypitaya.com
 +.mypity.com
 +.mypiwik.com
@@ -87919,6 +87922,7 @@
 +.teodns.com
 +.teodns.net
 +.teown.com
++.teoyouth.com
 +.tepcb.com
 +.tepin.hk
 +.terabuy.com
@@ -88872,6 +88876,7 @@
 +.tjfengfan.com
 +.tjfer.com
 +.tjflcpw.com
++.tjfuxinjia.com
 +.tjfxdx.com
 +.tjfxhb.com
 +.tjgdjt.com
@@ -108146,6 +108151,7 @@
 +.zhijieguo.com
 +.zhijin.com
 +.zhijinwang.com
++.zhijiwenhua.xyz
 +.zhijizhibi.com
 +.zhikaiis.com
 +.zhikao100.com
@@ -111503,7 +111509,6 @@ gayotv.net
 gonglchuangl.net
 googleapis-cn.com
 googleapps-cn.com
-googletraveladservices-cn.com
 gpb-hls.streamguys1.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
